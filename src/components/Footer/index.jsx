@@ -1,24 +1,37 @@
+import { faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { useGSAP } from '@gsap/react';
+import { useRef } from 'react';
+import { elasticMoveRight, fadeInFromSide } from '../../gsap/baseAnimations';
+
 const Footer = () => {
+  const container = useRef()
+  useGSAP(() => {
+    elasticMoveRight('h3',container.current);
+    fadeInFromSide('#llc', container.current, 'left')
+    fadeInFromSide('#footer-location', container.current, 'left')
+    fadeInFromSide('#footer-contact', container.current, 'left')
+  },{scope:container})
   return (
-    <footer className="bg-[#0d0d0e] text-[#f2f2f2] py-10 ">
+    <footer ref={container} className="bg-[#0d0d0e] text-[#f2f2f2] py-10 ">
       <div className="flex flex-col justify-evenly lg:mt-28 p-10">
         <div>
           <h3 className="text-center text-4xl lg:text-6xl">
-            Max Protection Moving
+            Max Protection Moving<FontAwesomeIcon className='ml-8' icon={faTruckFast} />
           </h3>
-          <p className="text-4xl mt-10 lg:mb-0 mb-8">ENL INvestment LLC</p>
+          <p id='llc' className="text-4xl mt-10 lg:mb-0 mb-8">ENL INvestment LLC</p>
         </div>
 
-        <div>
-          <h4 className="text-4xl text-blue-500 mt-4">Location</h4>
-          <p className="text-3xl mb-8 lg:mb-0 mt-3 lg:mt-10 capitalize">
+        <div id='footer-location'>
+          <h4 className="text-4xl text-blue-500 mt-12">Location</h4>
+          <p className="text-3xl mb-4 lg:mb-0 mt-2 capitalize">
             temp arizona
           </p>
         </div>
 
-        <div>
-          <h4 className="text-4xl text-blue-500 mt-4">Contact</h4>
-          <p className="text-3xl mt-3 lg:mt-10">
+        <div id='footer-contact'>
+          <h4 className="text-4xl text-blue-500 mt-12">Contact</h4>
+          <p className="text-3xl mt-2 ">
             MaxProtection@ENLWorkforce.com
           </p>
         </div>

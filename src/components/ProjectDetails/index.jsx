@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
 
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+import { FadeInTopAngle } from "../../gsap/baseAnimations";
+
 const residential = ["Dorms", "Houses", "Apartments/Condos", "and more!"];
 const commercial = ["Offices", "Warehouses", "Gyms", "and more!"];
 const storeToDoor = [
@@ -55,19 +59,37 @@ export const ProjectCard = ({ title, arr }) => {
 };
 
 export const QuoteByProject = ({ children }) => {
+  const container = useRef()
+  useGSAP(() => {
+FadeInTopAngle('#by-project', 'left')
+
+  },{scope:container})
   return (
-    <div className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg  lg:mx-auto w-full lg:w-25vw ">
+    <div ref={container}>
+
+        <div id="by-project" className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg  lg:mx-auto w-full lg:w-25vw ">
       <h2 className="text-6xl font-bold mb-16 text-blue-600">BY PROJECT:</h2>
       {children}
     </div>
+    </div>
+
+  
   );
 };
 
 export const QuoteByItem = ({ children }) => {
+  const container = useRef()
+  useGSAP(() => {
+
+FadeInTopAngle('#by-item', 'right')
+  },{scope:container})
   return (
-    <div className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg  lg:mx-auto w-full  lg:w-25vw">
+    <div ref={container}>
+          <div id="by-item" className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg  lg:mx-auto w-full  lg:w-25vw">
       <h2 className="text-6xl font-bold mb-16 text-blue-600">BY ITEM</h2>
       {children}
     </div>
+    </div>
+
   );
 };
