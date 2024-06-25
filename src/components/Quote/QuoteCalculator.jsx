@@ -1,4 +1,3 @@
-
 import { ContactForm } from "./Forms/ContactForm";
 import { DateOfMoveForm } from "./Forms/DateOfMoveForm";
 import { ExtraDetails } from "./Forms/ExtraDetails";
@@ -11,9 +10,12 @@ import { useQuoteContext } from "../../customHooks/useQuoteContext";
 const QuoteCalculator = () => {
   const { formSteps } = useQuoteContext();
 
-
   return (
-    <form className="max-w-lg mx-auto border-2 rounded-xl p-8">
+    <form
+      id="quote-form"
+      className="flex flex-col justify-evenly sm:w-full md:w-50vw lg:w-50vw xl:max-w-50rem lg:h-75rem mx-auto md:border-2 rounded-xl p-14"
+    >
+      
       {formSteps === 1 ? (
         <LocationDetails />
       ) : formSteps === 2 ? (
