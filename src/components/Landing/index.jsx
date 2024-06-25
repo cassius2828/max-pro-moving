@@ -8,7 +8,8 @@ const Landing = () => {
 
   useGSAP(
     () => {
-      slamInTop("h1");
+      fadeFromTop("h1");
+     
      
     },
     { scope: container }

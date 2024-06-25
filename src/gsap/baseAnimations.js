@@ -23,6 +23,23 @@ export const fadeFromTop = (selector) => {
 };
 
 ///////////////////////////
+// Fade From Top | No Trigger
+///////////////////////////
+export const fadeFromTopNT = (selector) => {
+    gsap.fromTo(
+      selector,
+      { y: -50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+   
+      }
+    );
+  };
+
+///////////////////////////
 // Fade From Top | Multiple
 ///////////////////////////
 export const fadeFromTopMultiple = (selector) => {
@@ -81,4 +98,6 @@ export const slamInTop = (selector) => {
       ease: 'power4.inOut',
     }
   );
+
 };
+
