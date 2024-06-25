@@ -1,9 +1,23 @@
+import { useRef } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
+import { useGSAP } from "@gsap/react";
+import { fadeFromTop, fadeFromTopMultiple, fadeInMultiple,  } from "../../../gsap/baseAnimations";
 
 export const DateOfMoveForm = () => {
+  const container = useRef();
+
+  useGSAP(
+    () => {
+      fadeInMultiple(".form-section");
+ 
+    },
+    { scope: container }
+  );
   return (
-    <>
+    <div className="form-section flex flex-col justify-evenly h-full">
+
+
       <div className="my-12 mt-6">
         <label
           htmlFor="addressFrom"
@@ -36,6 +50,6 @@ export const DateOfMoveForm = () => {
       </div>
       <BackAndNextBtns />
       <SubmitFormBtn />
-    </>
+    </div>
   );
 };

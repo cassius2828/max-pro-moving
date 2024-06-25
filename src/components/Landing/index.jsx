@@ -1,8 +1,20 @@
+import { useRef } from "react";
 import StaffGallery from "../StaffGallery";
+import { useGSAP } from "@gsap/react";
+import { fadeFromTop, slamInTop } from "../../gsap/baseAnimations";
 
 const Landing = () => {
+  const container = useRef();
+
+  useGSAP(
+    () => {
+      slamInTop("h1");
+     
+    },
+    { scope: container }
+  );
   return (
-    <div className="w-full h-full relative">
+    <div ref={container} className="w-full h-full relative">
       {/* <img className="w-full" src="/images/moving-hero.jpeg" alt="" /> */}
       <StaffGallery />
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">

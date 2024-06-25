@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
+import { useGSAP } from "@gsap/react";
+import { fadeFromTop, fadeFromTopMultiple, fadeInMultiple } from "../../../gsap/baseAnimations";
 
 const initialSizeDetails = {
     truckSize: "pickup",
@@ -9,13 +11,23 @@ const initialSizeDetails = {
   
 export const SizeDetails = () => {
     const [sizeDetails, setSizeDetails] = useState(initialSizeDetails);
+    const container = useRef();
+
+    useGSAP(
+      () => {
+        fadeInMultiple(".form-section");
+        // fadeFromTopMultiple("label",container.current);
+      },
+      { scope: container }
+    );
     const handleChange = (e) => {
       const { name, value } = e.target;
       setSizeDetails({ ...sizeDetails, [name]: value });
       console.log(sizeDetails);
     };
     return (
-      <>
+      <div className="form-section flex flex-col justify-evenly h-full">
+
         <div className="my-12 mt-6">
           <label
             htmlFor="password"
@@ -77,7 +89,7 @@ export const SizeDetails = () => {
         </div>{" "}
         <BackAndNextBtns/>
 
-      </>
+      </div>
     );
   };
   

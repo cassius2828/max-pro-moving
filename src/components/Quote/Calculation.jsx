@@ -1,12 +1,23 @@
+import { useRef } from "react";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
+import { useGSAP } from "@gsap/react";
+import { fadeFromTopMultiple, fadeInMultiple } from "../../gsap/baseAnimations";
 
 const Calculation = () => {
   const {handleCalculateQuote,handleResetForm} = useQuoteContext()
+  const container = useRef();
 
+  useGSAP(
+    () => {
+      fadeInMultiple(".form-section");
+ 
+    },
+    { scope: container })
  
   
   return (
-    <>
+    <div className="form-section flex flex-col justify-evenly h-full">
+
       <div>
         <h1 className="text-6xl text-center mb-12 mt-6 font-bold">
           Quote: <span className="text-green-600">$745</span>
@@ -31,7 +42,7 @@ const Calculation = () => {
           contact now
         </button>
       </div>
-    </>
+    </div>
   );
 };
 export default Calculation;
