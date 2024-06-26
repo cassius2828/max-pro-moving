@@ -1,23 +1,50 @@
 import Marquee from "react-fast-marquee";
 const images = [
-  { src: "/images/moving-action-1.jpeg", alt: "Moving Action 1" },
-  { src: "/images/moving-action-2.jpeg", alt: "Moving Action 2" },
-  { src: "/images/moving-action-3.jpeg", alt: "Moving Action 3" },
-  { src: "/images/moving-action-4.jpeg", alt: "Moving Action 4" },
-  { src: "/images/moving-action-5.jpeg", alt: "Moving Action 5" },
+  {
+    src1: "/images/sm/moving-action-1-sm.webp",
+    src2: "/images/md/moving-action-1-md.webp",
+    src3: "/images/lg/moving-action-1-lg.webp",
+    alt: "Moving Action 1",
+  },
+  {
+    src1: "/images/sm/moving-action-2-sm.webp",
+    src2: "/images/md/moving-action-2-md.webp",
+    src3: "/images/lg/moving-action-2-lg.webp",
+    alt: "Moving Action 2",
+  },
+  {
+    src1: "/images/sm/moving-action-3-sm.webp",
+    src2: "/images/md/moving-action-3-md.webp",
+    src3: "/images/lg/moving-action-3-lg.webp",
+    alt: "Moving Action 3",
+  },
+  {
+    src1: "/images/sm/moving-action-4-sm.webp",
+    src2: "/images/md/moving-action-4-md.webp",
+    src3: "/images/lg/moving-action-4-lg.webp",
+    alt: "Moving Action 4",
+  },
+  {
+    src1: "/images/sm/moving-action-5-sm.webp",
+    src2: "/images/md/moving-action-5-md.webp",
+    src3: "/images/lg/moving-action-5-lg.webp",
+    alt: "Moving Action 5",
+  },
 ];
 
 const StaffGallery = () => {
   return (
     <div className="w-full relative mt-16 md:mt-0">
       <Marquee speed={20}>
-        <div className="  flex justify-evenly">
+        <div className="flex justify-evenly">
           {images.map((image) => {
             return (
               <img
-                key={image.src}
-                className="max-w-50vw"
-                src={image.src}
+                key={image.src1}
+                className="lg:h-100svh"
+                src={image.src2} // Default image source
+                srcSet={`${image.src1} 600w, ${image.src2} 1400w, ${image.src3} 2000w`}
+                sizes="(max-width: 600px) 100vw, (max-width: 1400px) 50vw, 33vw"
                 alt={image.alt}
               />
             );
