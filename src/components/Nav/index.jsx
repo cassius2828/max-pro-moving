@@ -1,12 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Hamburger } from "../Hamburger";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { fadeFromTopMultiple, fadeFromTopNT } from "../../gsap/baseAnimations";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const container = useRef();
+  useGSAP(() => {
+    fadeFromTopNT('h2');
+    fadeFromTopMultiple('li')
+    // gsap.fromTo(
+    //   container?.current?.querySelectorAll("li"),
+    //   { y: -20, opacity: 0 },
+    //   {
+    //     y: 0,
+    //     opacity: 1,
+    //     duration: 2,
+    //     ease: "power4.out",
+    //   }
+    // );
+  }, {scope:container});
   return (
-    <nav className="w-full bg-gray-900 fixed top-0 left-0  justify-between align-middle z-20 p-4 flex">
+    <nav    ref={container} className="w-full bg-gray-900 fixed top-0 left-0  justify-between align-middle z-20 p-4 flex">
       <h2 className=" my-auto text-4xl lg:text-6xl ml-10">
         Max-Protection Moving{" "}
       </h2>
@@ -59,27 +76,11 @@ export const Nav = () => {
         <NavListItem text={`About Us`} link={`/about-us`} />
       </ul>
       {/* mobile nav */}
-      <Hamburger isOpen={isOpen} setIsOpen={setIsOpen}/>
-    <ul className={`absolute bg-slate-600 w-full h-100svh top-0 left-0 ${isOpen ? 'translate-y-0':'-translate-y-300svh '} transition-all ease-out duration-500 flex flex-col align-middle  justify-evenly`}>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">Home</a>
-        </li>
-        <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">About</a>
-        </li>
-        <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">Services</a>
-        </li>
-        <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">Portfolio</a>
-        </li>
-        <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">Contact</a>
-        </li>
-        <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-          <a href="#">Blog</a>
-        </li>
-    </ul>
+      {/* ${isOpen ? 'translate-y-0 ':'-translate-y-300svh '} */}
+      <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isOpen && (
+        <MobileNav/>
+      )}
     </nav>
   );
 };
@@ -123,3 +124,45 @@ export const NavListItem = ({ link, text }) => {
     </li>
   );
 };
+
+export const MobileNav = () => {
+  const container = useRef();
+  useGSAP(() => {
+    gsap.fromTo(
+      container?.current?.querySelectorAll("li"),
+      { y: -20, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power4.out",
+      }
+    );
+  }, {scope:container});
+  return (
+    <ul ref={container}
+       
+    className={`absolute bg-slate-600 w-full h-100svh top-0 left-0  transition-all ease-out duration-500 flex flex-col align-middle  justify-evenly`}
+  >
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">Home</a>
+    </li>
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">About</a>
+    </li>
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">Services</a>
+    </li>
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">Portfolio</a>
+    </li>
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">Contact</a>
+    </li>
+    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <a href="#">Blog</a>
+    </li>
+  </ul>
+  )
+}
