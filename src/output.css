@@ -590,6 +590,18 @@ video {
   }
 }
 
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .fixed{
   position: fixed;
 }
@@ -628,6 +640,10 @@ video {
 
 .z-30{
   z-index: 30;
+}
+
+.z-50{
+  z-index: 50;
 }
 
 .mx-5{
@@ -755,6 +771,10 @@ video {
   display: block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
   display: flex;
 }
@@ -795,6 +815,22 @@ video {
   height: 100%;
 }
 
+.h-screen{
+  height: 100vh;
+}
+
+.h-8{
+  height: 2rem;
+}
+
+.h-48{
+  height: 12rem;
+}
+
+.h-24{
+  height: 6rem;
+}
+
 .w-12{
   width: 3rem;
 }
@@ -809,6 +845,18 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-screen{
+  width: 100vw;
+}
+
+.w-8{
+  width: 2rem;
+}
+
+.w-24{
+  width: 6rem;
 }
 
 .max-w-50vw{
@@ -863,6 +911,16 @@ video {
 .rotate-45{
   --tw-rotate: 45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin{
+  animation: spin 1s linear infinite;
 }
 
 .cursor-not-allowed{
@@ -1004,6 +1062,23 @@ video {
   background-color: rgb(51 65 85 / var(--tw-bg-opacity));
 }
 
+.bg-blue-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
+.fill-blue-600{
+  fill: #2563eb;
+}
+
+.fill-gray-600{
+  fill: #4b5563;
+}
+
+.fill-gray-200{
+  fill: #e5e7eb;
+}
+
 .p-10{
   padding: 2.5rem;
 }
@@ -1053,8 +1128,16 @@ video {
   padding-bottom: 0.625rem;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .text-center{
   text-align: center;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .align-middle{
@@ -1362,12 +1445,20 @@ button {
     height: 100svh;
   }
 
+  .lg\:h-48{
+    height: 12rem;
+  }
+
   .lg\:w-25vw{
     width: 25vw;
   }
 
   .lg\:w-50vw{
     width: 50vw;
+  }
+
+  .lg\:w-48{
+    width: 12rem;
   }
 
   .lg\:text-2xl{
@@ -1397,6 +1488,14 @@ button {
   }
 }
 
+.rtl\:text-left:where([dir="rtl"], [dir="rtl"] *){
+  text-align: left;
+}
+
+.rtl\:text-right:where([dir="rtl"], [dir="rtl"] *){
+  text-align: right;
+}
+
 @media (prefers-color-scheme: dark){
   .dark\:border-gray-600{
     --tw-border-opacity: 1;
@@ -1421,6 +1520,21 @@ button {
   .dark\:text-white{
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-600{
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-900{
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-gray-800{
+    --tw-text-opacity: 1;
+    color: rgb(31 41 55 / var(--tw-text-opacity));
   }
 
   .dark\:placeholder-gray-400::-moz-placeholder{

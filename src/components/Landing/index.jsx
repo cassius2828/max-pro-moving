@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import StaffGallery from "../StaffGallery";
 import { useGSAP } from "@gsap/react";
 import { fadeFromTop, fadeFromTopNT, longFadeIn, slamInTop } from "../../gsap/baseAnimations";
+import LoadingPlaceholder from "../Reuseables/LoadingPlaceholder";
 
 const Landing = () => {
   const container = useRef();
@@ -17,7 +18,9 @@ const Landing = () => {
   return (
     <div ref={container} className="w-full h-full relative">
       {/* <img className="w-full" src="/images/moving-hero.jpeg" alt="" /> */}
-      <StaffGallery />
+      <Suspense fallback={<LoadingPlaceholder />}>
+        <StaffGallery />
+      </Suspense>
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
         <h1 className="text-6xl lg:text-9xl text-gray-200 mb-10 font-extrabold text-center">
           Move with Confidence, Trust in Maximum Protection
