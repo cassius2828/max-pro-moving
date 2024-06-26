@@ -23,6 +23,7 @@ export default {
       },
       translate: {
         '-110svh': '-110svh',
+        '-200svh': '-200svh',
       },
     },
   },
