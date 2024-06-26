@@ -60,7 +60,7 @@ export const Nav = () => {
       </ul>
       {/* mobile nav */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen}/>
-    <ul className={`absolute bg-slate-600 w-full h-100svh top-0 left-0 ${isOpen ? 'translate-y-0':'-translate-y-200svh '} transition-all ease-out duration-500 flex flex-col align-middle  justify-evenly`}>
+    <ul className={`absolute bg-slate-600 w-full h-100svh top-0 left-0 ${isOpen ? 'translate-y-0':'-translate-y-300svh '} transition-all ease-out duration-500 flex flex-col align-middle  justify-evenly`}>
     <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
           <a href="#">Home</a>
         </li>
