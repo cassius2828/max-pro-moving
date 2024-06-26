@@ -5,30 +5,26 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { fadeFromTopMultiple, fadeFromTopNT } from "../../gsap/baseAnimations";
 
+//////////////////
+// Navigation Component
+//////////////////
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const container = useRef();
+
+  // GSAP animations for elements within the container
   useGSAP(() => {
     fadeFromTopNT('h2');
-    fadeFromTopMultiple('li')
-    // gsap.fromTo(
-    //   container?.current?.querySelectorAll("li"),
-    //   { y: -20, opacity: 0 },
-    //   {
-    //     y: 0,
-    //     opacity: 1,
-    //     duration: 2,
-    //     ease: "power4.out",
-    //   }
-    // );
-  }, {scope:container});
+    fadeFromTopMultiple('li');
+  }, {scope: container});
+
   return (
-    <nav    ref={container} className="w-full bg-gray-900 fixed top-0 left-0  justify-between align-middle z-20 p-4 flex">
-      <h2 className=" my-auto text-4xl lg:text-6xl ml-10">
+    <nav ref={container} className="w-full bg-gray-900 fixed top-0 left-0 justify-between align-middle z-20 p-4 flex">
+      <h2 className="my-auto text-4xl lg:text-6xl ml-10">
         Max-Protection Moving{" "}
       </h2>
 
-      <ul className=" p-4 mr-10 text-lg lg:text-2xl hidden  lg:flex">
+      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden lg:flex">
         <NavListItem link={`/`} text="Home" />
         <NavListItemDropDown
           text={`Max-Protection Moving`}
@@ -75,8 +71,7 @@ export const Nav = () => {
         />
         <NavListItem text={`About Us`} link={`/about-us`} />
       </ul>
-      {/* mobile nav */}
-      {/* ${isOpen ? 'translate-y-0 ':'-translate-y-300svh '} */}
+      {/* Mobile navigation */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
       {isOpen && (
         <MobileNav/>
@@ -85,48 +80,57 @@ export const Nav = () => {
   );
 };
 
+//////////////////
+// Dropdown List Item Component
+//////////////////
 export const NavListItemDropDown = ({ text, dropdownArr }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <li
-      className="block relative   px-4 py-2"
+      className="block relative px-4 py-2"
       onMouseEnter={() => setIsDropdownOpen(true)}
       onMouseLeave={() => setIsDropdownOpen(false)}
     >
       <button>{text}</button>
       {isDropdownOpen && (
         <ul className="absolute left-0 mt-2 w-48 bg-gray-700 text-white shadow-lg">
-          {dropdownArr.map((item) => {
-            return (
-              <li key={item.text}>
-                <a
-                  href={item.link}
-                  className="block px-4 py-2 hover:bg-gray-600"
-                >
-                  {item.text}
-                </a>
-              </li>
-            );
-          })}
+          {dropdownArr.map((item) => (
+            <li key={item.text}>
+              <a
+                href={item.link}
+                className="block px-4 py-2 hover:bg-gray-600"
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
         </ul>
       )}
     </li>
   );
 };
 
+//////////////////
+// Single List Item Component
+//////////////////
 export const NavListItem = ({ link, text }) => {
   return (
     <li>
-      <a href={link} className="block  px-4 py-2 hover:text-blue-500">
+      <a href={link} className="block px-4 py-2 hover:text-blue-500">
         {text}
       </a>
     </li>
   );
 };
 
+//////////////////
+// Mobile Navigation Component
+//////////////////
 export const MobileNav = () => {
   const container = useRef();
+
+  // GSAP animation for mobile navigation items
   useGSAP(() => {
     gsap.fromTo(
       container?.current?.querySelectorAll("li"),
@@ -139,30 +143,28 @@ export const MobileNav = () => {
         ease: "power4.out",
       }
     );
-  }, {scope:container});
+  }, {scope: container});
+
   return (
-    <ul ref={container}
-       
-    className={`absolute bg-slate-600 w-full h-100svh top-0 left-0  transition-all ease-out duration-500 flex flex-col align-middle  justify-evenly`}
-  >
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">Home</a>
-    </li>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">About</a>
-    </li>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">Services</a>
-    </li>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">Portfolio</a>
-    </li>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">Contact</a>
-    </li>
-    <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
-      <a href="#">Blog</a>
-    </li>
-  </ul>
-  )
-}
+    <ul ref={container} className="absolute bg-slate-600 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">Home</a>
+      </li>
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">About</a>
+      </li>
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">Services</a>
+      </li>
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">Portfolio</a>
+      </li>
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">Contact</a>
+      </li>
+      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+        <a href="#">Blog</a>
+      </li>
+    </ul>
+  );
+};

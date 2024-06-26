@@ -1,0 +1,11 @@
+///////////////////////////
+Google API
+///////////////////////////
+
+1. Call google places api to get location
+2. Store the place_id in state
+3. Use starting place_id and end place_id in the matrix google api to calculate the driving
+distance
+4. Store the distance in state and use the company metric for drive mile cost 
+5. Send details to email of worker as well after calculating the quote
+

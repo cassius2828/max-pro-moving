@@ -6,10 +6,16 @@ import { SizeDetails } from "./Forms/SizeDetails";
 
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
+import { useState } from "react";
 
 const QuoteCalculator = () => {
   const { formSteps } = useQuoteContext();
+  const [selectedPlace, setSelectedPlace] = useState(null);
 
+  const handlePlaceSelected = (place) => {
+    setSelectedPlace(place);
+    console.log("Selected place:", place);
+  };
   return (
     <form
       id="quote-form"
@@ -17,7 +23,7 @@ const QuoteCalculator = () => {
     >
       
       {formSteps === 1 ? (
-        <LocationDetails />
+        <LocationDetails onPlaceSelected={handlePlaceSelected} />
       ) : formSteps === 2 ? (
         <SizeDetails />
       ) : formSteps === 3 ? (
