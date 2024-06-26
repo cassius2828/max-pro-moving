@@ -3,12 +3,14 @@ import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Date Of Move Form Component
 ///////////////////////////////////
 export const DateOfMoveForm = () => {
   const container = useRef();
+  const { handleUpdateForm } = useQuoteContext();
 
   /////////////////////////////////
   // GSAP animations for form sections
@@ -32,7 +34,9 @@ export const DateOfMoveForm = () => {
           Project Date
         </label>
         <input
-          type="text"
+
+        onChange={(e) => handleUpdateForm(e.target)}  
+        type="text"
           id="projectDate"
           name="projectDate"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -50,6 +54,7 @@ export const DateOfMoveForm = () => {
           Time of Day
         </label>
         <input
+          onChange={(e) => handleUpdateForm(e.target)}
           type="text"
           id="timeOfDay"
           name="timeOfDay"

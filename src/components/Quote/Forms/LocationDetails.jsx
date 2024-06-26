@@ -11,13 +11,13 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 export const LocationDetails = ({ onPlaceSelected }) => {
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
-  const { handleUpdateLocations} = useQuoteContext();
+  const { handleUpdateLocations, handleUpdateForm } = useQuoteContext();
 
   const container = useRef();
 
   const handleSelectedPlace = (id, place) => {
     const updatedPlaces = places.map((p) => {
-     return p.formId === id ? { formId: id, place } : p;
+      return p.formId === id ? { formId: id, place } : p;
     });
 
     const formIdExists = places.some((p) => p.formId === id);
@@ -27,28 +27,28 @@ export const LocationDetails = ({ onPlaceSelected }) => {
     setPlaces(updatedPlaces);
   };
   useEffect(() => {
-    places.forEach(place => {
-     handleUpdateLocations(place);
-  })
+    places.forEach((place) => {
+      handleUpdateLocations(place);
+    });
   }, [places]);
 
-  const test =
- 
-  /////////////////////////////////
-  // GSAP animations for form sections
-  /////////////////////////////////
-  useGSAP(
-    () => {
-      fadeFromTopMultiple(".form-section");
-    },
-    { scope: container }
-  );
+
+    /////////////////////////////////
+    // GSAP animations for form sections
+    /////////////////////////////////
+    useGSAP(
+      () => {
+        fadeFromTopMultiple(".form-section");
+      },
+      { scope: container }
+    );
 
   /////////////////////////////////
   // Handle radio button change
   /////////////////////////////////
-  const handleRadioChange = (event) => {
-    setMultipleStops(event.target.value === "yes");
+  const handleRadioChange = (e) => {
+    setMultipleStops(e.value === "true");
+    handleUpdateForm(e);
   };
 
   return (
@@ -78,8 +78,8 @@ export const LocationDetails = ({ onPlaceSelected }) => {
               id="multipleStopsYes"
               name="multipleStops"
               type="radio"
-              value="yes"
-              onChange={handleRadioChange}
+              value={true}
+              onChange={(e) => handleRadioChange(e.target)}
               className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
@@ -95,7 +95,7 @@ export const LocationDetails = ({ onPlaceSelected }) => {
               name="multipleStops"
               type="radio"
               value="no"
-              onChange={handleRadioChange}
+              onChange={(e) => handleRadioChange(e.target)}
               className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label

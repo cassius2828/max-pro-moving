@@ -41,8 +41,11 @@ const reducer = (state, action) => {
       return { ...state, formSteps: state.formSteps - 1 };
     case "updateForm":
       return { ...state, [action.payload.name]: action.payload.value };
-      case "updateLocations":
-        return { ...state, [action.payload.formId]: action.payload.place.place_id };
+    case "updateLocations":
+      return {
+        ...state,
+        [action.payload.formId]: action.payload.place.place_id,
+      };
     case "resetForm":
       return initialFormState;
 
@@ -79,15 +82,12 @@ export const QuoteProvider = ({ children }) => {
 
   const handleUpdateForm = (payload) => {
     dispatch({ type: "updateForm", payload });
-  
+    console.log(state);
   };
 
   const handleUpdateLocations = (payload) => {
     dispatch({ type: "updateLocations", payload });
-console.log(payload.formId)
-console.log(payload.place.place_id)
-console.log(state)
-  }
+  };
 
   return (
     <QuoteContext.Provider
@@ -96,7 +96,8 @@ console.log(state)
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,
-        handleUpdateForm,handleUpdateLocations
+        handleUpdateForm,
+        handleUpdateLocations,
       }}
     >
       {children}

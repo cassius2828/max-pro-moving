@@ -2,12 +2,14 @@ import { useRef } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Contact Form Component
 ///////////////////////////////////
 export const ContactForm = () => {
   const container = useRef();
+  const { handleUpdateForm } = useQuoteContext();
 
   /////////////////////////////////
   // GSAP animations for form sections
@@ -31,6 +33,7 @@ export const ContactForm = () => {
           First Name
         </label>
         <input
+          onChange={(e) => handleUpdateForm(e.target)}
           type="text"
           id="firstName"
           name="firstName"
@@ -49,6 +52,7 @@ export const ContactForm = () => {
           Last Name
         </label>
         <input
+          onChange={(e) => handleUpdateForm(e.target)}
           type="text"
           id="lastName"
           name="lastName"
@@ -67,6 +71,7 @@ export const ContactForm = () => {
           Cell
         </label>
         <input
+          onChange={(e) => handleUpdateForm(e.target)}
           type="text"
           id="cell"
           name="cell"
@@ -85,6 +90,7 @@ export const ContactForm = () => {
           Email
         </label>
         <input
+          onChange={(e) => handleUpdateForm(e.target)}
           type="text"
           id="email"
           name="email"

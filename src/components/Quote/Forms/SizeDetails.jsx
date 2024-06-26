@@ -5,15 +5,6 @@ import { fadeInMultiple } from "../../../gsap/baseAnimations";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
-// Initial size details state
-///////////////////////////////////
-const initialSizeDetails = {
-  truckSize: "pickup",
-  NumOfWorkers: "2",
-  time: "3",
-};
-
-///////////////////////////////////
 // Size Details Component
 ///////////////////////////////////
 export const SizeDetails = () => {
