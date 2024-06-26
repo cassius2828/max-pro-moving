@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useRef, useEffect } from "react";
+import { useQuoteContext } from "../customHooks/useQuoteContext";
 
 const AutocompleteInput = ({ onPlaceSelected,id,label }) => {
   const inputRef = useRef(null);
-
+  const {   handleUpdateForm,startingLocation,stop1,stop2 } = useQuoteContext();
+/**  startingLocation: "",
+  multipleStops: false,
+  stop1: "",
+  stop2: "", */
   useEffect(() => {
     if (!window.google) {
       console.error("Google API is not loaded");

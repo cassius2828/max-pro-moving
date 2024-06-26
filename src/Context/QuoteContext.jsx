@@ -9,7 +9,8 @@ const initialFormState = {
   // locations
   startingLocation: "",
   multipleStops: false,
-  address1: "",
+  stop1: "",
+  stop2: "",
   endLocation: "",
   distance: 0,
   //   sizing
@@ -40,28 +41,29 @@ const reducer = (state, action) => {
       return { ...state, formSteps: state.formSteps - 1 };
     case "updateForm":
       return { ...state, [action.payload.name]: action.payload.value };
+      case "updateLocations":
+        return { ...state, [action.payload.formId]: action.payload.place.place_id };
     case "resetForm":
       return initialFormState;
 
     default:
-      return initialFormState;
+      return state; // Ensure the current state is returned by default
   }
 };
 
 export const QuoteProvider = ({ children }) => {
-  const [{ formSteps,truckSize }, dispatch] = useReducer(reducer, initialFormState);
-
+  const [state, dispatch] = useReducer(reducer, initialFormState);
 
   const handleFormStep = (e, action) => {
     e.preventDefault();
 
     if (action === "back") {
-      if (formSteps > 1) {
+      if (state.formSteps > 1) {
         dispatch({ type: "prevStep" });
       }
     }
     if (action === "next") {
-      if (formSteps < 6 && formSteps !== 3) {
+      if (state.formSteps < 6 && state.formSteps !== 3) {
         dispatch({ type: "nextStep" });
       }
     }
@@ -77,16 +79,24 @@ export const QuoteProvider = ({ children }) => {
 
   const handleUpdateForm = (payload) => {
     dispatch({ type: "updateForm", payload });
-    
+  
   };
+
+  const handleUpdateLocations = (payload) => {
+    dispatch({ type: "updateLocations", payload });
+console.log(payload.formId)
+console.log(payload.place.place_id)
+console.log(state)
+  }
+
   return (
     <QuoteContext.Provider
       value={{
-        formSteps,truckSize,
+        ...state, // Spread all state keys here
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,
-        handleUpdateForm,
+        handleUpdateForm,handleUpdateLocations
       }}
     >
       {children}

@@ -3,6 +3,7 @@ import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import CalculateBtn from "../QuoteBtns/CalculateBtn";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Extra Details Component
@@ -10,6 +11,7 @@ import { fadeInMultiple } from "../../../gsap/baseAnimations";
 export const ExtraDetails = () => {
   const [extraDetails, setExtraDetails] = useState({});
   const container = useRef();
+  const { handleUpdateForm } = useQuoteContext();
 
   /////////////////////////////////
   // Handle change in form inputs
@@ -43,7 +45,7 @@ export const ExtraDetails = () => {
       {/* Radio buttons for stairs involved */}
       <div className="my-12 mt-6">
         <label
-          htmlFor="stairsInvolved"
+          htmlFor="stairs"
           className="block capitalize  text-3xl font-medium text-gray-900 mb-8 dark:text-white"
         >
           Stairs Involved
@@ -52,7 +54,7 @@ export const ExtraDetails = () => {
           <div className="flex items-center">
             <input
               id="stairsYes"
-              name="stairsInvolved"
+              name="stairs"
               type="radio"
               value="yes"
               onChange={handleRadioChange}
@@ -68,7 +70,7 @@ export const ExtraDetails = () => {
           <div className="flex items-center">
             <input
               id="stairsNo"
-              name="stairsInvolved"
+              name="stairs"
               type="radio"
               value="no"
               onChange={handleRadioChange}

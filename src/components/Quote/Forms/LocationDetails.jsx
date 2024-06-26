@@ -3,6 +3,7 @@ import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import { useGSAP } from "@gsap/react";
 import { fadeFromTopMultiple } from "../../../gsap/baseAnimations";
 import AutocompleteInput from "../../../googleAPIs/AutoCompleteInput";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Location Details Component
@@ -10,6 +11,8 @@ import AutocompleteInput from "../../../googleAPIs/AutoCompleteInput";
 export const LocationDetails = ({ onPlaceSelected }) => {
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
+  const { handleUpdateLocations} = useQuoteContext();
+
   const container = useRef();
 
   const handleSelectedPlace = (id, place) => {
@@ -24,8 +27,13 @@ export const LocationDetails = ({ onPlaceSelected }) => {
     setPlaces(updatedPlaces);
   };
   useEffect(() => {
-    console.log(places);
+    places.forEach(place => {
+     handleUpdateLocations(place);
+  })
   }, [places]);
+
+  const test =
+ 
   /////////////////////////////////
   // GSAP animations for form sections
   /////////////////////////////////
@@ -52,7 +60,7 @@ export const LocationDetails = ({ onPlaceSelected }) => {
 
       <AutocompleteInput
         onPlaceSelected={handleSelectedPlace}
-        id={`addressFrom`}
+        id={`startingLocation`}
         label="Pick Up Location"
       />
 

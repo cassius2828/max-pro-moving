@@ -17,9 +17,9 @@ const initialSizeDetails = {
 // Size Details Component
 ///////////////////////////////////
 export const SizeDetails = () => {
-  const [sizeDetails, setSizeDetails] = useState(initialSizeDetails);
   const container = useRef();
-  const { handleUpdateForm } = useQuoteContext();
+  const {  truckSize, NumOfWorkers, timeForJob, handleUpdateForm } = useQuoteContext();
+
 
   /////////////////////////////////
   // GSAP animations for form sections
@@ -35,12 +35,12 @@ export const SizeDetails = () => {
   /////////////////////////////////
   // Handle change in form inputs
   /////////////////////////////////
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSizeDetails({ ...sizeDetails, [name]: value });
-    handleUpdateForm(e.target);
-    console.log(sizeDetails);
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setSizeDetails({ ...sizeDetails, [name]: value });
+  //   handleUpdateForm(e.target);
+  //   console.log(sizeDetails);
+  // };
 
   return (
     <div
@@ -57,8 +57,8 @@ export const SizeDetails = () => {
         </label>
         <select
           className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={(e) => handleChange(e)}
-          value={sizeDetails.truckSize}
+          onChange={(e) => handleUpdateForm(e.target)}
+          value={truckSize}
           name="truckSize"
           id="truckSize"
         >
@@ -78,8 +78,8 @@ export const SizeDetails = () => {
         </label>
         <select
           className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={(e) => handleChange(e)}
-          value={sizeDetails.NumOfWorkers}
+          onChange={(e) => handleUpdateForm(e.target)}
+          value={NumOfWorkers}
           name="NumOfWorkers"
           id="NumOfWorkers"
         >
@@ -93,17 +93,17 @@ export const SizeDetails = () => {
       {/* Dropdown for time to complete job */}
       <div className="my-12 mt-6">
         <label
-          htmlFor="time"
+          htmlFor="timeForJob"
           className="block capitalize mb-5 text-3xl font-medium text-gray-900 dark:text-white"
         >
           Time to Complete Job
         </label>
         <select
           className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={(e) => handleChange(e)}
-          value={sizeDetails.time}
-          name="time"
-          id="time"
+          onChange={(e) => handleUpdateForm(e.target)}
+          value={timeForJob}
+          name="timeForJob"
+          id="timeForJob"
         >
           <option value="3">3 hours</option>
           <option value="4">4 hours</option>
