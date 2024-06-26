@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Initial size details state
@@ -18,6 +19,7 @@ const initialSizeDetails = {
 export const SizeDetails = () => {
   const [sizeDetails, setSizeDetails] = useState(initialSizeDetails);
   const container = useRef();
+  const { handleUpdateForm } = useQuoteContext();
 
   /////////////////////////////////
   // GSAP animations for form sections
@@ -36,12 +38,15 @@ export const SizeDetails = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSizeDetails({ ...sizeDetails, [name]: value });
+    handleUpdateForm(e.target);
     console.log(sizeDetails);
   };
 
   return (
-    <div ref={container} className="form-section flex flex-col justify-evenly h-full">
-      
+    <div
+      ref={container}
+      className="form-section flex flex-col justify-evenly h-full"
+    >
       {/* Dropdown for truck size */}
       <div className="my-12 mt-6">
         <label

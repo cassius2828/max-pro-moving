@@ -38,6 +38,8 @@ const reducer = (state, action) => {
       return { ...state, formSteps: state.formSteps + 1 };
     case "prevStep":
       return { ...state, formSteps: state.formSteps - 1 };
+    case "updateForm":
+      return { ...state, [action.payload.name]: action.payload.value };
     case "resetForm":
       return initialFormState;
 
@@ -47,8 +49,8 @@ const reducer = (state, action) => {
 };
 
 export const QuoteProvider = ({ children }) => {
-  const [{ formSteps }, dispatch] = useReducer(reducer, initialFormState);
-  console.log(formSteps);
+  const [{ formSteps,truckSize }, dispatch] = useReducer(reducer, initialFormState);
+
 
   const handleFormStep = (e, action) => {
     e.preventDefault();
@@ -72,13 +74,19 @@ export const QuoteProvider = ({ children }) => {
   const handleResetForm = () => {
     dispatch({ type: "resetForm" });
   };
+
+  const handleUpdateForm = (payload) => {
+    dispatch({ type: "updateForm", payload });
+    
+  };
   return (
     <QuoteContext.Provider
       value={{
-        formSteps,
+        formSteps,truckSize,
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,
+        handleUpdateForm,
       }}
     >
       {children}

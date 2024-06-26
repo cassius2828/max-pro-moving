@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "tailwind": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch",
+    "tw": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "build:css": "npx tailwindcss -i ./src/index.css -o ./dist/output.css",
     "preview": "vite preview"
   },

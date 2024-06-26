@@ -46,7 +46,7 @@ export const ProjectCard = ({ title, arr }) => {
           {arr.map((item, idx) => {
             return (
               <li className="my-3" key={item + idx}>
-                <a href="#quote-form" className="hover:text-blue-500 text-3xl ">
+                <a href="#quote-form" className="hover:text-blue-500 text-[#f2f2f2] text-3xl ">
                   {item}
                 </a>
               </li>
