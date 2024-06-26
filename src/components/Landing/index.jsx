@@ -1,7 +1,7 @@
-import { Suspense, useRef } from "react";
-import StaffGallery from "../StaffGallery";
+import { Suspense, lazy, useRef } from "react";
+const StaffGallery = lazy(() => import('../StaffGallery'));
 import { useGSAP } from "@gsap/react";
-import { fadeFromTop, fadeFromTopNT, longFadeIn, slamInTop } from "../../gsap/baseAnimations";
+import {  fadeFromTopNT, longFadeIn } from "../../gsap/baseAnimations";
 import LoadingPlaceholder from "../Reuseables/LoadingPlaceholder";
 
 const Landing = () => {
