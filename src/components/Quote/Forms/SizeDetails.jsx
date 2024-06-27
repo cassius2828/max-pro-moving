@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
@@ -22,16 +22,6 @@ export const SizeDetails = () => {
     },
     { scope: container }
   );
-
-  /////////////////////////////////
-  // Handle change in form inputs
-  /////////////////////////////////
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setSizeDetails({ ...sizeDetails, [name]: value });
-  //   handleUpdateForm(e.target);
-  //   console.log(sizeDetails);
-  // };
 
   return (
     <div

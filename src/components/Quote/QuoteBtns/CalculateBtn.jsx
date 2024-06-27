@@ -3,11 +3,9 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 const CalculateBtn = () => {
   const { handleCalculateQuote, startingLocation, stop1, stop2 } =
     useQuoteContext();
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (!startingLocation || !stop1)
-    //   return alert("please enter a starting and ending location for the move");
-    // console.log(stop2, ' <-- stop 2')
     await handleCalculateQuote(startingLocation, stop1, stop2);
   };
   return (

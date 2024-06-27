@@ -53,7 +53,7 @@ export const fadeFromTopMultiple = (selector) => {
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
-          trigger: selector,
+          trigger: element,
           start: "top top",
         },
       }
@@ -75,7 +75,7 @@ export const fadeInMultiple = (selector) => {
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
-          trigger: selector,
+          trigger: element,
           start: "top center",
         },
       }
@@ -83,6 +83,9 @@ export const fadeInMultiple = (selector) => {
   });
 };
 
+///////////////////////////
+// Slam In Top
+///////////////////////////
 export const slamInTop = (selector) => {
   gsap.fromTo(
     selector,
@@ -93,13 +96,14 @@ export const slamInTop = (selector) => {
       opacity: 1,
       scale: 1,
       duration: 1,
-      //   ease: 'power3.inOut',
-      // either the scale of the power 4 causes layout shifts when paired with moving backgrounds
       ease: "power4.inOut",
     }
   );
 };
 
+///////////////////////////
+// Fade In Top Angle
+///////////////////////////
 export const FadeInTopAngle = (selector, side) => {
   gsap.fromTo(
     selector,
@@ -115,11 +119,13 @@ export const FadeInTopAngle = (selector, side) => {
         start: "center center",
         ease: "sine.out",
       },
-      //   ease: 'power3.inOut',
     }
   );
 };
 
+///////////////////////////
+// Long Fade In
+///////////////////////////
 export const longFadeIn = (selector) => {
   gsap.fromTo(
     selector,
@@ -132,6 +138,9 @@ export const longFadeIn = (selector) => {
   );
 };
 
+///////////////////////////
+// Elastic Move Right
+///////////////////////////
 export const elasticMoveRight = (selector, ref) => {
   gsap.fromTo(
     selector,
@@ -149,6 +158,9 @@ export const elasticMoveRight = (selector, ref) => {
   );
 };
 
+///////////////////////////
+// Fade In From Side
+///////////////////////////
 export const fadeInFromSide = (selector, ref, side) => {
   gsap.fromTo(
     selector,

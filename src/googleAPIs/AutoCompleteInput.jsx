@@ -2,13 +2,16 @@
 import { useRef, useEffect } from "react";
 import { useQuoteContext } from "../customHooks/useQuoteContext";
 
-const AutocompleteInput = ({ onPlaceSelected,id,label }) => {
+/////////////////
+// Autocomplete Input Component
+/////////////////
+const AutocompleteInput = ({ onPlaceSelected, id, label }) => {
   const inputRef = useRef(null);
-  const {   handleUpdateForm,startingLocation,stop1,stop2 } = useQuoteContext();
-/**  startingLocation: "",
-  multipleStops: false,
-  stop1: "",
-  stop2: "", */
+  const { handleUpdateForm, startingLocation, stop1, stop2 } = useQuoteContext();
+
+  /////////////////////////////////
+  // Effect to initialize Google Autocomplete
+  /////////////////////////////////
   useEffect(() => {
     if (!window.google) {
       console.error("Google API is not loaded");

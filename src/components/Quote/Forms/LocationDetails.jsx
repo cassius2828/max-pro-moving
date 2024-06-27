@@ -8,13 +8,22 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 ///////////////////////////////////
 // Location Details Component
 //////////////////////////////////
-export const LocationDetails = ({ onPlaceSelected }) => {
+export const LocationDetails = () => {
+  /////////////////////////////////
+  // State for multiple stops and places
+  /////////////////////////////////
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
   const { handleUpdateLocations, handleUpdateForm } = useQuoteContext();
 
+  /////////////////////////////////
+  // Reference for container
+  /////////////////////////////////
   const container = useRef();
 
+  /////////////////////////////////
+  // Handle selected place
+  /////////////////////////////////
   const handleSelectedPlace = (id, place) => {
     const updatedPlaces = places.map((p) => {
       return p.formId === id ? { formId: id, place } : p;
@@ -26,22 +35,25 @@ export const LocationDetails = ({ onPlaceSelected }) => {
     }
     setPlaces(updatedPlaces);
   };
+
+  /////////////////////////////////
+  // Update locations when places change
+  /////////////////////////////////
   useEffect(() => {
     places.forEach((place) => {
       handleUpdateLocations(place);
     });
   }, [places]);
 
-
-    /////////////////////////////////
-    // GSAP animations for form sections
-    /////////////////////////////////
-    useGSAP(
-      () => {
-        fadeFromTopMultiple(".form-section");
-      },
-      { scope: container }
-    );
+  /////////////////////////////////
+  // GSAP animations for form sections
+  /////////////////////////////////
+  useGSAP(
+    () => {
+      fadeFromTopMultiple(".form-section");
+    },
+    { scope: container }
+  );
 
   /////////////////////////////////
   // Handle radio button change
@@ -57,7 +69,6 @@ export const LocationDetails = ({ onPlaceSelected }) => {
       className="form-section flex flex-col justify-evenly h-full"
     >
       {/* Input for pick up location */}
-
       <AutocompleteInput
         onPlaceSelected={handleSelectedPlace}
         id={`startingLocation`}
@@ -94,7 +105,7 @@ export const LocationDetails = ({ onPlaceSelected }) => {
               id="multipleStopsNo"
               name="multipleStops"
               type="radio"
-              value="no"
+              value={false}
               onChange={(e) => handleRadioChange(e.target)}
               className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
@@ -113,7 +124,6 @@ export const LocationDetails = ({ onPlaceSelected }) => {
           {multipleStops ? (
             <div className="my-12">
               {/* Input for stop 1 address */}
-
               <AutocompleteInput
                 onPlaceSelected={handleSelectedPlace}
                 id={`stop1`}
@@ -121,7 +131,6 @@ export const LocationDetails = ({ onPlaceSelected }) => {
               />
 
               {/* Input for stop 2 address */}
-
               <AutocompleteInput
                 onPlaceSelected={handleSelectedPlace}
                 id={`stop2`}
@@ -132,7 +141,6 @@ export const LocationDetails = ({ onPlaceSelected }) => {
           ) : (
             <div className="my-12">
               {/* Input for single stop address */}
-
               <AutocompleteInput
                 onPlaceSelected={handleSelectedPlace}
                 id={`stop1`}

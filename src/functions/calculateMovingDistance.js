@@ -1,6 +1,7 @@
 import axios from "axios";
 import functions from "@google-cloud/functions-framework";
 const MATRIX_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix";
+// eslint-disable-next-line no-undef
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 functions.http("calculateMovingDistance", async (req, res) => {

@@ -1,17 +1,18 @@
 import { Suspense, lazy, useRef } from "react";
-const StaffGallery = lazy(() => import('../StaffGallery'));
+const StaffGallery = lazy(() => import("../StaffGallery"));
 import { useGSAP } from "@gsap/react";
-import {  fadeFromTopNT, longFadeIn } from "../../gsap/baseAnimations";
+import { fadeFromTopNT, longFadeIn } from "../../gsap/baseAnimations";
 import LoadingPlaceholder from "../Reuseables/LoadingPlaceholder";
 
 const Landing = () => {
+  ///////////////////////////
+  // GSAP Animations
+  ///////////////////////////
   const container = useRef();
-
   useGSAP(
     () => {
       fadeFromTopNT("h1");
-     longFadeIn('button')
-     
+      longFadeIn("button");
     },
     { scope: container }
   );

@@ -22,8 +22,10 @@ export const ContactForm = () => {
   );
 
   return (
-    <div ref={container} className="form-section flex flex-col justify-evenly h-full">
-      
+    <div
+      ref={container}
+      className="form-section flex flex-col justify-evenly h-full"
+    >
       {/* Input for first name */}
       <div className="my-12 mt-6">
         <label
@@ -42,7 +44,7 @@ export const ContactForm = () => {
           required
         />
       </div>
-      
+
       {/* Input for last name */}
       <div className="my-12">
         <label
@@ -61,7 +63,7 @@ export const ContactForm = () => {
           required
         />
       </div>
-      
+
       {/* Input for cell */}
       <div className="my-12">
         <label
@@ -80,7 +82,7 @@ export const ContactForm = () => {
           required
         />
       </div>
-      
+
       {/* Input for email */}
       <div className="my-12">
         <label
@@ -99,7 +101,7 @@ export const ContactForm = () => {
           required
         />
       </div>
-      
+
       <BackAndNextBtns />
     </div>
   );

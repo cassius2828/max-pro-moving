@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import CalculateBtn from "../QuoteBtns/CalculateBtn";
 import { useGSAP } from "@gsap/react";
@@ -9,25 +9,8 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 // Extra Details Component
 ///////////////////////////////////
 export const ExtraDetails = () => {
-  const [extraDetails, setExtraDetails] = useState({});
   const container = useRef();
   const { handleUpdateForm } = useQuoteContext();
-
-  /////////////////////////////////
-  // Handle change in form inputs
-  /////////////////////////////////
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setExtraDetails({ ...extraDetails, [name]: value });
-    console.log(extraDetails);
-  };
-
-  /////////////////////////////////
-  // Handle radio button change
-  /////////////////////////////////
-  const handleRadioChange = (event) => {
-    // Add your logic here
-  };
 
   /////////////////////////////////
   // GSAP animations for form sections

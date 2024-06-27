@@ -3,15 +3,12 @@ import Landing from "./components/Landing";
 import Quote from "./components/Quote";
 import Footer from "./components/Footer";
 import ProjectDetails from "./components/ProjectDetails";
-import StaffGallery from "./components/StaffGallery";
-import LoadingPlaceholder from "./components/Reuseables/LoadingPlaceholder";
 
 function App() {
   return (
     <>
       <Nav />
       <Landing />
-      
       <Quote />
       <ProjectDetails />
       <Footer />

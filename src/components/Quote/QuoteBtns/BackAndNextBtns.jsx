@@ -4,7 +4,9 @@ const BackAndNextBtns = () => {
   const {formSteps,handleFormStep} = useQuoteContext()
 
   return (
+    
     <div className="w-full flex justify-around my-8">
+      {/* back btn */}
     <button
       onClick={(e) => handleFormStep(e, "back")}
       className={` ${
@@ -15,6 +17,7 @@ const BackAndNextBtns = () => {
     >
       back
     </button>
+    {/* next btn */}
     <button
       onClick={(e) => handleFormStep(e, "next")}
       className={` ${

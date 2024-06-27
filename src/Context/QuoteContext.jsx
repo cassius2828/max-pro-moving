@@ -15,29 +15,33 @@ const initialFormState = {
   multipleStops: false,
   stop1: "",
   stop2: "",
-  endLocation: "",
   distance: 0,
   estimatedTravelTime: 0,
-  //   sizing
+  // sizing
   truckSize: "pickup",
   NumOfWorkers: 2,
   timeForJob: "3",
-  //   extra details
+  // extra details
   stairs: false,
   listLargeItems: "",
   summaryOfMove: "",
-  //   quote
+  // quote
   quoteAmount: 0,
-  //   contact info
+  // contact info
   firstName: "",
   lastName: "",
   cell: "",
   email: "",
-  //   project times
+  // project times
   projectDate: "",
-  timeOfDay: "",
+  hour: "",
+  period: "",
+  projectStartTime: "",
 };
 
+/////////////////////
+// Reducer function
+/////////////////////
 const reducer = (state, action) => {
   switch (action.type) {
     case "nextStep":
@@ -46,6 +50,10 @@ const reducer = (state, action) => {
       return { ...state, formSteps: state.formSteps - 1 };
     case "updateForm":
       return { ...state, [action.payload.name]: action.payload.value };
+    case "updateDate":
+      return { ...state, projectDate: action.payload };
+    case "updateProjectStartTime":
+      return { ...state, projectStartTime: state.hour + " " + state.period };
     case "updateLocations":
       return {
         ...state,
@@ -59,15 +67,20 @@ const reducer = (state, action) => {
       };
     case "resetForm":
       return initialFormState;
-
     default:
-      return state; // Ensure the current state is returned by default
+      return state;
   }
 };
 
+//////////////////////////////////
+// Quote Provider Component
+//////////////////////////////////
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialFormState);
 
+  /////////////////////////////////
+  // Handle form step navigation
+  /////////////////////////////////
   const handleFormStep = (e, action) => {
     e.preventDefault();
 
@@ -83,6 +96,9 @@ export const QuoteProvider = ({ children }) => {
     }
   };
 
+  /////////////////////////////////
+  // Handle quote calculation
+  /////////////////////////////////
   const handleCalculateQuote = async (startingLocation, stop1, stop2) => {
     // const params = {
     //   startingLocation,
@@ -104,20 +120,42 @@ export const QuoteProvider = ({ children }) => {
     //   console.error("Error:", error);
     // }
     dispatch({ type: "nextStep" });
-
   };
 
+  /////////////////////////////////
+  // Handle form reset
+  /////////////////////////////////
   const handleResetForm = () => {
     dispatch({ type: "resetForm" });
   };
 
+  /////////////////////////////////
+  // Handle form update
+  /////////////////////////////////
   const handleUpdateForm = (payload) => {
     dispatch({ type: "updateForm", payload });
     console.log(state);
   };
 
+  /////////////////////////////////
+  // Handle location update
+  /////////////////////////////////
   const handleUpdateLocations = (payload) => {
     dispatch({ type: "updateLocations", payload });
+  };
+
+  /////////////////////////////////
+  // Handle date change
+  /////////////////////////////////
+  const handleDateChange = (payload) => {
+    dispatch({ type: "updateDate", payload });
+  };
+
+  /////////////////////////////////
+  // Handle project start time
+  /////////////////////////////////
+  const handleSetProjectStartTime = () => {
+    dispatch({ type: "updateProjectStartTime" });
   };
 
   return (
@@ -129,6 +167,8 @@ export const QuoteProvider = ({ children }) => {
         handleCalculateQuote,
         handleUpdateForm,
         handleUpdateLocations,
+        handleDateChange,
+        handleSetProjectStartTime,
       }}
     >
       {children}
