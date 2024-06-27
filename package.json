@@ -9,13 +9,16 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "tw": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "build:css": "npx tailwindcss -i ./src/index.css -o ./dist/output.css",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:functions": "functions-framework --target=calculateMovingDistance --source=src/functions",
+    "deploy": "gcloud functions deploy calculateMovingDistance --gen2 --runtime=nodejs20 --trigger-http --allow-unauthenticated --entry-point=calculateMovingDistance --source=src/functions --set-env-vars GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY"
   },
   "dependencies": {
-
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@google-cloud/functions-framework": "^3.4.0",
     "@gsap/react": "^2.1.1",
+    "axios": "^1.7.2",
     "font-awesome": "^4.7.0",
     "gsap": "^3.12.5",
     "react": "^18.2.0",

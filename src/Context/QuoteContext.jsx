@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import { createContext, useReducer } from "react";
+// import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 
 export const QuoteContext = createContext();
+const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
+console.log(CALC_MOVE_DIST_ENDPOINT);
 
 const initialFormState = {
   // progress of form
@@ -13,6 +17,7 @@ const initialFormState = {
   stop2: "",
   endLocation: "",
   distance: 0,
+  estimatedTravelTime: 0,
   //   sizing
   truckSize: "pickup",
   NumOfWorkers: 2,
@@ -46,6 +51,12 @@ const reducer = (state, action) => {
         ...state,
         [action.payload.formId]: action.payload.place.place_id,
       };
+    case "calculateTimeAndDistance":
+      return {
+        ...state,
+        distance: (action.payload.distanceValueMeters * 0.000621371).toFixed(2),
+        estimatedTravelTime: action.payload.durationValueSeconds,
+      };
     case "resetForm":
       return initialFormState;
 
@@ -72,8 +83,26 @@ export const QuoteProvider = ({ children }) => {
     }
   };
 
-  const handleCalculateQuote = () => {
-    dispatch({ type: "nextStep" });
+  const handleCalculateQuote = async (startingLocation, stop1, stop2) => {
+    const params = {
+      startingLocation,
+      stop1,
+      stop2,
+    };
+
+    try {
+      const response = await axios.post(CALC_MOVE_DIST_ENDPOINT, params);
+      const data = response.data;
+      console.log(data);
+      if (data) {
+        dispatch({ type: "calculateTimeAndDistance", payload: data });
+        dispatch({ type: "nextStep" });
+      } else {
+        throw new Error("Could not calculate distance");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const handleResetForm = () => {
