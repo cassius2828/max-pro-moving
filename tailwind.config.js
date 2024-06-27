@@ -6,6 +6,7 @@ export default {
       width: {
         '25vw': '25vw',
         '50vw': '50vw',
+        '103p': '103%',
       },
       height: {
         '25vw': '25vw',
@@ -14,6 +15,8 @@ export default {
         '50rem': '50rem',
         '75rem': '75rem',
         '100svh': '100svh',
+        '103p': '103%',
+
       },
       maxWidth: {
         '25vw': '25vw',

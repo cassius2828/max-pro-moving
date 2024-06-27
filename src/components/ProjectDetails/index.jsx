@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { FadeInTopAngle } from "../../gsap/baseAnimations";
-
+import '../../App.css'
 // Define project categories
 const residential = ["Dorms", "Houses", "Apartments/Condos", "and more!"];
 const commercial = ["Offices", "Warehouses", "Gyms", "and more!"];
@@ -47,7 +47,7 @@ export default ProjectDetails;
 export const ProjectCard = ({ title, arr }) => {
   return (
     <>
-      <div>
+      <div >
         <h3 className="text-5xl font-semibold mb-5 text-blue-400">{title}</h3>
         <ul className="list-disc list-inside mb-10">
           {arr.map((item, idx) => {
@@ -77,7 +77,7 @@ export const QuoteByProject = ({ children }) => {
 
   return (
     <div ref={container}>
-      <div id="by-project" className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw">
+      <div id="by-project" className=" bg-[#1a1a1b] p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw">
         <h2 className="text-6xl font-bold mb-16 text-blue-600">BY PROJECT:</h2>
         {children}
       </div>
@@ -96,7 +96,7 @@ export const QuoteByItem = ({ children }) => {
   }, { scope: container });
 
   return (
-    <div ref={container}>
+    <div  ref={container}>
       <div id="by-item" className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw">
         <h2 className="text-6xl font-bold mb-16 text-blue-600">BY ITEM</h2>
         {children}

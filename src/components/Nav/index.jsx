@@ -26,7 +26,7 @@ export const Nav = () => {
   return (
     <nav
       ref={container}
-      className="w-full bg-gray-900 fixed top-0 left-0 justify-between align-middle z-20 p-4 flex"
+      className="w-full bg-blue-800  fixed top-0 left-0 justify-between align-middle z-20 p-4 flex"
     >
       <h2 className="my-auto text-4xl lg:text-6xl ml-10">
         Max-Protection Moving{" "}
