@@ -26,69 +26,72 @@
   background-color: #007bff;
   color: white;
   padding-top: 6px;
-
 }
 
 .react-datepicker-popper {
   /* Add any custom styles if needed */
 }
-.react-datepicker__current-month{
+.react-datepicker__current-month {
   font-size: 1.75rem;
   width: 100%;
-
 }
-
 
 /* /////////////////////////// */
 /* Form Glow */
 /* /////////////////////////// */
-@property --gradient-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
 
-:root {
-  --clr-1: #0A3D62; /* Dark blue */
-  --clr-2: #1C77C3; /* Medium blue */
-  --clr-3: #3b8bda; /* Light blue */
-  --clr-4: #2d51e2; /* Lighter blue */
-  --clr-5: #3476e1; /* Lightest blue */
-}
-
-
-.pjc, #quote-form {
- position: relative;
-  background-color: #0d0d0e;
-}
-
-.pjc::before, #quote-form::before,
-.pjc::after, #quote-form::after {
-  content: "";
-  position: absolute;
-  inset: -0.5rem;
-  z-index: -1;
-  background: conic-gradient(
-    from var(--gradient-angle),
-    var(--clr-3),
-    var(--clr-4),
-    var(--clr-5),
-    var(--clr-4),
-    var(--clr-3)
-  );
-  border-radius: inherit;
-  animation: rotation 20s linear infinite;
-}
-
-.pjc::after , #quote-form::after {
-  filter: blur(1.5rem);
-}
-
-@keyframes rotation {
-  0% {
-    --gradient-angle: 0deg;
+@media (min-width: 768px) {
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
   }
-  100% {
-    --gradient-angle: 360deg;
+
+  :root {
+    --clr-1: #0a3d62; /* Dark blue */
+    --clr-2: #1c77c3; /* Medium blue */
+    --clr-3: #3b8bda; /* Light blue */
+    --clr-4: #2d51e2; /* Lighter blue */
+    --clr-5: #3476e1; /* Lightest blue */
+  }
+
+  .pjc,
+  #quote-form {
+    position: relative;
+    background-color: #0d0d0e;
+  }
+
+  .pjc::before,
+  #quote-form::before,
+  .pjc::after,
+  #quote-form::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--clr-3),
+      var(--clr-4),
+      var(--clr-5),
+      var(--clr-4),
+      var(--clr-3)
+    );
+    border-radius: inherit;
+    animation: rotation 20s linear infinite;
+  }
+
+  .pjc::after,
+  #quote-form::after {
+    filter: blur(1.5rem);
+  }
+
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
   }
 }
