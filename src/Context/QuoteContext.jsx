@@ -84,25 +84,27 @@ export const QuoteProvider = ({ children }) => {
   };
 
   const handleCalculateQuote = async (startingLocation, stop1, stop2) => {
-    const params = {
-      startingLocation,
-      stop1,
-      stop2,
-    };
+    // const params = {
+    //   startingLocation,
+    //   stop1,
+    //   stop2,
+    // };
 
-    try {
-      const response = await axios.post(CALC_MOVE_DIST_ENDPOINT, params);
-      const data = response.data;
-      console.log(data);
-      if (data) {
-        dispatch({ type: "calculateTimeAndDistance", payload: data });
-        dispatch({ type: "nextStep" });
-      } else {
-        throw new Error("Could not calculate distance");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    // try {
+    //   const response = await axios.post(CALC_MOVE_DIST_ENDPOINT, params);
+    //   const data = response.data;
+    //   console.log(data);
+    //   if (data) {
+    //     dispatch({ type: "calculateTimeAndDistance", payload: data });
+    //     dispatch({ type: "nextStep" });
+    //   } else {
+    //     throw new Error("Could not calculate distance");
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
+    dispatch({ type: "nextStep" });
+
   };
 
   const handleResetForm = () => {
