@@ -39,7 +39,7 @@
 /* /////////////////////////// */
 /* Form Glow */
 /* /////////////////////////// */
-
+/*
 @media (min-width: 768px) {
   @property --gradient-angle {
     syntax: "<angle>";
@@ -48,17 +48,17 @@
   }
 
   :root {
-    --clr-1: #0a3d62; /* Dark blue */
-    --clr-2: #1c77c3; /* Medium blue */
-    --clr-3: #3b8bda; /* Light blue */
-    --clr-4: #2d51e2; /* Lighter blue */
-    --clr-5: #3476e1; /* Lightest blue */
+    --clr-1: #0a3d62; 
+    --clr-2: #1c77c3; 
+    --clr-3: #3b8bda;
+    --clr-4: #2d51e2; 
+    --clr-5: #3476e1; 
   }
 
   .pjc,
   #quote-form {
     position: relative;
-    background-color: #0d0d0e;
+    background-color: #f2f2f2;
   }
 
   .pjc::before,
@@ -67,7 +67,7 @@
   #quote-form::after {
     content: "";
     position: absolute;
-    inset: -0.5rem;
+    inset: -0.3rem;
     z-index: -1;
     background: conic-gradient(
       from var(--gradient-angle),
@@ -84,7 +84,7 @@
   .pjc::after,
   #quote-form::after {
     filter: blur(1.5rem);
-  }
+  } 
 
   @keyframes rotation {
     0% {
@@ -94,4 +94,4 @@
       --gradient-angle: 360deg;
     }
   }
-}
+}*/

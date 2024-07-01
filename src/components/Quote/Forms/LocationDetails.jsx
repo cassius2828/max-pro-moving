@@ -79,7 +79,7 @@ export const LocationDetails = () => {
       <div className="my-12">
         <label
           htmlFor="multipleStops"
-          className="block capitalize mb-5 text-3xl font-medium text-gray-900 dark:text-white"
+          className="block capitalize mb-5 text-3xl font-medium text-blue-900 "
         >
           Multiple Stops?
         </label>
@@ -91,11 +91,11 @@ export const LocationDetails = () => {
               type="radio"
               value={true}
               onChange={(e) => handleRadioChange(e.target)}
-              className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="mr-2 w-4 h-4 text-gray-900 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-900 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               htmlFor="multipleStopsYes"
-              className="text-3xl font-medium text-gray-900 dark:text-white"
+              className="text-3xl font-medium text-gray-900 "
             >
               Yes
             </label>
@@ -111,7 +111,7 @@ export const LocationDetails = () => {
             />
             <label
               htmlFor="multipleStopsNo"
-              className="text-3xl font-medium text-gray-900 dark:text-white"
+              className="text-3xl font-medium text-gray-900 "
             >
               No
             </label>

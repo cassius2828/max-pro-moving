@@ -26,7 +26,7 @@ export const Nav = () => {
   return (
     <nav
       ref={container}
-      className="w-full bg-blue-800  fixed top-0 left-0 justify-between align-middle z-20 p-4 flex"
+      className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 flex"
     >
       <h2 className="my-auto text-4xl lg:text-6xl ml-10">
         Max-Protection Moving{" "}
@@ -154,7 +154,7 @@ export const MobileNav = () => {
   return (
     <ul
       ref={container}
-      className="absolute bg-slate-600 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly"
+      className="absolute bg-blue-800 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly"
     >
       <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
         <a href="#">Home</a>

@@ -3,7 +3,8 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { FadeInTopAngle } from "../../gsap/baseAnimations";
-import '../../App.css'
+import "../../App.css";
+
 // Define project categories
 const residential = ["Dorms", "Houses", "Apartments/Condos", "and more!"];
 const commercial = ["Offices", "Warehouses", "Gyms", "and more!"];
@@ -18,7 +19,7 @@ const specialItemsDump = ["large items", "special items", "group items"];
 //////////////////////////////////
 const ProjectDetails = () => {
   return (
-    <section className="bg-[#0d0d0e] text-[#f2f2f2] py-10 mt-40">
+    <section className="bg-[#f2f2f2] text-gray-900 py-10 mt-40">
       <div className="container mx-auto">
         <h1 className="text-center text-8xl font-bold mb-40 text-blue-500">
           Quote By Category
@@ -47,13 +48,16 @@ export default ProjectDetails;
 export const ProjectCard = ({ title, arr }) => {
   return (
     <>
-      <div >
-        <h3 className="text-5xl font-semibold mb-5 text-blue-400">{title}</h3>
+      <div>
+        <h3 className="text-5xl font-semibold mb-5 text-blue-600">{title}</h3>
         <ul className="list-disc list-inside mb-10">
           {arr.map((item, idx) => {
             return (
-              <li className="my-3" key={item + idx}>
-                <a href="#quote-form" className="hover:text-blue-500 text-[#f2f2f2] text-3xl ">
+              <li className="my-3 placeholder-opacity-100" key={item + idx}>
+                <a
+                  href="#quote-form"
+                  className="hover:text-blue-500 text-gray-900 text-3xl"
+                >
                   {item}
                 </a>
               </li>
@@ -72,13 +76,16 @@ export const QuoteByProject = ({ children }) => {
   const container = useRef();
 
   useGSAP(() => {
-    FadeInTopAngle('#by-project', 'left');
+    FadeInTopAngle("#by-project", "left");
   }, { scope: container });
 
   return (
     <div ref={container}>
-      <div id="by-project" className=" bg-[#1a1a1b] p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw">
-        <h2 className="text-6xl font-bold mb-16 text-blue-600">BY PROJECT:</h2>
+      <div
+        id="by-project"
+        className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
+      >
+        <h2 className="text-6xl font-bold mb-16 text-blue-700">BY PROJECT:</h2>
         {children}
       </div>
     </div>
@@ -87,18 +94,21 @@ export const QuoteByProject = ({ children }) => {
 
 //////////////////////////////////
 // Quote By Item Component
-/////////////////////////////////
+//////////////////////////////////
 export const QuoteByItem = ({ children }) => {
   const container = useRef();
 
   useGSAP(() => {
-    FadeInTopAngle('#by-item', 'right');
+    FadeInTopAngle("#by-item", "right");
   }, { scope: container });
 
   return (
-    <div  ref={container}>
-      <div id="by-item" className="bg-[#1a1a1b] p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw">
-        <h2 className="text-6xl font-bold mb-16 text-blue-600">BY ITEM</h2>
+    <div ref={container}>
+      <div
+        id="by-item"
+        className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
+      >
+        <h2 className="text-6xl font-bold mb-16 text-blue-700">BY ITEM</h2>
         {children}
       </div>
     </div>

@@ -17,8 +17,8 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: #0d0d0e;
-  color: #f2f2f2;
+  /* color: #0d0d0e; */
+  background-color: #f2f2f2;
 }
 h1,
 h2,h3,h4 {

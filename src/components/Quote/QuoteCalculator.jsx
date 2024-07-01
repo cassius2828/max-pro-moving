@@ -28,7 +28,7 @@ const QuoteCalculator = () => {
   return (
     <form
       id="quote-form"
-      className=" relative flex flex-col justify-evenly sm:w-full md:w-50vw lg:w-50vw xl:max-w-50rem lg:h-75rem mx-auto  rounded-xl p-14"
+      className="shadow-xl relative flex flex-col justify-evenly sm:w-full md:w-50vw lg:w-50vw xl:max-w-50rem lg:h-75rem mx-auto  rounded-xl p-14"
     >
       {" "}
    
