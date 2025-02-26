@@ -26,13 +26,20 @@ export const Nav = () => {
   return (
     <nav
       ref={container}
-      className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 flex"
+      className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex"
     >
-      <h2 className="my-auto text-4xl lg:text-6xl ml-10">
-        Max-Protection Moving{" "}
-      </h2>
+      <div className="flex justify-center items-center">
+        <img
+          className="hidden md:block w-56"
+          src="/images/mpm-logo-blue-800.svg"
+          alt=""
+        />
+        <h2 className="my-auto text-4xl lg:text-6xl ml-10 ">
+          Max-Protection Moving{" "}
+        </h2>
+      </div>
 
-      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden lg:flex">
+      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex">
         <NavListItem link={`/`} text="Home" />
         <NavListItemDropDown
           text={`Max-Protection Moving`}
