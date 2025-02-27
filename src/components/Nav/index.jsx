@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useRef, useState } from "react";
 import { Hamburger } from "../Hamburger";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { fadeFromTopMultiple, fadeFromTopNT } from "../../gsap/baseAnimations";
+
+
 
 //////////////////
 // Navigation Component
@@ -14,18 +13,12 @@ export const Nav = () => {
   ///////////////////////////
   // GSAP Animations for elements within the container
   ///////////////////////////
-  const container = useRef();
-  useGSAP(
-    () => {
-      fadeFromTopNT("h2");
-      fadeFromTopMultiple("li");
-    },
-    { scope: container }
-  );
+
+
 
   return (
     <nav
-      ref={container}
+   
       className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex"
     >
       <div className="flex justify-center items-center">
@@ -138,29 +131,13 @@ export const NavListItem = ({ link, text }) => {
 // Mobile Navigation Component
 ////////////////////////////////////
 export const MobileNav = () => {
-  const container = useRef();
 
-  // GSAP animation for mobile navigation items
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        container?.current?.querySelectorAll("li"),
-        { y: -20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power4.out",
-        }
-      );
-    },
-    { scope: container }
-  );
+
+
 
   return (
     <ul
-      ref={container}
+
       className="absolute bg-blue-800 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly"
     >
       <li className="text-white text-3xl mx-auto hover:text-blue-500 ">

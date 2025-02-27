@@ -1,31 +1,19 @@
-import { useRef } from "react";
+
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
-import { useGSAP } from "@gsap/react";
-import { fadeInMultiple } from "../../../gsap/baseAnimations";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Size Details Component
 ///////////////////////////////////
 export const SizeDetails = () => {
-  const container = useRef();
+
   const {  truckSize, NumOfWorkers, timeForJob, handleUpdateForm } = useQuoteContext();
 
 
-  /////////////////////////////////
-  // GSAP animations for form sections
-  /////////////////////////////////
-  useGSAP(
-    () => {
-      fadeInMultiple(".form-section");
-      // fadeFromTopMultiple("label", container.current);
-    },
-    { scope: container }
-  );
+
 
   return (
 <div
-  ref={container}
   className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8"
 >
   {/* Dropdown for truck size */}

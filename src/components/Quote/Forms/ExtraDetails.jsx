@@ -1,30 +1,23 @@
-import { useRef } from "react";
+
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import CalculateBtn from "../QuoteBtns/CalculateBtn";
-import { useGSAP } from "@gsap/react";
-import { fadeInMultiple } from "../../../gsap/baseAnimations";
+
+
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 ///////////////////////////////////
 // Extra Details Component
 ///////////////////////////////////
 export const ExtraDetails = () => {
-  const container = useRef();
+
   const { handleUpdateForm } = useQuoteContext();
 
-  /////////////////////////////////
-  // GSAP animations for form sections
-  /////////////////////////////////
-  useGSAP(
-    () => {
-      fadeInMultiple(".form-section");
-    },
-    { scope: container }
-  );
+
+
 
   return (
     <div
-    ref={container}
+ 
     className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8"
   >
     {/* Radio buttons for stairs involved */}

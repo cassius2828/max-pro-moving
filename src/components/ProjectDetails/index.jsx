@@ -75,17 +75,12 @@ export const ProjectCard = ({ title, arr }) => {
 // Quote By Project Component
 //////////////////////////////////
 export const QuoteByProject = ({ children }) => {
-  const container = useRef();
+ 
 
-  // useGSAP(
-  //   () => {
-  //     FadeInTopAngle("#by-project", "left");
-  //   },
-  //   { scope: container }
-  // );
+
 
   return (
-    <div ref={container}>
+    <div >
       <div
         id="by-project"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
@@ -101,17 +96,11 @@ export const QuoteByProject = ({ children }) => {
 // Quote By Item Component
 //////////////////////////////////
 export const QuoteByItem = ({ children }) => {
-  const container = useRef();
 
-  // useGSAP(
-  //   () => {
-  //     FadeInTopAngle("#by-item", "right");
-  //   },
-  //   { scope: container }
-  // );
+
 
   return (
-    <div ref={container}>
+    <div >
       <div
         id="by-item"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"

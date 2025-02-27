@@ -1,97 +1,14 @@
-.react-datepicker {
-  font-size: 1.5rem; /* Adjust font size for better readability */
+.fade-in {
+  animation: fadeIn 200ms ease-out forwards;
 }
 
-.react-datepicker__day,
-.react-datepicker__day-name,
-.react-datepicker__current-month {
-  width: 3.5rem; /* Adjust width of day cells */
-  height: 3.5rem; /* Adjust width of day cells */
-  line-height: 1.5rem; /* Adjust height of day cells */
-}
-
-.react-datepicker__header {
-  padding-top: 0.75rem; /* Adjust padding for the header */
-}
-
-.react-datepicker__month {
-  margin: 1rem; /* Adjust margin around the month view */
-}
-
-.react-datepicker__navigation {
-  top: 0.75rem; /* Adjust navigation button position */
-}
-
-.react-datepicker__day--selected {
-  background-color: #007bff;
-  color: white;
-  padding-top: 6px;
-}
-
-.react-datepicker-popper {
-  /* Add any custom styles if needed */
-}
-.react-datepicker__current-month {
-  font-size: 1.75rem;
-  width: 100%;
-}
-
-/* /////////////////////////// */
-/* Form Glow */
-/* /////////////////////////// */
-/*
-@media (min-width: 768px) {
-  @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-
-  :root {
-    --clr-1: #0a3d62; 
-    --clr-2: #1c77c3; 
-    --clr-3: #3b8bda;
-    --clr-4: #2d51e2; 
-    --clr-5: #3476e1; 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .pjc,
-  #quote-form {
-    position: relative;
-    background-color: #f2f2f2;
-  }
-
-  .pjc::before,
-  #quote-form::before,
-  .pjc::after,
-  #quote-form::after {
-    content: "";
-    position: absolute;
-    inset: -0.3rem;
-    z-index: -1;
-    background: conic-gradient(
-      from var(--gradient-angle),
-      var(--clr-3),
-      var(--clr-4),
-      var(--clr-5),
-      var(--clr-4),
-      var(--clr-3)
-    );
-    border-radius: inherit;
-    animation: rotation 20s linear infinite;
-  }
-
-  .pjc::after,
-  #quote-form::after {
-    filter: blur(1.5rem);
-  } 
-
-  @keyframes rotation {
-    0% {
-      --gradient-angle: 0deg;
-    }
-    100% {
-      --gradient-angle: 360deg;
-    }
-  }
-}*/
+}

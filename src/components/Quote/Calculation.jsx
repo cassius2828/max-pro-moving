@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
-import { useGSAP } from "@gsap/react";
-import { fadeInMultiple } from "../../gsap/baseAnimations";
+
 
 const Calculation = () => {
   const {
@@ -11,16 +10,8 @@ const Calculation = () => {
     estimatedTravelTime,
   } = useQuoteContext();
 
-  ///////////////////////////
-  // GSAP Animations
-  ///////////////////////////
-  const container = useRef();
-  useGSAP(
-    () => {
-      fadeInMultiple(".form-section");
-    },
-    { scope: container }
-  );
+
+
 
   return (
 <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
