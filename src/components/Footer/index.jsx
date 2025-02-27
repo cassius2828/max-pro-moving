@@ -92,7 +92,7 @@ const navigation = {
     <footer className="bg-blue-800">
       <div
         style={{ maxWidth: "140rem" }}
-        className="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32"
+        className="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 fade-in "
       >
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <img

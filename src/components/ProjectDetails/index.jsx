@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
 
-
-import { useRef } from "react";
-
-import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -75,12 +71,8 @@ export const ProjectCard = ({ title, arr }) => {
 // Quote By Project Component
 //////////////////////////////////
 export const QuoteByProject = ({ children }) => {
- 
-
-
-
   return (
-    <div >
+    <div>
       <div
         id="by-project"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
@@ -96,11 +88,8 @@ export const QuoteByProject = ({ children }) => {
 // Quote By Item Component
 //////////////////////////////////
 export const QuoteByItem = ({ children }) => {
-
-
-
   return (
-    <div >
+    <div>
       <div
         id="by-item"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
@@ -162,13 +151,14 @@ export function ProjectDetailsv2() {
     <div className="isolate overflow-hidden bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-5xl font-semibold text-blue-400">
+          <h2 className="fade-in text-5xl font-semibold text-blue-400">
             Quote by Category
           </h2>
         </div>
         <div className="relative mt-6">
           <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
-           Get a quote based on the type of service you would require. Selecting a category will be applied to the quote calculator
+            Get a quote based on the type of service you would require.
+            Selecting a category will be applied to the quote calculator
           </p>
           <svg
             viewBox="0 0 1208 1024"
@@ -193,7 +183,7 @@ export function ProjectDetailsv2() {
       <div className="flow-root bg-white pb-24 sm:pb-32">
         <div className="-mt-80">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto grid max-w-md grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2">
+            <div className="mx-auto grid max-w-md grid-cols-1 gap-8 lg:max-w-4xl lg:grid-cols-2 fade-in ">
               {pricingOptions.map((pricingOption) => (
                 <div
                   key={pricingOption.id}
@@ -224,7 +214,9 @@ export function ProjectDetailsv2() {
                           {subCategory.features.map((feature) => (
                             <li key={feature} className="flex gap-x-3">
                               <FontAwesomeIcon icon={faCheck} />
-                              <button className="text-start capitalize hover:text-blue-600 transition-colors duration-200">{feature}</button>
+                              <button className="text-start capitalize hover:text-blue-600 transition-colors duration-200">
+                                {feature}
+                              </button>
                             </li>
                           ))}
                         </div>
@@ -240,7 +232,7 @@ export function ProjectDetailsv2() {
                   </a>
                 </div>
               ))}
-              <div className="flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
+              <div className="fade-in flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
                 <div className="lg:min-w-0 lg:flex-1">
                   <h3 className="text-base/7 font-semibold text-blue-600">
                     Discounted

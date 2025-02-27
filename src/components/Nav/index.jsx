@@ -23,16 +23,16 @@ export const Nav = () => {
     >
       <div className="flex justify-center items-center">
         <img
-          className="hidden md:block w-40"
+          className="hidden md:block w-40 fade-in "
           src="/images/mpm-logo-blue-800.svg"
           alt=""
         />
-        <h2 className="my-auto text-4xl lg:text-6xl ml-10 ">
+        <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">
           Max-Protection Moving{" "}
         </h2>
       </div>
 
-      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex">
+      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in ">
         <NavListItem link={`/`} text="Home" />
         <NavListItemDropDown
           text={`Max-Protection Moving`}

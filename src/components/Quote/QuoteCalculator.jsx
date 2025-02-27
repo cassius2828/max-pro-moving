@@ -7,7 +7,6 @@ import { SizeDetails } from "./Forms/SizeDetails";
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";
-import "../../App.css";
 
 /////////////////////////////////
 // Quote Calculator Component
@@ -26,7 +25,7 @@ const QuoteCalculator = () => {
   };
 
   return (
-    <form id="quote-form" className="w-full max-w-3xl mx-auto my-12">
+    <form id="quote-form" className="fade-in w-full max-w-3xl mx-auto my-12">
       {" "}
       {formSteps === 1 ? (
         <LocationDetails onPlaceSelected={handlePlaceSelected} />

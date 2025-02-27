@@ -1,25 +1,15 @@
-import { useRef } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
-
-
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
-import "../../../App.css";
 ///////////////////////////////////
 // Date Of Move Form Component
 ///////////////////////////////////
 export const DateOfMoveForm = () => {
-
-  const { handleUpdateForm, projectDate, hour, period } =
-    useQuoteContext();
-
+  const { handleUpdateForm, projectDate, hour, period } = useQuoteContext();
 
   return (
-    <div
-    
-      className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8"
-    >
+    <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Input for project date */}
       <div className="mt-6">
         <label
