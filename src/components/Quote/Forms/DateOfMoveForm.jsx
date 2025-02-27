@@ -4,8 +4,7 @@ import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 import { useGSAP } from "@gsap/react";
 import { fadeInMultiple } from "../../../gsap/baseAnimations";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 import "../../../App.css";
 ///////////////////////////////////
 // Date Of Move Form Component
@@ -27,68 +26,71 @@ export const DateOfMoveForm = () => {
 
   return (
     <div
-    ref={container}
-    className="form-section flex flex-col justify-evenly h-full"
-  >
-    {/* Input for project date */}
-    <div className="my-12 mt-6">
-      <label
-        htmlFor="projectDate"
-        className="block capitalize mb-5 text-3xl font-medium text-blue-900"
-      >
-        Project Date
-      </label>
-      <DatePicker
-        selected={projectDate}
-        onChange={(date) => handleDateChange(date)}
-        name="projectDate"
-        id="projectDate"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholderText="Enter project date"
-        required
-      />
-    </div>
-  
-    {/* Input for time of day */}
-    <div className="my-12 mt-6">
-      <label
-        htmlFor="timeOfDay"
-        className="block capitalize mb-5 text-3xl font-medium text-blue-900"
-      >
-        Time of Day
-      </label>
-      <div className="flex space-x-4">
-        <select
-          name="hour"
-          value={hour}
-          onChange={(e) => handleUpdateForm(e.target)}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          required
+      ref={container}
+      className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8"
+    >
+      {/* Input for project date */}
+      <div className="mt-6">
+        <label
+          htmlFor="projectDate"
+          className="block text-sm/6 font-medium text-gray-900"
         >
-          <option value="">Select hour</option>
-          {[...Array(12).keys()].map((i) => (
-            <option key={i + 1} value={i + 1}>
-              {i + 1}
-            </option>
-          ))}
-        </select>
-        <select
-          name="period"
-          value={period}
+          Project Date
+        </label>
+        <input
+          type="date"
+          selected={projectDate}
           onChange={(e) => handleUpdateForm(e.target)}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          name="projectDate"
+          id="projectDate"
+          className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
           required
+        />
+      </div>
+
+      {/* Input for time of day */}
+      <div className="mt-6">
+        <label
+          htmlFor="timeOfDay"
+          className="block text-sm/6 font-medium text-gray-900"
         >
-          <option value="">AM/PM</option>
-          <option value="AM">AM</option>
-          <option value="PM">PM</option>
-        </select>
+          Time of Day
+        </label>
+        <div className="mt-3 flex gap-x-4">
+          <select
+            name="hour"
+            value={hour}
+            onChange={(e) => handleUpdateForm(e.target)}
+            className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+            required
+          >
+            <option value="">Select hour</option>
+            {[...Array(12).keys()].map((i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1}
+              </option>
+            ))}
+          </select>
+
+          <select
+            name="period"
+            value={period}
+            onChange={(e) => handleUpdateForm(e.target)}
+            className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+            required
+          >
+            <option value="">AM/PM</option>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Buttons */}
+      <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">
+        <BackAndNextBtns />
+        <SubmitFormBtn />
       </div>
     </div>
-  
-    <BackAndNextBtns />
-    <SubmitFormBtn />
-  </div>
-  
   );
 };

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import { useGSAP } from "@gsap/react";
+
 import { useRef } from "react";
-import { FadeInTopAngle } from "../../gsap/baseAnimations";
+
 import "../../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";

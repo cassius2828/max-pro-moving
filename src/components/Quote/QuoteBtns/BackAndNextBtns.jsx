@@ -5,28 +5,31 @@ const BackAndNextBtns = () => {
 
   return (
     
-<div className="w-full flex justify-around my-8">
-  {/* back btn */}
+<div className="w-full flex justify-between mt-6">
+  {/* Back button */}
   <button
     onClick={(e) => handleFormStep(e, "back")}
     className={`${
       formSteps === 1
-        ? "disabled cursor-not-allowed bg-slate-700 hover:bg-slate-700"
-        : "bg-blue-700 focus:ring-4 focus:ring-blue-300"
-    } text-white mx-5 focus:outline-none font-medium rounded-lg text-3xl w-full md:min-w-64 sm:w-auto px-5 py-2.5 text-center`}
+        ? "opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+        : "bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600"
+    } text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96`}
+    disabled={formSteps === 1}
   >
-    back
+    Back
   </button>
-  {/* next btn */}
+
+  {/* Next button */}
   <button
     onClick={(e) => handleFormStep(e, "next")}
     className={`${
       formSteps > 5 || formSteps === 3
-        ? "disabled cursor-not-allowed bg-slate-700 hover:bg-slate-700"
-        : "bg-blue-700 focus:ring-4 focus:ring-blue-300"
-    } text-white mx-5 focus:outline-none font-medium rounded-lg text-3xl w-full md:min-w-60 sm:w-auto px-5 py-2.5 text-center`}
+        ? "opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
+        : "bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600"
+    } text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96`}
+    disabled={formSteps > 5 || formSteps === 3}
   >
-    next
+    Next
   </button>
 </div>
 
