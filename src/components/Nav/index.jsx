@@ -30,7 +30,7 @@ export const Nav = () => {
     >
       <div className="flex justify-center items-center">
         <img
-          className="hidden md:block w-56"
+          className="hidden md:block w-40"
           src="/images/mpm-logo-blue-800.svg"
           alt=""
         />
