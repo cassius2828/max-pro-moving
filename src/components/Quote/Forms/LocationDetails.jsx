@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
-import { useGSAP } from "@gsap/react";
-import { fadeFromTopMultiple } from "../../../gsap/baseAnimations";
+
 import AutocompleteInput from "../../../googleAPIs/AutoCompleteInput";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
@@ -19,7 +18,6 @@ export const LocationDetails = () => {
   /////////////////////////////////
   // Reference for container
   /////////////////////////////////
-  const container = useRef();
 
   /////////////////////////////////
   // Handle selected place
@@ -46,16 +44,6 @@ export const LocationDetails = () => {
   }, [places]);
 
   /////////////////////////////////
-  // GSAP animations for form sections
-  /////////////////////////////////
-  useGSAP(
-    () => {
-      fadeFromTopMultiple(".form-section");
-    },
-    { scope: container }
-  );
-
-  /////////////////////////////////
   // Handle radio button change
   /////////////////////////////////
   const handleRadioChange = (e) => {
@@ -64,26 +52,23 @@ export const LocationDetails = () => {
   };
 
   return (
-    <div
-      ref={container}
-      className="form-section flex flex-col justify-evenly h-full"
-    >
-      {/* Input for pick up location */}
+    <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
+      {/* Input for pick-up location */}
       <AutocompleteInput
         onPlaceSelected={handleSelectedPlace}
-        id={`startingLocation`}
+        id="startingLocation"
         label="Pick Up Location"
       />
 
       {/* Radio buttons for multiple stops */}
-      <div className="my-12">
+      <div className="mt-6">
         <label
           htmlFor="multipleStops"
-          className="block capitalize mb-5 text-3xl font-medium text-blue-900 "
+          className="block text-sm/6 font-medium text-gray-900"
         >
           Multiple Stops?
         </label>
-        <div className="flex items-center space-x-4">
+        <div className="mt-3 flex items-center gap-x-6">
           <div className="flex items-center">
             <input
               id="multipleStopsYes"
@@ -91,11 +76,11 @@ export const LocationDetails = () => {
               type="radio"
               value={true}
               onChange={(e) => handleRadioChange(e.target)}
-              className="mr-2 w-4 h-4 text-gray-900 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-900 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
             <label
               htmlFor="multipleStopsYes"
-              className="text-3xl font-medium text-gray-900 "
+              className="ml-2 text-sm text-gray-900"
             >
               Yes
             </label>
@@ -107,11 +92,11 @@ export const LocationDetails = () => {
               type="radio"
               value={false}
               onChange={(e) => handleRadioChange(e.target)}
-              className="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
             <label
               htmlFor="multipleStopsNo"
-              className="text-3xl font-medium text-gray-900 "
+              className="ml-2 text-sm text-gray-900"
             >
               No
             </label>
@@ -120,37 +105,34 @@ export const LocationDetails = () => {
       </div>
 
       {multipleStops !== null && (
-        <div>
+        <div className="mt-6">
           {multipleStops ? (
-            <div className="my-12">
-              {/* Input for stop 1 address */}
+            <>
               <AutocompleteInput
                 onPlaceSelected={handleSelectedPlace}
-                id={`stop1`}
+                id="stop1"
                 label="Stop 1 Address"
               />
-
-              {/* Input for stop 2 address */}
               <AutocompleteInput
                 onPlaceSelected={handleSelectedPlace}
-                id={`stop2`}
+                id="stop2"
                 label="Stop 2 Address"
               />
-              {/* Add more stops as needed */}
-            </div>
+            </>
           ) : (
-            <div className="my-12">
-              {/* Input for single stop address */}
-              <AutocompleteInput
-                onPlaceSelected={handleSelectedPlace}
-                id={`stop1`}
-                label="Enter Address"
-              />
-            </div>
+            <AutocompleteInput
+              onPlaceSelected={handleSelectedPlace}
+              id="stop1"
+              label="Enter Address"
+            />
           )}
         </div>
       )}
-      <BackAndNextBtns />
+
+      {/* Buttons */}
+      <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">
+        <BackAndNextBtns />
+      </div>
     </div>
   );
 };

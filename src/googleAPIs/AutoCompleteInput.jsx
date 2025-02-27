@@ -30,22 +30,22 @@ const AutocompleteInput = ({ onPlaceSelected, id, label }) => {
   }, [id, onPlaceSelected]);
 
   return (
-    <div className="my-12 mt-6">
-      <label
-        htmlFor={id}
-        className="block capitalize mb-5 text-3xl font-medium text-blue-900"
-      >
-        {label}
-      </label>
-      <input
-        ref={inputRef}
-        type="text"
-        id={id}
-        className="bg-gray-200 border border-gray-300 text-gray-900  text-3xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
-        placeholder={label}
-        required
-      />
-    </div>
+<div className="mt-6">
+  <label
+    htmlFor={id}
+    className="block text-sm/6 font-medium text-gray-900"
+  >
+    {label}
+  </label>
+  <input
+    ref={inputRef}
+    type="text"
+    id={id}
+    className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+    placeholder={label}
+    required
+  />
+</div>
   );
 };
 

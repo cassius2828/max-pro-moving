@@ -7,7 +7,6 @@ import { SizeDetails } from "./Forms/SizeDetails";
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";
-import '../../App.css'
 
 /////////////////////////////////
 // Quote Calculator Component
@@ -26,26 +25,21 @@ const QuoteCalculator = () => {
   };
 
   return (
-    <form
-      id="quote-form"
-      className="shadow-xl relative flex flex-col justify-evenly sm:w-full md:w-50vw lg:w-50vw xl:max-w-50rem lg:h-75rem mx-auto  rounded-xl p-14"
-    >
+    <form id="quote-form" className="fade-in w-full max-w-3xl mx-auto my-12">
       {" "}
-   
-        {formSteps === 1 ? (
-          <LocationDetails onPlaceSelected={handlePlaceSelected} />
-        ) : formSteps === 2 ? (
-          <SizeDetails />
-        ) : formSteps === 3 ? (
-          <ExtraDetails />
-        ) : formSteps === 4 ? (
-          <Calculation />
-        ) : formSteps === 5 ? (
-          <ContactForm />
-        ) : (
-          <DateOfMoveForm />
-        )}{" "}
-  
+      {formSteps === 1 ? (
+        <LocationDetails onPlaceSelected={handlePlaceSelected} />
+      ) : formSteps === 2 ? (
+        <SizeDetails />
+      ) : formSteps === 3 ? (
+        <ExtraDetails />
+      ) : formSteps === 4 ? (
+        <Calculation />
+      ) : formSteps === 5 ? (
+        <ContactForm />
+      ) : (
+        <DateOfMoveForm />
+      )}{" "}
     </form>
   );
 };
