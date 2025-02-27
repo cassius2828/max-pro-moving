@@ -148,10 +148,10 @@ const pricingOptions = [
 
 export function ProjectDetailsv2() {
   return (
-    <div className="isolate overflow-hidden bg-gray-900">
+    <div className="isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="fade-in text-5xl font-semibold text-blue-400">
+          <h2 className="fade-in text-5xl font-semibold text-blue-800">
             Quote by Category
           </h2>
         </div>
@@ -160,24 +160,7 @@ export function ProjectDetailsv2() {
             Get a quote based on the type of service you would require.
             Selecting a category will be applied to the quote calculator
           </p>
-          <svg
-            viewBox="0 0 1208 1024"
-            className="absolute -top-10 left-1/2 -z-10 h-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:-top-12 md:-top-20 lg:-top-12 xl:top-0"
-          >
-            <ellipse
-              cx={604}
-              cy={512}
-              rx={604}
-              ry={512}
-              fill="url(#6d1bd035-0dd1-437e-93fa-59d316231eb0)"
-            />
-            <defs>
-              <radialGradient id="6d1bd035-0dd1-437e-93fa-59d316231eb0">
-                <stop stopColor="#0f3ea3" />
-                <stop offset={1} stopColor="#2563eb" />
-              </radialGradient>
-            </defs>
-          </svg>
+   
         </div>
       </div>
       <div className="flow-root bg-white pb-24 sm:pb-32">

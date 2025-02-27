@@ -8,7 +8,7 @@ const Quote = () => {
 
 // sets form title based on progress
   return (
-    <div className="mt-28">
+    <section className=" my-40">
       <h2 className="fade-in text-6xl text-center mb-10 quote-legend text-blue-800">
         {formSteps < 3
           ? "Start Your Quote"
@@ -19,7 +19,7 @@ const Quote = () => {
           : "Contact Us Today"}
       </h2>
       <QuoteCalculator />
-    </div>
+    </section>
   );
 };
 export default Quote;
