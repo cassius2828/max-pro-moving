@@ -24,7 +24,7 @@ export const Nav = () => {
       <div className="flex justify-center items-center">
         <img
           className="hidden md:block w-40 fade-in "
-          src="/images/mpm-logo-blue-800.svg"
+          src={`${import.meta.env.VITE_CDN_PATH}/mpm-logo-blue-800.svg`}
           alt=""
         />
         <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">

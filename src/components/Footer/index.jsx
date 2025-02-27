@@ -1,5 +1,3 @@
-
-
 const navigation = {
   loctions: [
     { name: "Phoenix", href: "#" },
@@ -87,7 +85,7 @@ const navigation = {
   ],
 };
 
- const Footer = () => {
+const Footer = () => {
   return (
     <footer className="bg-blue-800">
       <div
@@ -97,7 +95,7 @@ const navigation = {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <img
             alt="Company name"
-            src="/images/mpm-logo-blue-800.svg"
+            src={`${import.meta.env.VITE_CDN_PATH}/mpm-logo-blue-800.svg`}
             className="h-48 md:h-72"
           />
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">

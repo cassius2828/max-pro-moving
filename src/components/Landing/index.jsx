@@ -8,10 +8,8 @@ const Landing = () => {
   // GSAP Animations
   ///////////////////////////
 
-
   return (
     <div className="  w-full h-full relative">
-      {/* <img className="w-full" src="/images/moving-hero.jpeg" alt="" /> */}
       <Suspense fallback={<LoadingPlaceholder />}>
         <StaffGallery />
       </Suspense>
