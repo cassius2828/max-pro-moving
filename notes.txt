@@ -9,3 +9,8 @@ distance
 4. Store the distance in state and use the company metric for drive mile cost 
 5. Send details to email of worker as well after calculating the quote
 
+1. Create new google console just for business 
+2. Consider google workplace email 
+3. Domain 
+4. Discuss contact and booking methods 
+5. Detailed expectation of quote generator 
