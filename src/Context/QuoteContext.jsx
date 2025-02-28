@@ -9,7 +9,7 @@ console.log(CALC_MOVE_DIST_ENDPOINT);
 
 const initialFormState = {
   // progress of form
-  formSteps: 6,
+  formSteps: 1,
   // locations
   startingLocation: "",
   multipleStops: false,
@@ -32,6 +32,7 @@ const initialFormState = {
   lastName: "",
   cell: "",
   email: "",
+  message: "",
   // project times
   projectDate: "",
   hour: "",

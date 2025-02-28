@@ -1,33 +1,34 @@
 import Marquee from "react-fast-marquee";
+const CDN_PATH = import.meta.env.VITE_CDN_PATH;
 const images = [
   {
-    src1: "/images/sm/moving-action-1-sm.webp",
-    src2: "/images/md/moving-action-1-md.webp",
-    src3: "/images/lg/moving-action-1-lg.webp",
+    src1: `${CDN_PATH}/sm/moving-action-1-sm.webp`,
+    src2: `${CDN_PATH}/md/moving-action-1-md.webp`,
+    src3: `${CDN_PATH}/lg/moving-action-1-lg.webp`,
     alt: "Moving Action 1",
   },
   {
-    src1: "/images/sm/moving-action-2-sm.webp",
-    src2: "/images/md/moving-action-2-md.webp",
-    src3: "/images/lg/moving-action-2-lg.webp",
+    src1: `${CDN_PATH}/sm/moving-action-2-sm.webp`,
+    src2: `${CDN_PATH}/md/moving-action-2-md.webp`,
+    src3: `${CDN_PATH}/lg/moving-action-2-lg.webp`,
     alt: "Moving Action 2",
   },
   {
-    src1: "/images/sm/moving-action-3-sm.webp",
-    src2: "/images/md/moving-action-3-md.webp",
-    src3: "/images/lg/moving-action-3-lg.webp",
+    src1: `${CDN_PATH}/sm/moving-action-3-sm.webp`,
+    src2: `${CDN_PATH}/md/moving-action-3-md.webp`,
+    src3: `${CDN_PATH}/lg/moving-action-3-lg.webp`,
     alt: "Moving Action 3",
   },
   {
-    src1: "/images/sm/moving-action-4-sm.webp",
-    src2: "/images/md/moving-action-4-md.webp",
-    src3: "/images/lg/moving-action-4-lg.webp",
+    src1: `${CDN_PATH}/sm/moving-action-4-sm.webp`,
+    src2: `${CDN_PATH}/md/moving-action-4-md.webp`,
+    src3: `${CDN_PATH}/lg/moving-action-4-lg.webp`,
     alt: "Moving Action 4",
   },
   {
-    src1: "/images/sm/moving-action-5-sm.webp",
-    src2: "/images/md/moving-action-5-md.webp",
-    src3: "/images/lg/moving-action-5-lg.webp",
+    src1: `${CDN_PATH}/sm/moving-action-5-sm.webp`,
+    src2: `${CDN_PATH}/md/moving-action-5-md.webp`,
+    src3: `${CDN_PATH}/lg/moving-action-5-lg.webp`,
     alt: "Moving Action 5",
   },
 ];
