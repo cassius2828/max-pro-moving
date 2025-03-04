@@ -9,3 +9,134 @@ distance
 4. Store the distance in state and use the company metric for drive mile cost 
 5. Send details to email of worker as well after calculating the quote
 
+1. Create new google console just for business 
+2. Consider google workplace email 
+3. Domain 
+4. Discuss contact and booking methods 
+5. Detailed expectation of quote generator 
+
+
+Quote Calc Breakdown
+    Client Info:
+        - name 
+        - date 
+    Service Type:
+        - moving
+        - single item delivery 
+        - junk removal only 
+        A:moving
+            1. need truck + transportation
+            2. will provide own trucks and transportation
+            3. only labor 
+            A1: 
+                - How many 26' trucks?
+                    - 0 to 2
+                    - im not sure 
+                    - please provide best option 
+                - How many 20'-16' trucks?
+                    - 0 to 2
+                    - im not sure 
+                    - please provide best option  
+    Start location info:
+        - starting location address
+            How many flights of stairs are required?
+                a. none 
+                b. half 
+                c. 1
+                d. 2
+                e. 3+
+            Are there elevators:
+                a. yes
+                b. no 
+        - additional stops address:
+            how many flifhts of stairs 
+            elevators? 
+        - end location address:
+        (same as start location)
+
+    Disassembly Confirmation:
+        Do you need us to desassemble or reassemble items ?
+            a. yes (text area of response if yes)
+            b. no
+        Specialty Item Confirmation:
+            a. yes (text area of response if yes)
+            b. no            
+        Large/Heavy Item Confirmation:
+            a. yes (text area of response if yes)
+            b. no 
+    Junk removal add on:
+        Will you need junk removal?
+            a. yes 
+            b. no
+            c. maybe / TBD 
+    COntact:
+        - phone
+        - email 
+Generate Quote (send via email and text to customer and show on screen? Detailed to customer and worker, simple on screen )
+        
+
+How to Calculate Quote(What is the cutoff for each one?):
+    Timing: 
+        - Early Bird
+        - Right On Time
+        - Last Minute
+    Movers + Hours:
+        - 2M, 2H = $220-EB
+        - 2M, 2H = $220-ROT
+        - 2M, 2H = $220-LM
+        - 4M, 4H = $880-EB
+        - 4M, 4H = $1000-ROT
+        - 4M, 4H = $1200-LM
+    Base Truck Cost: 
+        EB = $45
+        ROT = $50
+        LM = $65
+    Milage Variable:
+        EB = $1.70
+        ROT = $1.80
+        LM = $1.90
+    Min Range(min price?):
+        EB = $282
+        ROT = $318
+        LM = $384
+
+    Max Range(max price or max distance?):
+        EB = $942
+        ROT = $1068
+        LM = $1284
+
+Costs that need to be determined:
+    - Elevator cost (fixed add on or percentage to total?)
+    - How much is a single item? Are all single items charged the same or different? Examples of each type of single item and the prices. Do we need a size or weight reference for key? 
+    - Junk removal. Are we calculating cost by distnace to junk yard? 
+    - Truck specifics: How do we calculate this? Will there be a disclaimer for how much more it could be based on option B or C? Option A is a range, how do we know if they need 0 trucks, 1 truck, or two trucks?
+    - Stairs: Fix price addition for each flight or adding to the total percentage? 
+    - Disassembly and reassemble: How much is this service? 
+    - Specialty Items: How much more do speciality items cost ?
+    - Large / Heavy Items: How much more do these heavy items cost? 
+    - Junk removal add on: How much more is this service? How do we determine the cost ? 
+
+    My understanding: 
+    - The complete info in the form is for you to look at and determine a specific price 
+    - The quote generator is only gathering a generalized range to display to the client 
+    - Are we sending the generalized quote with a disclaimer that rates may change due to specific attributes of their submission 
+    and that they will be given a precise quote when in contact with the staff memeber? Or is the client 
+    getting the results of thier detailed answers with the general quote sent to their phone? 
+
+
+    Further Questions:
+    Truck Price:
+        26' Truck price = ?
+        16' - 20' Truck price = ?
+    Cutoff time for each timeframe (EB, ROT, LM)
+    Junk Removal: Specific location you bring the junk to or does it vary? 
+    When they provide the trucks and transportation, are the questions of how many just for intel purposes? 
+    How many movers and hours is used for Single Item Delivery? 
+
+
+    Questions for myself:
+    Would this site benefit from a mongoDB database to store the quote documents for easy access later on? 
+        Benefits would include:
+        - search through with keywords
+        - mark status as new, accepted, rejected, archived
+        - filter by date, area code range, num of trucks, type of job, name, price, etc 
