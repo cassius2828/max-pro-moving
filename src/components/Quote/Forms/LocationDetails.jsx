@@ -13,7 +13,26 @@ export const LocationDetails = () => {
   /////////////////////////////////
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
-  const { handleUpdateLocations, handleUpdateForm } = useQuoteContext();
+  const {
+    handleUpdateLocations,
+    handleUpdateForm,
+    startingLocationDetails,
+    startingLocation,
+    stopOne,
+    stopOneDetails,
+    stopTwo,
+    stopTwoDetails,
+    stopThree,
+    stopThreeDetails,
+  } = useQuoteContext();
+  let locationObj = {
+    stop1: stopOne,
+    stop1Details: stopOneDetails,
+    stop2: stopTwo,
+    stop2Details: stopTwoDetails,
+    stop3: stopThree,
+    stop3Details: stopThreeDetails,
+  };
   const [stopCount, setStopCount] = useState(2);
 
   const handleStopCountChange = (e) => {
@@ -60,6 +79,8 @@ export const LocationDetails = () => {
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Input for pick-up location */}
       <AutocompleteInput
+        detailsValue={startingLocationDetails}
+        location={startingLocation}
         onPlaceSelected={handleSelectedPlace}
         id="startingLocation"
         label="Pick Up Location"
@@ -141,6 +162,8 @@ export const LocationDetails = () => {
       {multipleStops &&
         Array.from({ length: stopCount }, (_, index) => (
           <AutocompleteInput
+            detailsValue={locationObj[`stop${index + 1}Details`]}
+            location={locationObj[`stop${index + 1}`]}
             key={`stop${index + 1}`}
             onPlaceSelected={() => {}}
             id={`stop${index + 1}`}

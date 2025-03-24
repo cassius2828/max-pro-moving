@@ -10,17 +10,28 @@ console.log(CALC_MOVE_DIST_ENDPOINT);
 const initialFormState = {
   // progress of form
   formSteps: 1,
+  // service type
+  serviceType: "moving",
   // locations
   startingLocation: "",
+  startingLocationDetails: "",
   multipleStops: false,
-  stop1: "",
-  stop2: "",
+  stopOne: "",
+  stopOneDetails: "",
+  stopTwo: "",
+  stopTwoDetails: "",
+  stopThree: "",
+  stopThreeDetails: "",
   distance: 0,
   estimatedTravelTime: 0,
   // sizing
   truckSize: "pickup",
   NumOfWorkers: 2,
   timeForJob: "3",
+  // amouunt of trucks
+  // if they select recommend for both then choose one 20ft
+  numOf26BoxTrucks: 0,
+  numOf20BoxTrucks: 0,
   // extra details
   stairs: false,
   listLargeItems: "",
@@ -36,7 +47,7 @@ const initialFormState = {
   // project times
   projectDate: "",
   hour: "",
-  period: "",
+  period: "AM",
   projectStartTime: "",
 };
 
@@ -78,7 +89,16 @@ const reducer = (state, action) => {
 //////////////////////////////////
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialFormState);
-
+  const {
+    serviceType,
+    hour,
+    period,
+    truckSize,
+    startingLocationDetails,
+    stopOneDetails,
+    stopTwoDetails,
+    stopThreeDetails,
+  } = state;
   /////////////////////////////////
   // Handle form step navigation
   /////////////////////////////////
@@ -91,8 +111,7 @@ export const QuoteProvider = ({ children }) => {
       }
     }
     if (action === "next") {
-      // if (state.formSteps < 6 && state.formSteps !== 3)
-      {
+      if (state.formSteps < 7) {
         dispatch({ type: "nextStep" });
       }
     }
@@ -163,7 +182,15 @@ export const QuoteProvider = ({ children }) => {
   return (
     <QuoteContext.Provider
       value={{
-        ...state, // Spread all state keys here
+        ...state,
+        serviceType,
+        hour,
+        period,
+        truckSize,
+        startingLocationDetails,
+        stopOneDetails,
+        stopTwoDetails,
+        stopThreeDetails,
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,

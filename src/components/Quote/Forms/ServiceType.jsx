@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 
 const ServiceType = () => {
-  const tempValue = "";
-  const isMovingService = true;
-  const handleUpdateForm = () => {};
+  const { serviceType, handleUpdateForm } = useQuoteContext();
+
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Dropdown for service type*/}
@@ -17,16 +18,20 @@ const ServiceType = () => {
         <select
           className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
           onChange={(e) => handleUpdateForm(e.target)}
-          value={tempValue}
+          value={serviceType}
           name="serviceType"
           id="serviceType"
         >
           <option value="moving">Moving</option>
-          <option value="single-item">Single Item Delivery</option>
-          <option value="junk-removal">Junk Removal (Only)</option>
+          <option value="singleItem">Single Item Delivery</option>
+          <option value="junkRemoval">Junk Removal (Only)</option>
         </select>
       </div>
-      {isMovingService ? <VehicleConfirmation /> : <ItemTextArea />}
+      {serviceType === "moving" ? (
+        <VehicleConfirmation />
+      ) : (
+        <ItemTextArea serviceType={serviceType} />
+      )}
 
       <BackAndNextBtns />
     </div>
@@ -34,14 +39,13 @@ const ServiceType = () => {
 };
 export default ServiceType;
 
-export const ItemTextArea = () => {
-  const testBool = false;
+export const ItemTextArea = ({ serviceType = "singleItem" }) => {
   const tempValue = "";
 
   const handleUpdateForm = () => {};
   return (
     <>
-      {testBool ? (
+      {serviceType === "singleItem" ? (
         <div className="mt-6">
           <label
             htmlFor="singleItem"
@@ -81,9 +85,8 @@ export const ItemTextArea = () => {
 };
 
 export const VehicleConfirmation = () => {
-  const tempValue = "";
+const {handleUpdateForm,truckSize} = useQuoteContext()
 
-  const handleUpdateForm = () => {};
   return (
     <>
       <div className="mt-6">
@@ -96,7 +99,7 @@ export const VehicleConfirmation = () => {
         <select
           className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
           onChange={(e) => handleUpdateForm(e.target)}
-          value={tempValue}
+          value={truckSize}
           name="truckSize"
           id="truckSize"
         >

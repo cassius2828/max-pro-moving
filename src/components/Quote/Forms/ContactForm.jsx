@@ -4,9 +4,9 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 
 export function ClientInfo() {
-  const { handleUpdateForm } = useQuoteContext();
-  const hour = 3;
-  const period = "morning";
+  const { handleUpdateForm, hour, period, handleSetProjectStartTime } =
+    useQuoteContext();
+
   return (
     <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
       <div className="px-4 py-6 sm:p-8">
@@ -54,7 +54,7 @@ export function ClientInfo() {
           {/* date */}
           <div className="w-full">
             <label
-              htmlFor="date"
+              htmlFor="projectDate"
               className="block text-sm/6 font-medium text-gray-900"
             >
               Date of Service*
@@ -63,8 +63,8 @@ export function ClientInfo() {
               <input
                 onChange={(e) => handleUpdateForm(e.target)}
                 type="date"
-                id="date"
-                name="date"
+                id="projectDate"
+                name="projectDate"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
                 required
               />
@@ -86,7 +86,10 @@ export function ClientInfo() {
               <select
                 name="hour"
                 value={hour}
-                onChange={(e) => handleUpdateForm(e.target)}
+                onChange={(e) => {
+                  handleSetProjectStartTime();
+                  handleUpdateForm(e.target);
+                }}
                 className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
                 required
               >
@@ -101,11 +104,13 @@ export function ClientInfo() {
               <select
                 name="period"
                 value={period}
-                onChange={(e) => handleUpdateForm(e.target)}
+                onChange={(e) => {
+                  handleSetProjectStartTime();
+                  handleUpdateForm(e.target);
+                }}
                 className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
                 required
               >
-                <option value="">AM/PM</option>
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>
               </select>
@@ -179,7 +184,7 @@ export const ContactForm = () => {
           />
         </div>
       </div>
-     <SubmitFormBtn/>
+      <SubmitFormBtn />
     </div>
   );
 };
