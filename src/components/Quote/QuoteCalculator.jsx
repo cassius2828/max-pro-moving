@@ -3,7 +3,7 @@ import { DateOfMoveForm } from "./Forms/DateOfMoveForm";
 import { ExtraDetails } from "./Forms/ExtraDetails";
 import { LocationDetails } from "./Forms/LocationDetails";
 import { SizeDetails } from "./Forms/SizeDetails";
-import JunkRemoval from './Forms/JunkRemoval'
+import JunkRemoval from "./Forms/JunkRemoval";
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";
@@ -32,26 +32,22 @@ const QuoteCalculator = () => {
       {" "}
       {formSteps === 1 ? (
         // <LocationDetails onPlaceSelected={handlePlaceSelected} />
-        <ClientInfo/>
+        <ClientInfo />
       ) : formSteps === 2 ? (
         // <SizeDetails />
-        <ServiceType/>
+        <ServiceType />
       ) : formSteps === 3 ? (
         // <ExtraDetails />
-        <TruckSpecifics/>
+        <TruckSpecifics />
       ) : formSteps === 4 ? (
         // <Calculation />
         <LocationDetails onPlaceSelected={handlePlaceSelected} />
-
       ) : formSteps === 5 ? (
         // <ContactForm />
-        <AdditionalItemInfo/>
-      ) : formSteps === 6 ? (
-        // <ContactForm />
-        <JunkRemoval/>
-      ): (
+        <AdditionalItemInfo />
+      ) : (
         // <DateOfMoveForm />
-        <ContactForm/>
+        <ContactForm />
       )}{" "}
     </form>
   );

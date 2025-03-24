@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { createContext, useReducer } from "react";
+
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 
 export const QuoteContext = createContext();
@@ -32,9 +33,7 @@ const initialFormState = {
   // if they select recommend for both then choose one 20ft
   numOf26BoxTrucks: 0,
   numOf20BoxTrucks: 0,
-  // extra details
-  stairs: false,
-  listLargeItems: "",
+
   summaryOfMove: "",
   // quote
   quoteAmount: 0,
@@ -49,6 +48,16 @@ const initialFormState = {
   hour: "",
   period: "AM",
   projectStartTime: "",
+  // additional items (radio)
+  disassembly: "no",
+  specialtyItems: "no",
+  largeItems: "no",
+  junkRemoval: "no",
+  // addition items details
+  disassemblyDetails: "",
+  specialtyItemsDetails: "",
+  largeItemsDetails: "",
+  junkRemovalDetails: "",
 };
 
 /////////////////////
@@ -98,6 +107,14 @@ export const QuoteProvider = ({ children }) => {
     stopOneDetails,
     stopTwoDetails,
     stopThreeDetails,
+    disassembly,
+    specialtyItems,
+    largeItems,
+    junkRemoval,
+    disassemblyDetails,
+    specialtyItemsDetails,
+    largeItemsDetails,
+    junkRemovalDetails,
   } = state;
   /////////////////////////////////
   // Handle form step navigation
@@ -191,6 +208,14 @@ export const QuoteProvider = ({ children }) => {
         stopOneDetails,
         stopTwoDetails,
         stopThreeDetails,
+        disassembly,
+        specialtyItems,
+        largeItems,
+        junkRemoval,
+        disassemblyDetails,
+        specialtyItemsDetails,
+        largeItemsDetails,
+        junkRemovalDetails,
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,
