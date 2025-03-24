@@ -86,12 +86,13 @@ export const QuoteProvider = ({ children }) => {
     e.preventDefault();
 
     if (action === "back") {
-      if (state.formSteps > 1) {
+      // if (state.formSteps > 1) {
         dispatch({ type: "prevStep" });
-      }
+      // }
     }
     if (action === "next") {
-      if (state.formSteps < 6 && state.formSteps !== 3) {
+      // if (state.formSteps < 6 && state.formSteps !== 3)
+      {
         dispatch({ type: "nextStep" });
       }
     }

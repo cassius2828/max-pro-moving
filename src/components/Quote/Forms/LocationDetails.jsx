@@ -14,7 +14,12 @@ export const LocationDetails = () => {
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
   const { handleUpdateLocations, handleUpdateForm } = useQuoteContext();
+  const [stopCount, setStopCount] = useState(2);
 
+  const handleStopCountChange = (e) => {
+    const count = Math.min(Math.max(Number(e.target.value), 1), 4); // Ensures value is between 1-4
+    setStopCount(count);
+  };
   /////////////////////////////////
   // Reference for container
   /////////////////////////////////
@@ -104,30 +109,44 @@ export const LocationDetails = () => {
         </div>
       </div>
 
-      {multipleStops !== null && (
+      {/* Number of stops input */}
+      {multipleStops ? (
         <div className="mt-6">
-          {multipleStops ? (
-            <>
-              <AutocompleteInput
-                onPlaceSelected={handleSelectedPlace}
-                id="stop1"
-                label="Stop 1 Address"
-              />
-              <AutocompleteInput
-                onPlaceSelected={handleSelectedPlace}
-                id="stop2"
-                label="Stop 2 Address"
-              />
-            </>
-          ) : (
-            <AutocompleteInput
-              onPlaceSelected={handleSelectedPlace}
-              id="stop1"
-              label="Enter Address"
-            />
-          )}
+          <label
+            htmlFor="stopCount"
+            className="block text-sm font-medium text-gray-900"
+          >
+            How many stops? (Max: 3)
+          </label>
+          <input
+            type="number"
+            id="stopCount"
+            name="stopCount"
+            min="2"
+            max="3"
+            value={stopCount}
+            onChange={handleStopCountChange}
+            className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-1.5 text-gray-900 focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+          />
         </div>
+      ) : (
+        <AutocompleteInput
+          onPlaceSelected={handleSelectedPlace}
+          id="endLocation"
+          label="Drop Off Location"
+        />
       )}
+
+      {/* Stops input fields */}
+      {multipleStops &&
+        Array.from({ length: stopCount }, (_, index) => (
+          <AutocompleteInput
+            key={`stop${index + 1}`}
+            onPlaceSelected={() => {}}
+            id={`stop${index + 1}`}
+            label={`Stop ${index + 1} Address`}
+          />
+        ))}
 
       {/* Buttons */}
       <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">

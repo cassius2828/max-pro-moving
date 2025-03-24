@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Hamburger } from "../Hamburger";
 
 //////////////////

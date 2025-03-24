@@ -1,4 +1,4 @@
-import { ContactForm } from "./Forms/ContactForm";
+import { ClientInfo, ContactForm } from "./Forms/ContactForm";
 import { DateOfMoveForm } from "./Forms/DateOfMoveForm";
 import { ExtraDetails } from "./Forms/ExtraDetails";
 import { LocationDetails } from "./Forms/LocationDetails";
@@ -7,6 +7,9 @@ import { SizeDetails } from "./Forms/SizeDetails";
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";
+import ServiceType from "./Forms/ServiceType";
+import TruckSpecifics from "./Forms/TruckSpecifics";
+import AdditionalItemInfo from "./Forms/AdditionalItemInfo";
 
 /////////////////////////////////
 // Quote Calculator Component
@@ -28,17 +31,24 @@ const QuoteCalculator = () => {
     <form id="quote-form" className="fade-in w-full max-w-3xl mx-auto my-12">
       {" "}
       {formSteps === 1 ? (
-        <LocationDetails onPlaceSelected={handlePlaceSelected} />
+        // <LocationDetails onPlaceSelected={handlePlaceSelected} />
+        <ClientInfo/>
       ) : formSteps === 2 ? (
-        <SizeDetails />
+        // <SizeDetails />
+        <ServiceType/>
       ) : formSteps === 3 ? (
-        <ExtraDetails />
+        // <ExtraDetails />
+        <TruckSpecifics/>
       ) : formSteps === 4 ? (
-        <Calculation />
+        // <Calculation />
+        <LocationDetails onPlaceSelected={handlePlaceSelected} />
+
       ) : formSteps === 5 ? (
-        <ContactForm />
+        // <ContactForm />
+        <AdditionalItemInfo/>
       ) : (
-        <DateOfMoveForm />
+        // <DateOfMoveForm />
+        <ContactForm/>
       )}{" "}
     </form>
   );
