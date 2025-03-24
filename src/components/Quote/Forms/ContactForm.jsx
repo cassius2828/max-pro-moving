@@ -1,6 +1,7 @@
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
+import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 
 export function ClientInfo() {
   const { handleUpdateForm } = useQuoteContext();
@@ -178,7 +179,7 @@ export const ContactForm = () => {
           />
         </div>
       </div>
-      <BackAndNextBtns />
+     <SubmitFormBtn/>
     </div>
   );
 };

@@ -4,14 +4,20 @@ const BackAndNextBtns = () => {
   const { formSteps, handleFormStep } = useQuoteContext();
 
   return (
-    <div className="w-full flex justify-between mt-6">
+    <div
+      className={`w-full flex ${
+        formSteps === 1 ? "justify-end" : "justify-between "
+      } mt-6`}
+    >
       {/* Back button */}
-      <button
-        onClick={(e) => handleFormStep(e, "back")}
-        className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
-      >
-        Back
-      </button>
+      {formSteps !== 1 && (
+        <button
+          onClick={(e) => handleFormStep(e, "back")}
+          className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+        >
+          Back
+        </button>
+      )}
 
       {/* Next button */}
       <button

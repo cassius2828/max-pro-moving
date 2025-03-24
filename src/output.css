@@ -602,6 +602,10 @@ video {
   border-width: 0;
 }
 
+.pointer-events-none{
+  pointer-events: none;
+}
+
 .fixed{
   position: fixed;
 }
@@ -999,6 +1003,10 @@ video {
 
 .justify-evenly{
   justify-content: space-evenly;
+}
+
+.gap-12{
+  gap: 3rem;
 }
 
 .gap-8{
