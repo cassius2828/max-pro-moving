@@ -31,9 +31,9 @@ const initialFormState = {
   timeForJob: "3",
   // amouunt of trucks
   // if they select recommend for both then choose one 20ft
-  numOf26BoxTrucks: 0,
-  numOf20BoxTrucks: 0,
-  numOf16BoxTrucks: 0,
+  numOf26BoxTrucks: "0",
+  numOf20BoxTrucks: "0",
+  numOf16BoxTrucks: "0",
 
   summaryOfMove: "",
   // quote
@@ -116,6 +116,9 @@ export const QuoteProvider = ({ children }) => {
     specialtyItemsDetails,
     largeItemsDetails,
     junkRemovalDetails,
+    numOf26BoxTrucks,
+    numOf20BoxTrucks,
+    numOf16BoxTrucks,
   } = state;
   /////////////////////////////////
   // Handle form step navigation
@@ -217,6 +220,9 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetails,
         largeItemsDetails,
         junkRemovalDetails,
+        numOf26BoxTrucks,
+        numOf20BoxTrucks,
+        numOf16BoxTrucks,
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,

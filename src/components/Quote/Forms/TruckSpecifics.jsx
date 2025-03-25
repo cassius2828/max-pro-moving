@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
+import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 const TruckSpecifics = () => {
   const [selectedValue, setSelectedValue] = React.useState("");
-
-  const handleUpdateForm = (value) => {
-    setSelectedValue(value);
-    // You can dispatch this value to your form context or state management here
-  };
+  const {
+    numOf26BoxTrucks,
+    numOf20BoxTrucks,
+    numOf16BoxTrucks,
+    handleUpdateForm,
+  } = useQuoteContext();
+  useEffect(() => {
+    console.log(numOf26BoxTrucks, " <-- 26boixtrucks");
+  }, [numOf26BoxTrucks]);
 
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
@@ -19,15 +24,16 @@ const TruckSpecifics = () => {
         <div className="mt-3 space-y-2">
           {["0", "1", "2", "3+", "recommend"].map((option) => (
             <label
+              htmlFor="numOf26BoxTrucks"
               key={option}
               className="flex items-center space-x-2 text-gray-900"
             >
               <input
                 type="radio"
-                name="truckSize"
+                name="numOf26BoxTrucks"
                 value={option}
-                checked={selectedValue === option}
-                onChange={(e) => handleUpdateForm(e.target.value)}
+                checked={numOf26BoxTrucks === option}
+                onChange={(e) => handleUpdateForm(e.target)}
                 className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span>
@@ -52,10 +58,10 @@ const TruckSpecifics = () => {
             >
               <input
                 type="radio"
-                name="truckSize"
+                name="numOf20BoxTrucks"
                 value={option}
-                checked={selectedValue === option}
-                onChange={(e) => handleUpdateForm(e.target.value)}
+                checked={numOf20BoxTrucks === option}
+                onChange={(e) => handleUpdateForm(e.target)}
                 className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span>
@@ -80,10 +86,10 @@ const TruckSpecifics = () => {
             >
               <input
                 type="radio"
-                name="truckSize"
+                name="numOf16BoxTrucks"
                 value={option}
-                checked={selectedValue === option}
-                onChange={(e) => handleUpdateForm(e.target.value)}
+                checked={numOf16BoxTrucks === option}
+                onChange={(e) => handleUpdateForm(e.target)}
                 className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span>
