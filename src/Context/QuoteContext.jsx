@@ -10,7 +10,7 @@ console.log(CALC_MOVE_DIST_ENDPOINT);
 
 const initialFormState = {
   // progress of form
-  formSteps: 1,
+  formSteps: 6,
   // service type
   serviceType: "moving",
   // locations
@@ -33,6 +33,7 @@ const initialFormState = {
   // if they select recommend for both then choose one 20ft
   numOf26BoxTrucks: 0,
   numOf20BoxTrucks: 0,
+  numOf16BoxTrucks: 0,
 
   summaryOfMove: "",
   // quote
@@ -40,7 +41,7 @@ const initialFormState = {
   // contact info
   firstName: "",
   lastName: "",
-  cell: "",
+  phone: "",
   email: "",
   message: "",
   // project times

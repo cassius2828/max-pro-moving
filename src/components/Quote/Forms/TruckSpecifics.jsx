@@ -39,11 +39,38 @@ const TruckSpecifics = () => {
           ))}
         </div>
       </div>
-      {/* 16 to 20 ft */}
-      {/* 16 20 separate */}
+      {/* 20 ft */}
       <div className="mt-6">
         <label className="block text-sm/6 font-medium text-gray-900">
-          How Many 16' to 20' Box Trucks?
+          How Many 20' Box Trucks?
+        </label>
+        <div className="mt-3 space-y-2">
+          {["0", "1", "2", "3+", "recommend"].map((option) => (
+            <label
+              key={option}
+              className="flex items-center space-x-2 text-gray-900"
+            >
+              <input
+                type="radio"
+                name="truckSize"
+                value={option}
+                checked={selectedValue === option}
+                onChange={(e) => handleUpdateForm(e.target.value)}
+                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+              />
+              <span>
+                {option === "recommend"
+                  ? "Please Recommend"
+                  : `${option} Truck${option === "1" ? "" : "s"}`}
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
+      {/* 16ft */}
+      <div className="mt-6">
+        <label className="block text-sm/6 font-medium text-gray-900">
+          How Many 16' Box Trucks?
         </label>
         <div className="mt-3 space-y-2">
           {["0", "1", "2", "3+", "recommend"].map((option) => (
