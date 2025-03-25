@@ -40,6 +40,7 @@ const TruckSpecifics = () => {
         </div>
       </div>
       {/* 16 to 20 ft */}
+      {/* 16 20 separate */}
       <div className="mt-6">
         <label className="block text-sm/6 font-medium text-gray-900">
           How Many 16' to 20' Box Trucks?

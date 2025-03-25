@@ -689,6 +689,11 @@ video {
   margin-bottom: auto;
 }
 
+.my-10{
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .-mt-80{
   margin-top: -20rem;
 }
@@ -1974,6 +1979,11 @@ button {
   .lg\:text-7xl{
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .lg\:text-3xl{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
