@@ -18,21 +18,25 @@ export const LocationDetails = () => {
     handleUpdateForm,
     startingLocationDetails,
     startingLocation,
-    stopOne,
-    stopOneDetails,
-    stopTwo,
-    stopTwoDetails,
-    stopThree,
-    stopThreeDetails,
+    stop1,
+    stop1Details,
+    stop2,
+    stop2Details,
+    stop3,
+    stop3Details,
+    // * stop 3
+    endLocation,
+    endLocationDetails,
+    endLocationStairFlights,
   } = useQuoteContext();
-  let locationObj = {
-    stop1: stopOne,
-    stop1Details: stopOneDetails,
-    stop2: stopTwo,
-    stop2Details: stopTwoDetails,
-    stop3: stopThree,
-    stop3Details: stopThreeDetails,
-  };
+let locationObj = {
+  stop1,
+  stop1Details,
+  stop2,
+  stop2Details,
+  stop3,
+  stop3Details,
+}
   const [stopCount, setStopCount] = useState(2);
 
   const handleStopCountChange = (e) => {
@@ -153,6 +157,8 @@ export const LocationDetails = () => {
       ) : (
         <AutocompleteInput
           onPlaceSelected={handleSelectedPlace}
+          location={endLocation}
+          detailsValue={endLocationDetails}
           id="endLocation"
           label="Drop Off Location"
         />
@@ -165,7 +171,7 @@ export const LocationDetails = () => {
             detailsValue={locationObj[`stop${index + 1}Details`]}
             location={locationObj[`stop${index + 1}`]}
             key={`stop${index + 1}`}
-            onPlaceSelected={() => {}}
+            onPlaceSelected={handleSelectedPlace}
             id={`stop${index + 1}`}
             label={`Stop ${index + 1} Address`}
           />
