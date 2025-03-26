@@ -1787,6 +1787,10 @@ button {
     flex-shrink: 0;
   }
 
+  .sm\:grid-cols-6{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
   .sm\:gap-y-10{
     row-gap: 2.5rem;
   }
@@ -1991,6 +1995,11 @@ button {
 
   .lg\:text-7xl{
     font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .lg\:text-9xl{
+    font-size: 8rem;
     line-height: 1;
   }
 }
