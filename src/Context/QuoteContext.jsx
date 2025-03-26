@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { createContext, useReducer } from "react";
+
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 
 export const QuoteContext = createContext();
@@ -9,35 +10,67 @@ console.log(CALC_MOVE_DIST_ENDPOINT);
 
 const initialFormState = {
   // progress of form
-  formSteps: 1,
+  formSteps: 4,
+  // service type
+  serviceType: "moving",
   // locations
-  startingLocation: "",
   multipleStops: false,
-  stop1: "",
-  stop2: "",
   distance: 0,
   estimatedTravelTime: 0,
+  // * start
+  startingLocation: "",
+  startingLocationDetails: "",
+  startingLocationStairFlights: "",
+  // * stop 1
+  stop1: "",
+  stop1Details: "",
+  stop1StairFlights: "",
+  // * stop 2
+  stop2: "",
+  stop2Details: "",
+  stop2StairFlights: "",
+  // * stop 3
+  stop3: "",
+  stop3Details: "",
+  stop3StairFlights: "",
+  // * end location (no additional stops)
+  endLocation: "",
+  endLocationDetails: "",
+  endLocationStairFlights: "",
   // sizing
   truckSize: "pickup",
   NumOfWorkers: 2,
   timeForJob: "3",
-  // extra details
-  stairs: false,
-  listLargeItems: "",
+  // amouunt of trucks
+  // if they select recommend for both then choose one 20ft
+  numOf26BoxTrucks: "0",
+  numOf20BoxTrucks: "0",
+  numOf16BoxTrucks: "0",
+
   summaryOfMove: "",
   // quote
   quoteAmount: 0,
   // contact info
   firstName: "",
   lastName: "",
-  cell: "",
+  phone: "",
   email: "",
   message: "",
   // project times
   projectDate: "",
   hour: "",
-  period: "",
+  period: "AM",
   projectStartTime: "",
+  // additional items (radio)
+  disassembly: "no",
+  specialtyItems: "no",
+  largeItems: "no",
+  junkRemoval: "no",
+  // addition items details
+  disassemblyDetails: "",
+  specialtyItemsDetails: "",
+  largeItemsDetails: "",
+  junkRemovalDetails: "",
 };
 
 /////////////////////
@@ -78,7 +111,34 @@ const reducer = (state, action) => {
 //////////////////////////////////
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialFormState);
-
+  const {
+    serviceType,
+    hour,
+    period,
+    truckSize,
+    startingLocation,
+    startingLocationDetails,
+    stop1,
+    stop2,
+    stop3,
+    stop1Details,
+    stop2Details,
+    stop3Details,
+    endLocation,
+    endLocationDetails,
+    endLocationStairFlights,
+    disassembly,
+    specialtyItems,
+    largeItems,
+    junkRemoval,
+    disassemblyDetails,
+    specialtyItemsDetails,
+    largeItemsDetails,
+    junkRemovalDetails,
+    numOf26BoxTrucks,
+    numOf20BoxTrucks,
+    numOf16BoxTrucks,
+  } = state;
   /////////////////////////////////
   // Handle form step navigation
   /////////////////////////////////
@@ -91,7 +151,7 @@ export const QuoteProvider = ({ children }) => {
       }
     }
     if (action === "next") {
-      if (state.formSteps < 6 && state.formSteps !== 3) {
+      if (state.formSteps < 7) {
         dispatch({ type: "nextStep" });
       }
     }
@@ -162,7 +222,33 @@ export const QuoteProvider = ({ children }) => {
   return (
     <QuoteContext.Provider
       value={{
-        ...state, // Spread all state keys here
+        ...state,
+        serviceType,
+        hour,
+        period,
+        truckSize,
+        startingLocation,
+        startingLocationDetails,
+        stop1,
+        stop2,
+        stop3,
+        stop1Details,
+        stop2Details,
+        stop3Details,
+        endLocation,
+        endLocationDetails,
+        endLocationStairFlights,
+        disassembly,
+        specialtyItems,
+        largeItems,
+        junkRemoval,
+        disassemblyDetails,
+        specialtyItemsDetails,
+        largeItemsDetails,
+        junkRemovalDetails,
+        numOf26BoxTrucks,
+        numOf20BoxTrucks,
+        numOf16BoxTrucks,
         handleFormStep,
         handleResetForm,
         handleCalculateQuote,

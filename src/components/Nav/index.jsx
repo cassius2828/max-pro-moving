@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Hamburger } from "../Hamburger";
 
 //////////////////
@@ -21,14 +21,14 @@ export const Nav = () => {
           alt=""
         />
         <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">
-          Max-Protection Moving{" "}
+          Max Pro Moving{" "}
         </h2>
       </div>
 
       <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in ">
         <NavListItem link={`/`} text="Home" />
         <NavListItemDropDown
-          text={`Max-Protection Moving`}
+          text={`Max Pro Moving`}
           dropdownArr={[
             {
               text: "Max Pro Home",

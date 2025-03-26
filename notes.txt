@@ -140,3 +140,49 @@ Costs that need to be determined:
         - search through with keywords
         - mark status as new, accepted, rejected, archived
         - filter by date, area code range, num of trucks, type of job, name, price, etc 
+
+Meeting with Lima:
+Focus Area:
+    - AZ
+    - Not state lines (no estimates)
+    - ensure they are pointed to CA 
+    - cap on total amount of miles or if it is out of state then show different screen (being processed, interstate project, expert within 24-48 hours), only show CA 
+    - route based on miles, if over 100+ miles do not show estimate, expert contact you 
+Customer: 
+    - send a copy of results to both staff and client 
+    - show UI of quote (both)
+    - message: an expert will contact you 
+
+Truck Options: 
+    - 0, 1, 2, 3 or more 
+    - provide best option: fallback option 1 truck 
+    - 26' = $x2 cost
+    - 16' to 20' = $
+
+No Results Display Triggers: Show a default screen of an expert will contact you 
+
+Time Range: 
+EB = 1+ month 
+ROT = 2 - 4 weeks 
+LM = 2 weeks <
+
+Junk Removal:
+    
+
+
+Show range for 2 movers 2 hours and 4 movers and 4 hours 
+Max Distance: 
+    - range based upon office location range of 50 miles 
+    - location cap: past 50 miles from office radius 
+    - interstate is a reject 
+    - if total trip miles is over 50 
+
+
+Location Calculation: 
+    - Yes travel fee, NO TRAVEL FEE SHOWN, just disclaimer instead 
+    - breakup travel to location costs and trip / project costs 
+    - disclaimer based on location to the office
+
+Web page needs:
+Home page, about page, a tag to quote 
+about page below 
