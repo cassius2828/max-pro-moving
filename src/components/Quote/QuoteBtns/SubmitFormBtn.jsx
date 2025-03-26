@@ -1,12 +1,19 @@
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 const SubmitFormBtn = () => {
-  const { handleSetProjectStartTime } = useQuoteContext();
+  const { handleSetProjectStartTime, handleFormStep } = useQuoteContext();
   const handleSubmit = () => {
     handleSetProjectStartTime();
   };
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-between gap-12 mt-4">
+            {/* Back button */}
+            <button
+        onClick={(e) => handleFormStep(e, "back")}
+        className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+      >
+        Back
+      </button>
       <button
         onClick={() => handleSubmit()}
         type="submit"

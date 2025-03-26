@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Hamburger } from "../Hamburger";
-
-
 
 //////////////////
 // Navigation Component
@@ -14,13 +12,8 @@ export const Nav = () => {
   // GSAP Animations for elements within the container
   ///////////////////////////
 
-
-
   return (
-    <nav
-   
-      className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex"
-    >
+    <nav className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex">
       <div className="flex justify-center items-center">
         <img
           className="hidden md:block w-40 fade-in "
@@ -28,14 +21,14 @@ export const Nav = () => {
           alt=""
         />
         <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">
-          Max-Protection Moving{" "}
+          Max Pro Moving{" "}
         </h2>
       </div>
 
       <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in ">
         <NavListItem link={`/`} text="Home" />
         <NavListItemDropDown
-          text={`Max-Protection Moving`}
+          text={`Max Pro Moving`}
           dropdownArr={[
             {
               text: "Max Pro Home",
@@ -120,7 +113,10 @@ export const NavListItemDropDown = ({ text, dropdownArr }) => {
 export const NavListItem = ({ link, text }) => {
   return (
     <li>
-      <a href={link} className="block px-4 py-2 hover:text-blue-500">
+      <a
+        href={link}
+        className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200"
+      >
         {text}
       </a>
     </li>
@@ -131,31 +127,24 @@ export const NavListItem = ({ link, text }) => {
 // Mobile Navigation Component
 ////////////////////////////////////
 export const MobileNav = () => {
-
-
-
-
   return (
-    <ul
-
-      className="absolute bg-blue-800 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly"
-    >
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+    <ul className="absolute bg-blue-800 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">Home</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">About</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">Services</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">Portfolio</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">Contact</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:text-blue-500 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
         <a href="#">Blog</a>
       </li>
     </ul>
