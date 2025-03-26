@@ -27,7 +27,7 @@ const AutocompleteInput = ({
 
     const autocomplete = new window.google.maps.places.Autocomplete(
       inputRef.current,
-      {
+      { 
         types: ["geocode"], // Specify the types of predictions you want to get
         componentRestrictions: { country: "us" }, // Restrict to a specific country, if needed
       }
