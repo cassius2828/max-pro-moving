@@ -35,14 +35,14 @@ const images = [
 
 const StaffGallery = () => {
   return (
-    <div className="w-full relative mt-16 md:mt-0">
+    <div className="w-full h-screen relative mt-16 md:mt-0">
       <Marquee speed={20}>
         <div className="flex justify-evenly">
           {images.map((image) => {
             return (
               <img
                 key={image.src1}
-                className="lg:h-100svh"
+                className="h-100svh"
                 src={image.src2} // Default image source
                 srcSet={`${image.src1} 600w, ${image.src2} 1400w, ${image.src3} 2000w`}
                 sizes="(max-width: 600px) 100vw, (max-width: 1400px) 50vw, 33vw"
