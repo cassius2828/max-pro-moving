@@ -9,9 +9,10 @@ function App() {
     <>
       <Nav />
       <Landing />
+
       <Quote />
       {/* <ProjectDetails /> */}
-      <ProjectDetailsv2/>
+      <ProjectDetailsv2 />
       <Footer />
     </>
   );
