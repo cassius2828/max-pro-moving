@@ -5,7 +5,13 @@ import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 const ServiceType = () => {
   const { serviceType, handleUpdateForm, truckSize } = useQuoteContext();
   // set btn skip from truckSize in context-- affected from VehicleConf
-  const skipStep = truckSize === "no-trucks" ? "skipTrucks" : null;
+  // if service type is not moving, also skip trucks
+  const skipStep =
+    truckSize === "no-trucks"
+      ? "skipTrucks"
+      : serviceType !== "moving"
+      ? "skipTrucks"
+      : "";
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Dropdown for service type*/}
