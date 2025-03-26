@@ -1191,6 +1191,10 @@ video {
   padding: 2rem;
 }
 
+.p-5{
+  padding: 1.25rem;
+}
+
 .px-3{
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -1334,6 +1338,11 @@ video {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold{
@@ -1742,6 +1751,10 @@ button {
     grid-column: span 4 / span 4;
   }
 
+  .sm\:col-span-3{
+    grid-column: span 3 / span 3;
+  }
+
   .sm\:ml-4{
     margin-left: 1rem;
   }
@@ -1772,6 +1785,10 @@ button {
 
   .sm\:shrink-0{
     flex-shrink: 0;
+  }
+
+  .sm\:grid-cols-6{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .sm\:gap-y-10{
@@ -1978,6 +1995,11 @@ button {
 
   .lg\:text-7xl{
     font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .lg\:text-9xl{
+    font-size: 8rem;
     line-height: 1;
   }
 }
