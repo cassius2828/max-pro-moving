@@ -10,7 +10,7 @@ console.log(CALC_MOVE_DIST_ENDPOINT);
 
 const initialFormState = {
   // progress of form
-  formSteps: 4,
+  formSteps: 1,
   // service type
   serviceType: "moving",
   // locations
