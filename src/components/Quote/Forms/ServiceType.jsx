@@ -3,8 +3,15 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 
 const ServiceType = () => {
-  const { serviceType, handleUpdateForm } = useQuoteContext();
-
+  const { serviceType, handleUpdateForm, truckSize } = useQuoteContext();
+  // set btn skip from truckSize in context-- affected from VehicleConf
+  // if service type is not moving, also skip trucks
+  const skipStep =
+    truckSize === "no-trucks"
+      ? "skipTrucks"
+      : serviceType !== "moving"
+      ? "skipTrucks"
+      : "";
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Dropdown for service type*/}
@@ -33,7 +40,7 @@ const ServiceType = () => {
         <ItemTextArea serviceType={serviceType} />
       )}
 
-      <BackAndNextBtns />
+      <BackAndNextBtns skipStep={skipStep} />
     </div>
   );
 };
@@ -85,7 +92,7 @@ export const ItemTextArea = ({ serviceType = "singleItem" }) => {
 };
 
 export const VehicleConfirmation = () => {
-const {handleUpdateForm,truckSize} = useQuoteContext()
+  const { handleUpdateForm, truckSize } = useQuoteContext();
 
   return (
     <>

@@ -80,6 +80,10 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "nextStep":
       return { ...state, formSteps: state.formSteps + 1 };
+    case "skipTrucks":
+      return { ...state, formSteps: state.formSteps + 2 };
+    case "skipTrucksPrev":
+      return { ...state, formSteps: state.formSteps - 2 };
     case "prevStep":
       return { ...state, formSteps: state.formSteps - 1 };
     case "updateForm":
@@ -142,16 +146,20 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   // Handle form step navigation
   /////////////////////////////////
-  const handleFormStep = (e, action) => {
+  const handleFormStep = (e, action, skipPast) => {
     e.preventDefault();
 
     if (action === "back") {
-      if (state.formSteps > 1) {
+      if (skipPast) {
+        dispatch({ type: `${skipPast}Prev` });
+      } else if (state.formSteps > 1) {
         dispatch({ type: "prevStep" });
       }
     }
     if (action === "next") {
-      if (state.formSteps < 7) {
+      if (skipPast) {
+        dispatch({ type: skipPast });
+      } else if (state.formSteps < 7) {
         dispatch({ type: "nextStep" });
       }
     }

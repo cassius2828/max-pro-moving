@@ -27,7 +27,7 @@ export const LocationDetails = () => {
     // * stop 3
     endLocation,
     endLocationDetails,
-    endLocationStairFlights,
+    endLocationStairFlights,truckSize,serviceType
   } = useQuoteContext();
 let locationObj = {
   stop1,
@@ -38,6 +38,13 @@ let locationObj = {
   stop3Details,
 }
   const [stopCount, setStopCount] = useState(2);
+
+  const skipStep =
+    truckSize === "no-trucks"
+      ? "skipTrucks"
+      : serviceType !== "moving"
+      ? "skipTrucks"
+      : "";
 
   const handleStopCountChange = (e) => {
     const count = Math.min(Math.max(Number(e.target.value), 1), 4); // Ensures value is between 1-4
@@ -179,7 +186,7 @@ let locationObj = {
 
       {/* Buttons */}
       <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">
-        <BackAndNextBtns />
+        <BackAndNextBtns skipStep={skipStep} />
       </div>
     </div>
   );
