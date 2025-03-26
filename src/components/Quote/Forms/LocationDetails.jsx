@@ -27,16 +27,18 @@ export const LocationDetails = () => {
     // * stop 3
     endLocation,
     endLocationDetails,
-    endLocationStairFlights,truckSize,serviceType
+    endLocationStairFlights,
+    truckSize,
+    serviceType,
   } = useQuoteContext();
-let locationObj = {
-  stop1,
-  stop1Details,
-  stop2,
-  stop2Details,
-  stop3,
-  stop3Details,
-}
+  let locationObj = {
+    stop1,
+    stop1Details,
+    stop2,
+    stop2Details,
+    stop3,
+    stop3Details,
+  };
   const [stopCount, setStopCount] = useState(2);
 
   const skipStep =

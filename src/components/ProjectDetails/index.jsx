@@ -152,15 +152,16 @@ export function ProjectDetailsv2() {
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <h2 className="fade-in text-5xl font-semibold text-blue-800">
-            Quote by Category
+            Service Details
           </h2>
         </div>
         <div className="relative mt-6">
-          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
-            Get a quote based on the type of service you would require.
-            Selecting a category will be applied to the quote calculator
+          <p className="text-start mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+            We are able to do all of the listed moving scenarios, plus more! Be
+            sure to include any relevant information in the quick quote form
+            when requesting to be contacted by a moving professional for an
+            over-the-phone quote
           </p>
-   
         </div>
       </div>
       <div className="flow-root bg-white pb-24 sm:pb-32">
