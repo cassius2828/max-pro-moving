@@ -146,18 +146,20 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   // Handle form step navigation
   /////////////////////////////////
-  const handleFormStep = (e, action, skipPast) => {
+  // adding skipPastDirection creates consistency when skipping a certain direction,
+  // but allowing normal nav for other direction
+  const handleFormStep = (e, action, skipPast, skipPastDirection) => {
     e.preventDefault();
 
     if (action === "back") {
-      if (skipPast) {
+      if (skipPast && skipPastDirection === action) {
         dispatch({ type: `${skipPast}Prev` });
       } else if (state.formSteps > 1) {
         dispatch({ type: "prevStep" });
       }
     }
     if (action === "next") {
-      if (skipPast) {
+      if (skipPast && skipPastDirection === action) {
         dispatch({ type: skipPast });
       } else if (state.formSteps < 7) {
         dispatch({ type: "nextStep" });
