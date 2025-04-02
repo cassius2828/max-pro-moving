@@ -40,7 +40,7 @@ const ServiceType = () => {
         <ItemTextArea serviceType={serviceType} />
       )}
 
-      <BackAndNextBtns skipStep={skipStep} />
+      <BackAndNextBtns skipStep={skipStep} skipPastDirection={"next"} />
     </div>
   );
 };

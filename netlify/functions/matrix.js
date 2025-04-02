@@ -1,25 +1,13 @@
 import axios from "axios";
-import functions from "@google-cloud/functions-framework";
 const MATRIX_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix";
 // eslint-disable-next-line no-undef
 const GOOGLE_PLACES_API_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 
-functions.http("calculateMovingDistance", async (req, res) => {
-  // Handle CORS preflight request
-  if (req.method === "OPTIONS") {
-    res.set("Access-Control-Allow-Origin", "*");
-    res.set("Access-Control-Allow-Methods", "GET, POST");
-    res.set("Access-Control-Allow-Headers", "Content-Type");
-    res.set("Access-Control-Max-Age", "3600");
-    res.status(204).send("");
-    return;
-  }
-
-  res.set("Access-Control-Allow-Origin", "*");
+export const getMatrixDetails = async (req, res) => {
   const { startingLocation, stop1, stop2, stop3, endLocation } = req.body;
 
   // ensures user must enter locations
-  if (!startingLocation || !stop1) {
+  if (!startingLocation || (!stop1 && !endLocation)) {
     return res
       .status(400)
       .send("Inadequate location params passed to function");
@@ -204,4 +192,4 @@ functions.http("calculateMovingDistance", async (req, res) => {
       return res.status(500).send(`Request failed: ${error}`);
     }
   }
-});
+};
