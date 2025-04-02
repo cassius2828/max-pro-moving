@@ -3,7 +3,7 @@ import axios from "axios";
 import { createContext, useReducer } from "react";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
-
+const NETLIFY_FN_URL = `http://localhost:8888/.netlify/functions/matrix`;
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
 console.log(CALC_MOVE_DIST_ENDPOINT);
@@ -229,6 +229,35 @@ export const QuoteProvider = ({ children }) => {
     dispatch({ type: "updateProjectStartTime" });
   };
 
+  ///////////////////////////
+  // Fetch Matrix Distance and Duration
+  ///////////////////////////
+  const fetchMatrixDetails = async (
+    startingLocation,
+    endLocation,
+    stop1,
+    stop2,
+    stop3
+  ) => {
+    const body = {
+      startingLocation,
+      endLocation,
+      stop1,
+      stop2,
+      stop3,
+    };
+    try {
+      const response = await axios.post(NETLIFY_FN_URL, body);
+      return response.data;
+    } catch (err) {
+      console.error(err);
+      console.log(
+        "Unable to fetch matrix details from netlify functions. Error:",
+        err
+      );
+    }
+  };
+
   return (
     <QuoteContext.Provider
       value={{
@@ -266,6 +295,7 @@ export const QuoteProvider = ({ children }) => {
         handleUpdateLocations,
         handleDateChange,
         handleSetProjectStartTime,
+        fetchMatrixDetails,
       }}
     >
       {children}
