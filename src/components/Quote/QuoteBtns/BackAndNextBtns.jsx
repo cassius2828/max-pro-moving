@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
-const BackAndNextBtns = ({ skipStep }) => {
+const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
   const { formSteps, handleFormStep, handleSetProjectStartTime } =
     useQuoteContext();
   const handleSubmit = () => {
@@ -16,7 +16,9 @@ const BackAndNextBtns = ({ skipStep }) => {
       {/* Back button */}
       {formSteps !== 1 && (
         <button
-          onClick={(e) => handleFormStep(e, "back", skipStep)}
+          onClick={(e) =>
+            handleFormStep(e, "back", skipStep, skipPastDirection)
+          }
           className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
           Back
@@ -32,7 +34,9 @@ const BackAndNextBtns = ({ skipStep }) => {
         </button>
       ) : (
         <button
-          onClick={(e) => handleFormStep(e, "next", skipStep)}
+          onClick={(e) =>
+            handleFormStep(e, "next", skipStep, skipPastDirection)
+          }
           className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
           Next

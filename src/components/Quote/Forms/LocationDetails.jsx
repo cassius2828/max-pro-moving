@@ -188,7 +188,7 @@ export const LocationDetails = () => {
 
       {/* Buttons */}
       <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">
-        <BackAndNextBtns skipStep={skipStep} />
+        <BackAndNextBtns skipStep={skipStep} skipPastDirection={'back'} />
       </div>
     </div>
   );
