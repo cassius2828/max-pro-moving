@@ -22,6 +22,25 @@ export function ClientInfo() {
     handleSetInvalidInputs,
   } = useQuoteContext();
 
+  const inputsArray = [
+    {
+      name: "firstNameError",
+      value: Boolean(!firstName),
+    },
+    {
+      name: "lastNameError",
+      value: Boolean(!lastName),
+    },
+    {
+      name: "projectDateError",
+      value: Boolean(!projectDate),
+    },
+    {
+      name: "hourError",
+      value: Boolean(!hour),
+    },
+  ]
+
   const handleSubmit = () => {
     handleSetProjectStartTime();
   };
@@ -202,24 +221,7 @@ export function ClientInfo() {
                   handleFormStep(e, "next");
                 else {
                   e.preventDefault();
-                  handleSetLocalError([
-                    {
-                      name: "firstNameError",
-                      value: Boolean(!firstName),
-                    },
-                    {
-                      name: "lastNameError",
-                      value: Boolean(!lastName),
-                    },
-                    {
-                      name: "projectDateError",
-                      value: Boolean(!projectDate),
-                    },
-                    {
-                      name: "hourError",
-                      value: Boolean(!hour),
-                    },
-                  ]);
+                  handleSetLocalError(inputsArray);
                 }
               }}
               className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
