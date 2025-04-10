@@ -283,9 +283,21 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleUpdateFormError = (name, boolean) => {
     dispatch({ type: "updateFormError", payload: { name, boolean } });
+    console.log(name, " <-- name val");
     console.log(boolean, " <-- boolean val");
-    console.log(firstNameError, " <-- firstNameError");
+    console.log(state);
+
   };
+
+  ///////////////////////////
+  // Handle Set local error (input)
+  ///////////////////////////
+  const handleSetLocalError = (inputsArray) => {
+    inputsArray.forEach(input => {
+      console.log(input, ' <-- input ')
+      handleUpdateFormError(input.name, input.value)
+  });
+  }
 
   /////////////////////////////////
   // Handle location update
@@ -306,6 +318,11 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleSetProjectStartTime = () => {
     dispatch({ type: "updateProjectStartTime" });
+  };
+
+  const handleSetInvalidInputs = (inputErrorsArray) => {
+    if (inputErrorsArray.includes(true)) return true;
+    else return false;
   };
 
   ///////////////////////////
@@ -398,7 +415,8 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetailsError,
         largeItemsDetailsError,
         junkRemovalDetailsError,
-        handleFormStep,
+        handleFormStep,handleSetLocalError,
+        handleSetInvalidInputs,
         handleUpdateFormError,
         handleResetForm,
         handleCalculateQuote,

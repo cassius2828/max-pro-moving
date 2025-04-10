@@ -5,6 +5,7 @@ import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 
 export function ClientInfo() {
   const {
+    handleSetLocalError,
     handleUpdateForm,
     handleUpdateFormError,
     hour,
@@ -16,8 +17,14 @@ export function ClientInfo() {
     firstNameError,
     lastName,
     lastNameError,
+    formSteps,
+    handleFormStep,
+    handleSetInvalidInputs,
   } = useQuoteContext();
 
+  const handleSubmit = () => {
+    handleSetProjectStartTime();
+  };
   return (
     <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
       <div className="px-4 py-6 sm:p-8">
@@ -71,7 +78,6 @@ export function ClientInfo() {
                 name="lastName"
                 autoComplete="family-name"
                 value={lastName}
-
                 className={` ${
                   lastNameError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
@@ -159,9 +165,69 @@ export function ClientInfo() {
         </div>
       </div>
       <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-        <BackAndNextBtns
-          // missingReqFields={!firstName || !lastName || !projectDateError || !hour}
-        />
+        <div
+          className={`w-full flex ${
+            formSteps === 1 ? "justify-end" : "justify-between "
+          } mt-6`}
+        >
+          {/* Back button */}
+          {formSteps !== 1 && (
+            <button
+              onClick={(e) => handleFormStep(e, "back")}
+              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+            >
+              Back
+            </button>
+          )}
+          {formSteps > 6 ? (
+            <button
+              onClick={() => handleSubmit()}
+              type="submit"
+              className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+            >
+              Submit
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={(e) => {
+                if (
+                  !handleSetInvalidInputs([
+                    !firstName.length,
+                    !lastName.length,
+                    !projectDate.length,
+                    !hour,
+                  ])
+                )
+                  handleFormStep(e, "next");
+                else {
+                  e.preventDefault();
+                  handleSetLocalError([
+                    {
+                      name: "firstNameError",
+                      value: Boolean(!firstName),
+                    },
+                    {
+                      name: "lastNameError",
+                      value: Boolean(!lastName),
+                    },
+                    {
+                      name: "projectDateError",
+                      value: Boolean(!projectDate),
+                    },
+                    {
+                      name: "hourError",
+                      value: Boolean(!hour),
+                    },
+                  ]);
+                }
+              }}
+              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+            >
+              Next
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );
