@@ -1,12 +1,33 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 const NETLIFY_FN_URL = `http://localhost:8888/.netlify/functions/matrix`;
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
 console.log(CALC_MOVE_DIST_ENDPOINT);
+
+const excludeKeys = [
+  "formSteps",
+  "serviceType",
+  "distance",
+  "estimatedTravelTime",
+  "multipleStops",
+  "truckSize",
+  "numOfWorkers",
+  "timeForJob",
+  "summaryOfMove",
+  "quoteAmount",
+  "period",
+  "projectStartTime",
+  "disassembly",
+  "specialtyItems",
+  "largeItems",
+  "junkRemoval",
+];
+
+const boxTruckRegex = /^numOf.*BoxTrucks$/;
 
 const initialFormState = {
   // progress of form
@@ -73,6 +94,19 @@ const initialFormState = {
   junkRemovalDetails: "",
 };
 
+const initialFormErrorState = Object.keys(initialFormState).reduce(
+  (acc, val) => {
+    if (excludeKeys.includes(val) || boxTruckRegex.test(val)) {
+      return acc;
+    }
+    acc[val + "Error"] = false;
+    return acc;
+  },
+  {}
+);
+
+const appState = { ...initialFormState, ...initialFormErrorState };
+
 /////////////////////
 // Reducer function
 /////////////////////
@@ -88,6 +122,11 @@ const reducer = (state, action) => {
       return { ...state, formSteps: state.formSteps - 1 };
     case "updateForm":
       return { ...state, [action.payload.name]: action.payload.value };
+    case "updateFormError":
+      return {
+        ...state,
+        [action.payload.name]: action.payload.boolean,
+      };
     case "updateDate":
       return { ...state, projectDate: action.payload };
     case "updateProjectStartTime":
@@ -104,7 +143,7 @@ const reducer = (state, action) => {
         estimatedTravelTime: action.payload.durationValueSeconds,
       };
     case "resetForm":
-      return initialFormState;
+      return appState;
     default:
       return state;
   }
@@ -114,11 +153,12 @@ const reducer = (state, action) => {
 // Quote Provider Component
 //////////////////////////////////
 export const QuoteProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialFormState);
+  const [state, dispatch] = useReducer(reducer, appState);
   const {
     serviceType,
     hour,
     period,
+    projectDate,
     truckSize,
     startingLocation,
     startingLocationDetails,
@@ -142,6 +182,34 @@ export const QuoteProvider = ({ children }) => {
     numOf26BoxTrucks,
     numOf20BoxTrucks,
     numOf16BoxTrucks,
+    formErrorState,
+    // error states
+    startingLocationError,
+    startingLocationDetailsError,
+    startingLocationStairFlightsError,
+    stop1Error,
+    stop1DetailsError,
+    stop1StairFlightsError,
+    stop2Error,
+    stop2DetailsError,
+    stop2StairFlightsError,
+    stop3Error,
+    stop3DetailsError,
+    stop3StairFlightsError,
+    endLocationError,
+    endLocationDetailsError,
+    endLocationStairFlightsError,
+    firstNameError,
+    lastNameError,
+    phoneError,
+    emailError,
+    messageError,
+    projectDateError,
+    hourError,
+    disassemblyDetailsError,
+    specialtyItemsDetailsError,
+    largeItemsDetailsError,
+    junkRemovalDetailsError,
   } = state;
   /////////////////////////////////
   // Handle form step navigation
@@ -209,6 +277,15 @@ export const QuoteProvider = ({ children }) => {
   };
 
   /////////////////////////////////
+  // Handle form error update
+  /////////////////////////////////
+  const handleUpdateFormError = (name, boolean) => {
+    dispatch({ type: "updateFormError", payload: { name, boolean } });
+    console.log(boolean, " <-- boolean val");
+    console.log(firstNameError, " <-- firstNameError");
+  };
+
+  /////////////////////////////////
   // Handle location update
   /////////////////////////////////
   const handleUpdateLocations = (payload) => {
@@ -265,6 +342,7 @@ export const QuoteProvider = ({ children }) => {
         serviceType,
         hour,
         period,
+        projectDate,
         truckSize,
         startingLocation,
         startingLocationDetails,
@@ -288,7 +366,36 @@ export const QuoteProvider = ({ children }) => {
         numOf26BoxTrucks,
         numOf20BoxTrucks,
         numOf16BoxTrucks,
+        formErrorState,
+        // error states
+        startingLocationError,
+        startingLocationDetailsError,
+        startingLocationStairFlightsError,
+        stop1Error,
+        stop1DetailsError,
+        stop1StairFlightsError,
+        stop2Error,
+        stop2DetailsError,
+        stop2StairFlightsError,
+        stop3Error,
+        stop3DetailsError,
+        stop3StairFlightsError,
+        endLocationError,
+        endLocationDetailsError,
+        endLocationStairFlightsError,
+        firstNameError,
+        lastNameError,
+        phoneError,
+        emailError,
+        messageError,
+        projectDateError,
+        hourError,
+        disassemblyDetailsError,
+        specialtyItemsDetailsError,
+        largeItemsDetailsError,
+        junkRemovalDetailsError,
         handleFormStep,
+        handleUpdateFormError,
         handleResetForm,
         handleCalculateQuote,
         handleUpdateForm,

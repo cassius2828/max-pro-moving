@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
-const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
+const BackAndNextBtns = ({
+  skipStep,
+  skipPastDirection,
+  missingReqFields,
+}) => {
   const { formSteps, handleFormStep, handleSetProjectStartTime } =
     useQuoteContext();
   const handleSubmit = () => {
@@ -28,6 +32,7 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
         <button
           onClick={() => handleSubmit()}
           type="submit"
+          disabled={missingReqFields}
           className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
         >
           Submit
@@ -38,6 +43,7 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
             handleFormStep(e, "next", skipStep, skipPastDirection)
           }
           className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+          disabled={missingReqFields}
         >
           Next
         </button>

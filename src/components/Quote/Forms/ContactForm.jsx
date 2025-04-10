@@ -4,8 +4,19 @@ import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import SubmitFormBtn from "../QuoteBtns/SubmitFormBtn";
 
 export function ClientInfo() {
-  const { handleUpdateForm, hour, period, handleSetProjectStartTime } =
-    useQuoteContext();
+  const {
+    handleUpdateForm,
+    handleUpdateFormError,
+    hour,
+    period,
+    projectDate,
+    projectDateError,
+    handleSetProjectStartTime,
+    firstName,
+    firstNameError,
+    lastName,
+    lastNameError,
+  } = useQuoteContext();
 
   return (
     <form className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
@@ -21,12 +32,20 @@ export function ClientInfo() {
             </label>
             <div className="mt-2">
               <input
-                onChange={(e) => handleUpdateForm(e.target)}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  handleUpdateForm(e.target);
+                  handleUpdateFormError(name + "Error", !value.length);
+                }}
                 type="text"
                 id="firstName"
                 name="firstName"
                 autoComplete="given-name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+                className={` ${
+                  firstNameError
+                    ? "outline-red-500 outline outline-1 -outline-offset-1"
+                    : " outline-gray-300 outline outline-1 -outline-offset-1"
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -41,12 +60,20 @@ export function ClientInfo() {
             </label>
             <div className="mt-2">
               <input
-                onChange={(e) => handleUpdateForm(e.target)}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  handleUpdateForm(e.target);
+                  handleUpdateFormError(name + "Error", !value.length);
+                }}
                 type="text"
                 id="lastName"
                 name="lastName"
                 autoComplete="family-name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+                className={` ${
+                  lastNameError
+                    ? "outline-red-500 outline outline-1 -outline-offset-1"
+                    : " outline-gray-300 outline outline-1 -outline-offset-1"
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -61,11 +88,19 @@ export function ClientInfo() {
             </label>
             <div className="mt-2">
               <input
-                onChange={(e) => handleUpdateForm(e.target)}
+                onChange={(e) => {
+                  const { name, value } = e.target;
+                  handleUpdateForm(e.target);
+                  handleUpdateFormError(name + "Error", !value.length);
+                }}
                 type="date"
                 id="projectDate"
                 name="projectDate"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+                className={` ${
+                  projectDateError
+                    ? "outline-red-500 outline outline-1 -outline-offset-1"
+                    : " outline-gray-300 outline outline-1 -outline-offset-1"
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -82,6 +117,7 @@ export function ClientInfo() {
                 not guarantee that services are available at selected time
               </span>
             </label>
+            {/* // TODO: Special Rules for Selecting Time of Day based on work hours */}
             <div className="mt-3 flex gap-x-4">
               <select
                 name="hour"
@@ -119,7 +155,9 @@ export function ClientInfo() {
         </div>
       </div>
       <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-        <BackAndNextBtns />
+        <BackAndNextBtns
+          missingReqFields={!firstName || !lastName || !projectDate || !hour}
+        />
       </div>
     </form>
   );
