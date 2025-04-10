@@ -41,6 +41,7 @@ export function ClientInfo() {
                 id="firstName"
                 name="firstName"
                 autoComplete="given-name"
+                value={firstName}
                 className={` ${
                   firstNameError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
@@ -69,6 +70,8 @@ export function ClientInfo() {
                 id="lastName"
                 name="lastName"
                 autoComplete="family-name"
+                value={lastName}
+
                 className={` ${
                   lastNameError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
@@ -96,6 +99,7 @@ export function ClientInfo() {
                 type="date"
                 id="projectDate"
                 name="projectDate"
+                value={projectDate}
                 className={` ${
                   projectDateError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
@@ -156,7 +160,7 @@ export function ClientInfo() {
       </div>
       <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
         <BackAndNextBtns
-          missingReqFields={!firstName || !lastName || !projectDate || !hour}
+          // missingReqFields={!firstName || !lastName || !projectDateError || !hour}
         />
       </div>
     </form>

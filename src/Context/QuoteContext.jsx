@@ -154,6 +154,8 @@ const reducer = (state, action) => {
 //////////////////////////////////
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, appState);
+  const [missingReqFields, setMissingReqFields] = useState(true);
+
   const {
     serviceType,
     hour,
@@ -367,6 +369,8 @@ export const QuoteProvider = ({ children }) => {
         numOf20BoxTrucks,
         numOf16BoxTrucks,
         formErrorState,
+        missingReqFields,
+        setMissingReqFields,
         // error states
         startingLocationError,
         startingLocationDetailsError,
