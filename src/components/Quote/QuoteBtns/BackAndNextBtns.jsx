@@ -40,11 +40,9 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection, inputErrorsArray }) => {
         </button>
       ) : (
         <button
-        type="button"
+          type="button"
           onClick={(e) => {
-            if (handleSetInvalidInputs(inputErrorsArray))
-              handleFormStep(e, "next", skipStep, skipPastDirection);
-            else e.preventDefault();
+            handleFormStep(e, "next", skipStep, skipPastDirection);
           }}
           className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
