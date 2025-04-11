@@ -31,7 +31,7 @@ const boxTruckRegex = /^numOf.*BoxTrucks$/;
 
 const initialFormState = {
   // progress of form
-  formSteps: 1,
+  formSteps: 4,
   // service type
   serviceType: "moving",
   // locations

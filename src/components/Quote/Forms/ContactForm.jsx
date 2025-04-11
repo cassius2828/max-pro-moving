@@ -65,6 +65,7 @@ export function ClientInfo() {
                 id="firstName"
                 name="firstName"
                 autoComplete="given-name"
+                placeholder="john"
                 value={firstName}
                 className={` ${
                   firstNameError

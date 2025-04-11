@@ -13,24 +13,41 @@ export const LocationDetails = () => {
   /////////////////////////////////
   const [multipleStops, setMultipleStops] = useState(null);
   const [places, setPlaces] = useState([]);
+  const [showErrors, setShowErrors] = useState({
+    startingLocation: false,
+    endLocation: false,
+    stop1: false,
+    stop2: false,
+    stop3: false,
+  });
   const {
     handleUpdateLocations,
     handleUpdateForm,
+    startingLocationError,
     startingLocationDetails,
     startingLocation,
+    stop1Error,
     stop1,
     stop1Details,
+    stop2Error,
     stop2,
     stop2Details,
+    stop3Error,
     stop3,
     stop3Details,
     // * stop 3
+    endLocationError,
     endLocation,
     endLocationDetails,
     endLocationStairFlights,
     truckSize,
     serviceType,
+    formSteps,
+    handleFormStep,
+    handleSetInvalidInputs,
+    handleSetLocalError,
   } = useQuoteContext();
+
   let locationObj = {
     stop1,
     stop1Details,
@@ -88,12 +105,64 @@ export const LocationDetails = () => {
     handleUpdateForm(e);
   };
 
+  ///////////////////////////
+  // Inputs array
+  ///////////////////////////
+  const inputsArray = [
+    {
+      name: "startingLocationError",
+      value: Boolean(!startingLocation),
+    },
+    {
+      name: "endLocationError",
+      value: Boolean(!endLocation),
+    },
+    // {
+    //   name: "lastNameError",
+    //   value: Boolean(!lastName),
+    // },
+    // {
+    //   name: "projectDateError",
+    //   value: Boolean(!projectDate),
+    // },
+    // {
+    //   name: "hourError",
+    //   value: Boolean(!hour),
+    // },
+  ];
+
+  ///////////////////////////
+  // Submit
+  ///////////////////////////
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit");
+  };
+
+  ///////////////////////////
+  // Validate Errors
+  ///////////////////////////
+  const handleValidateErrors = () => {
+    // Validate each required location field.
+
+    return {
+      startingLocation: !startingLocation || !startingLocation.length,
+      // More validations can be added for stops and endLocation as needed:
+      endLocation: !endLocation || !endLocation.length,
+      // If multiple stops are enabled, validate each stop similarly.
+      stop1: multipleStops ? !stop1 || !stop1.length : false,
+      stop2: multipleStops && stopCount >= 2 ? !stop2 || !stop2.length : false,
+      stop3: multipleStops && stopCount === 3 ? !stop3 || !stop3.length : false,
+    };
+  };
+
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Input for pick-up location */}
       <AutocompleteInput
         detailsValue={startingLocationDetails}
         location={startingLocation}
+        invalidLocationInput={showErrors.startingLocation}
         onPlaceSelected={handleSelectedPlace}
         id="startingLocation"
         label="Pick Up Location"
@@ -168,6 +237,7 @@ export const LocationDetails = () => {
           onPlaceSelected={handleSelectedPlace}
           location={endLocation}
           detailsValue={endLocationDetails}
+          invalidLocationInput={showErrors.endLocation}
           id="endLocation"
           label="Drop Off Location"
         />
@@ -179,6 +249,7 @@ export const LocationDetails = () => {
           <AutocompleteInput
             detailsValue={locationObj[`stop${index + 1}Details`]}
             location={locationObj[`stop${index + 1}`]}
+            invalidLocationInput={showErrors}
             key={`stop${index + 1}`}
             onPlaceSelected={handleSelectedPlace}
             id={`stop${index + 1}`}
@@ -188,7 +259,56 @@ export const LocationDetails = () => {
 
       {/* Buttons */}
       <div className="mt-6 border-t border-gray-900/10 pt-4 flex justify-end gap-x-6">
-        <BackAndNextBtns skipStep={skipStep} skipPastDirection={'back'} />
+        <div
+          className={`w-full flex ${
+            formSteps === 1 ? "justify-end" : "justify-between "
+          } mt-6`}
+        >
+          {/* Back button */}
+          {formSteps !== 1 && (
+            <button
+              onClick={(e) => handleFormStep(e, "back", skipStep, "back")}
+              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+            >
+              Back
+            </button>
+          )}
+          {formSteps > 6 ? (
+            <button
+              onClick={() => handleSubmit()}
+              type="submit"
+              className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+            >
+              Submit
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={(e) => {
+                // check for errors synchronously for immediate updates on error state
+                const errors = handleValidateErrors();
+                // set state for UI feedback in Autocomplete component
+                setShowErrors(errors);
+                // helper returns true if there is a true value
+                // if it has an error then it is true, so bang to flip value
+                if (
+                  !handleSetInvalidInputs([
+                    errors.startingLocation,
+                    errors.endLocation,
+                  ])
+                ) {
+                  handleFormStep(e, "next", skipStep, "back");
+                } else {
+                  e.preventDefault();
+                }
+              }}
+              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+            >
+              Next
+            </button>
+          )}
+        </div>
+        {/* <BackAndNextBtns skipStep={skipStep} skipPastDirection={'back'} /> */}
       </div>
     </div>
   );
