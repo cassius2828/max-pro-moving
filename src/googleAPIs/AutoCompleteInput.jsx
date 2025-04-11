@@ -10,7 +10,8 @@ const AutocompleteInput = ({
   id,
   label,
   detailsValue,
-  location,invalidLocationInput
+  location,
+  invalidLocationInput,
 }) => {
   const inputRef = useRef(null);
   const {
@@ -23,8 +24,6 @@ const AutocompleteInput = ({
     stop2,
   } = useQuoteContext();
   const [selectedValue, setSelectedValue] = useState("0");
-
-
 
   /////////////////////////////////
   // Effect to initialize Google Autocomplete
@@ -63,6 +62,7 @@ const AutocompleteInput = ({
           type="text"
           id={id}
           name={id}
+          defaultValue={location.formatted_address}
           className={` ${
             invalidLocationInput
               ? "outline-red-500 outline outline-1 -outline-offset-1"
@@ -72,7 +72,7 @@ const AutocompleteInput = ({
           required
         />
       </div>
-      {location && (
+      {Object.keys(location).length > 0 && (
         <>
           <label
             htmlFor={id}

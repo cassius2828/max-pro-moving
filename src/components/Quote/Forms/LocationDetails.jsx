@@ -46,6 +46,7 @@ export const LocationDetails = () => {
     handleFormStep,
     handleSetInvalidInputs,
     handleSetLocalError,
+    isObjEmpty,
   } = useQuoteContext();
 
   let locationObj = {
@@ -86,6 +87,7 @@ export const LocationDetails = () => {
       updatedPlaces.push({ formId: id, place });
     }
     setPlaces(updatedPlaces);
+    
   };
 
   /////////////////////////////////
@@ -146,15 +148,19 @@ export const LocationDetails = () => {
     // Validate each required location field.
 
     return {
-      startingLocation: !startingLocation || !startingLocation.length,
+      startingLocation: isObjEmpty(startingLocation),
       // More validations can be added for stops and endLocation as needed:
-      endLocation: !endLocation || !endLocation.length,
+      endLocation: isObjEmpty(endLocation),
       // If multiple stops are enabled, validate each stop similarly.
-      stop1: multipleStops ? !stop1 || !stop1.length : false,
-      stop2: multipleStops && stopCount >= 2 ? !stop2 || !stop2.length : false,
-      stop3: multipleStops && stopCount === 3 ? !stop3 || !stop3.length : false,
+      stop1: multipleStops ? isObjEmpty(stop1) : false,
+      stop2: multipleStops && stopCount >= 2 ? isObjEmpty(stop2) : false,
+      stop3: multipleStops && stopCount === 3 ? isObjEmpty(stop3) : false,
     };
   };
+
+  useEffect(() => {
+    console.log(places)
+  },[places])
 
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">

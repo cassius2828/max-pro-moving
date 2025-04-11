@@ -33,7 +33,7 @@ functions.http("calculateMovingDistance", async (req, res) => {
   ///////////////////////////
   // * 3 stops
   if (stop2 && stop3) {
-    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${stop1}|place_id:${stop2}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
+    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation.place_id}&destinations=place_id:${stop1.place_id}|place_id:${stop2.place_id}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
     if (!FULL_URL) {
       return res
         .status(400)
@@ -44,7 +44,7 @@ functions.http("calculateMovingDistance", async (req, res) => {
       // First request: from startingLocation to stop1
       const response1 = await axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
-          origins: `place_id:${startingLocation}`,
+          origins: `place_id:${startingLocation.place_id}`,
           destinations: `place_id:${stop1}`,
           units: "imperial",
           key: GOOGLE_PLACES_API_KEY,
@@ -54,8 +54,8 @@ functions.http("calculateMovingDistance", async (req, res) => {
       // Second request: from stop1 to stop2
       const response2 = await axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
-          origins: `place_id:${stop1}`,
-          destinations: `place_id:${stop2}`,
+          origins: `place_id:${stop1.place_id}`,
+          destinations: `place_id:${stop2.place_id}`,
           units: "imperial",
           key: GOOGLE_PLACES_API_KEY,
         },
@@ -64,8 +64,8 @@ functions.http("calculateMovingDistance", async (req, res) => {
       // Second request: from stop2 to stop3
       const response3 = await axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
-          origins: `place_id:${stop2}`,
-          destinations: `place_id:${stop3}`,
+          origins: `place_id:${stop2.place_id}`,
+          destinations: `place_id:${stop3.place_id}`,
           units: "imperial",
           key: GOOGLE_PLACES_API_KEY,
         },
@@ -111,7 +111,7 @@ functions.http("calculateMovingDistance", async (req, res) => {
     }
     // * 2 stops
   } else if (stop2) {
-    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${stop1}|place_id:${stop2}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
+    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation.place_id}&destinations=place_id:${stop1.place_id}|place_id:${stop2.place_id}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
     if (!FULL_URL) {
       return res
         .status(400)
@@ -122,8 +122,8 @@ functions.http("calculateMovingDistance", async (req, res) => {
       // First request: from startingLocation to stop1
       const response1 = await axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
-          origins: `place_id:${startingLocation}`,
-          destinations: `place_id:${stop1}`,
+          origins: `place_id:${startingLocation.place_id}`,
+          destinations: `place_id:${stop1.place_id}`,
           units: "imperial",
           key: GOOGLE_PLACES_API_KEY,
         },
@@ -132,8 +132,8 @@ functions.http("calculateMovingDistance", async (req, res) => {
       // Second request: from stop1 to stop2
       const response2 = await axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
-          origins: `place_id:${stop1}`,
-          destinations: `place_id:${stop2}`,
+          origins: `place_id:${stop1.place_id}`,
+          destinations: `place_id:${stop2.place_id}`,
           units: "imperial",
           key: GOOGLE_PLACES_API_KEY,
         },
@@ -177,7 +177,7 @@ functions.http("calculateMovingDistance", async (req, res) => {
   // SINGLE-STOP-TRIP
   ///////////////////////////
   else {
-    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${endLocation}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
+    FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation.place_id}&destinations=place_id:${endLocation.place_id}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
 
     if (!FULL_URL) {
       return res

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 const NETLIFY_FN_URL = `http://localhost:8888/.netlify/functions/matrix`;
@@ -39,23 +39,23 @@ const initialFormState = {
   distance: 0,
   estimatedTravelTime: 0,
   // * start
-  startingLocation: "",
+  startingLocation: {},
   startingLocationDetails: "",
   startingLocationStairFlights: "",
   // * stop 1
-  stop1: "",
+  stop1: {},
   stop1Details: "",
   stop1StairFlights: "",
   // * stop 2
-  stop2: "",
+  stop2: {},
   stop2Details: "",
   stop2StairFlights: "",
   // * stop 3
-  stop3: "",
+  stop3: {},
   stop3Details: "",
   stop3StairFlights: "",
   // * end location (no additional stops)
-  endLocation: "",
+  endLocation: {},
   endLocationDetails: "",
   endLocationStairFlights: "",
   // sizing
@@ -134,7 +134,7 @@ const reducer = (state, action) => {
     case "updateLocations":
       return {
         ...state,
-        [action.payload.formId]: action.payload.place.place_id,
+        [action.payload.formId]: action.payload.place,
       };
     case "calculateTimeAndDistance":
       return {
@@ -286,18 +286,17 @@ export const QuoteProvider = ({ children }) => {
     console.log(name, " <-- name val");
     console.log(boolean, " <-- boolean val");
     console.log(state);
-
   };
 
   ///////////////////////////
   // Handle Set local error (input)
   ///////////////////////////
   const handleSetLocalError = (inputsArray) => {
-    inputsArray.forEach(input => {
-      console.log(input, ' <-- input ')
-      handleUpdateFormError(input.name, input.value)
-  });
-  }
+    inputsArray.forEach((input) => {
+      console.log(input, " <-- input ");
+      handleUpdateFormError(input.name, input.value);
+    });
+  };
 
   /////////////////////////////////
   // Handle location update
@@ -353,6 +352,14 @@ export const QuoteProvider = ({ children }) => {
       );
     }
   };
+
+  const isObjEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
+  };
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   return (
     <QuoteContext.Provider
@@ -415,7 +422,8 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetailsError,
         largeItemsDetailsError,
         junkRemovalDetailsError,
-        handleFormStep,handleSetLocalError,
+        handleFormStep,
+        handleSetLocalError,
         handleSetInvalidInputs,
         handleUpdateFormError,
         handleResetForm,
@@ -425,6 +433,7 @@ export const QuoteProvider = ({ children }) => {
         handleDateChange,
         handleSetProjectStartTime,
         fetchMatrixDetails,
+        isObjEmpty,
       }}
     >
       {children}
