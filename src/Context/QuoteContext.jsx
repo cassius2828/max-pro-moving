@@ -84,7 +84,8 @@ const initialFormState = {
 
   // ────────────────────────────────────────────────────────────
   // QUOTE & SUMMARY
-  quoteAmount: 768,
+  quoteAmount: 768.254321,
+  quoteFormSuccess: false,
   summaryOfMove: "",
 
   // ────────────────────────────────────────────────────────────
@@ -153,8 +154,10 @@ const reducer = (state, action) => {
       return { ...state, projectDate: action.payload };
     case "updateQuoteAmount":
       return { ...state, quoteAmount: action.payload };
+    case "updateQuoteFormSuccess":
+      return { ...state, quoteFormSuccess: action.payload };
     case "resetQuoteAmount":
-      return { ...state, quoteAmount: 0 };
+      return { ...state, quoteAmount: 0, quoteFormSuccess: false };
     case "updateProjectStartTime":
       return { ...state, projectStartTime: state.hour + " " + state.period };
     case "updateLocations":
@@ -191,6 +194,7 @@ export const QuoteProvider = ({ children }) => {
     projectDate,
     truckSize,
     quoteAmount,
+    quoteFormSuccess,
     // ────────────────────────────────────────────────────────────
     // LOCATIONS & STOPS
     startingLocation,
@@ -392,6 +396,12 @@ export const QuoteProvider = ({ children }) => {
     dispatch({ type: "resetQuoteAmount" });
   };
   ///////////////////////////
+  // Update Quote Form Success
+  ///////////////////////////
+  const handleUpdateQuoteFormSuccess = (payload) => {
+    dispatch({ type: "updateQuoteFormSuccess", payload });
+  };
+  ///////////////////////////
   // Fetch Matrix Distance and Duration
   ///////////////////////////
   const fetchMatrixDetails = async (
@@ -439,6 +449,7 @@ export const QuoteProvider = ({ children }) => {
         projectDate,
         truckSize,
         quoteAmount,
+        quoteFormSuccess,
         // ────────────────────────────────────────────────────────────────
         // LOCATIONS
         startingLocation,
@@ -527,7 +538,7 @@ export const QuoteProvider = ({ children }) => {
         // QUOTE AMOUNT MANAGEMENT
         handleUpdateQuoteAmount,
         handleResetQuoteAmount,
-
+        handleUpdateQuoteFormSuccess,
         // ────────────────────────────────────────────────────────────────
         // FORM UPDATES
         handleUpdateForm,

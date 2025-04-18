@@ -1,9 +1,8 @@
-
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 
 // eslint-disable-next-line react/prop-types
 const QuoteModal = ({ onClose }) => {
-  const { quoteAmount } = useQuoteContext();
+  const { quoteAmount, quoteFormSuccess } = useQuoteContext();
 
   return (
     // backdrop
@@ -14,12 +13,13 @@ const QuoteModal = ({ onClose }) => {
         <h2 className="text-3xl font-bold mb-4">Your Quote</h2>
         {/* quote amount */}
         <div className="text-5xl font-extrabold text-green-500 mb-6">
-          ${quoteAmount}
+          ${Number(quoteAmount.toFixed(2))}
         </div>
         {/* body text */}
         <p className="mb-4 text-gray-700">
-          Your quote request was sent successfully! Our staff will reach out
-          soon to go over the details of your move.
+          {quoteFormSuccess
+            ? "Your quote request was sent successfully! Our staff will reach outsoon to go over the details of your move."
+            : "We’re sorry—something went wrong submitting your quote request."}
         </p>
 
         {/* contact links */}

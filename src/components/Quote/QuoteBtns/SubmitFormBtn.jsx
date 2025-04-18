@@ -134,8 +134,11 @@ const SubmitFormBtn = () => {
 
     if (data.success) {
       alert("Emails successfully sent");
+      handleUpdateQuoteFormSuccess(true)
     } else {
       alert("Emails failed to send");
+      handleUpdateQuoteFormSuccess(false)
+
     }
   };
 
