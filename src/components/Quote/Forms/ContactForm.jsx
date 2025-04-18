@@ -6,8 +6,6 @@ export function ClientInfo() {
     handleSetLocalError,
     handleUpdateForm,
     handleUpdateFormError,
-    hour,
-    period,
     projectDate,
     projectDateError,
     handleSetProjectStartTime,
@@ -15,6 +13,7 @@ export function ClientInfo() {
     firstNameError,
     lastName,
     lastNameError,
+    timeOfDay,
     formSteps,
     handleFormStep,
     handleSetInvalidInputs,
@@ -34,8 +33,8 @@ export function ClientInfo() {
       value: Boolean(!projectDate),
     },
     {
-      name: "hourError",
-      value: Boolean(!hour),
+      name: "timeOfDayError",
+      value: Boolean(!timeOfDay),
     },
   ];
 
@@ -147,7 +146,7 @@ export function ClientInfo() {
               </span>
             </label>
             {/* // TODO: Special Rules for Selecting Time of Day based on work hours */}
-            <div className="mt-3 flex gap-x-4">
+            {/* <div className="mt-3 flex gap-x-4">
               <select
                 name="hour"
                 value={hour}
@@ -179,7 +178,23 @@ export function ClientInfo() {
                 <option value="AM">AM</option>
                 <option value="PM">PM</option>
               </select>
-            </div>
+            </div> */}
+
+            <input
+              onChange={(e) => handleUpdateForm(e.target)}
+              type="time"
+              name="timeOfDay"
+              id="timeOfDay"
+              value={timeOfDay}
+              required
+              className={`${
+                timeOfDay ? "outline-gray-300" : "outline-red-500"
+              } outline outline-1 -outline-offset-1
+     block w-40 rounded-md bg-white px-3 py-1.5 
+     text-base text-gray-900 placeholder:text-gray-400 
+     focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 
+     sm:text-sm`}
+            />
           </div>
         </div>
       </div>
@@ -215,7 +230,7 @@ export function ClientInfo() {
                     !firstName.length,
                     !lastName.length,
                     !projectDate.length,
-                    !hour,
+                    !timeOfDay,
                   ])
                 )
                   handleFormStep(e, "next");

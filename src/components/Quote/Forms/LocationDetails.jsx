@@ -87,7 +87,6 @@ export const LocationDetails = () => {
       updatedPlaces.push({ formId: id, place });
     }
     setPlaces(updatedPlaces);
-    
   };
 
   /////////////////////////////////
@@ -159,8 +158,8 @@ export const LocationDetails = () => {
   };
 
   useEffect(() => {
-    console.log(places)
-  },[places])
+    console.log(places);
+  }, [places]);
 
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
@@ -189,6 +188,7 @@ export const LocationDetails = () => {
               name="multipleStops"
               type="radio"
               value={true}
+              checked={multipleStops}
               onChange={(e) => handleRadioChange(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -205,6 +205,7 @@ export const LocationDetails = () => {
               name="multipleStops"
               type="radio"
               value={false}
+              checked={!multipleStops}
               onChange={(e) => handleRadioChange(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
