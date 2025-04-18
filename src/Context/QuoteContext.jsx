@@ -239,7 +239,7 @@ export const QuoteProvider = ({ children }) => {
 
     // ────────────────────────────────────────────────────────────
     // FORM‑LEVEL STATE
-    formErrorState,
+    formErrorState,formSteps,
 
     // ────────────────────────────────────────────────────────────
     // FIELD‑LEVEL ERROR FLAGS
@@ -496,6 +496,7 @@ export const QuoteProvider = ({ children }) => {
         // FORM‑LEVEL ERROR STATE
         formErrorState,
         missingReqFields,
+        formSteps,
 
         // ────────────────────────────────────────────────────────────────
         // FIELD‑LEVEL ERROR FLAGS
