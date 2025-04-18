@@ -80,16 +80,17 @@ const SubmitFormBtn = () => {
 
   const calculateDistanceAndTime = async () => {
     const formData = {
-      startingLocation,
-      endLocation,
-      stop1,
-      stop2,
-      stop3,
+      startingLocation: startingLocation?.place_id,
+      endLocation: endLocation?.place_id,
+      stop1: stop1?.place_id,
+      stop2: stop2?.place_id,
+      stop3: stop3?.place_id,
     };
-    const response = await axios.post("/api/matrix", formData);
+    const response = await axios.post(`${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`, formData);
     return response.data;
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     const [distance, duration] = await calculateDistanceAndTime();
     const data = await sendEmails(distance.text);
     if (data.success) {
