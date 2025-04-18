@@ -1,12 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
-const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
-  const { formSteps, handleFormStep, handleSetProjectStartTime } =
-    useQuoteContext();
+const BackAndNextBtns = ({ skipStep, skipPastDirection, inputErrorsArray }) => {
+  const {
+    formSteps,
+    handleFormStep,
+    handleSetProjectStartTime,
+    handleSetInvalidInputs,
+  } = useQuoteContext();
   const handleSubmit = () => {
     handleSetProjectStartTime();
   };
+
   return (
     <div
       className={`w-full flex ${
@@ -34,9 +40,10 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
         </button>
       ) : (
         <button
-          onClick={(e) =>
-            handleFormStep(e, "next", skipStep, skipPastDirection)
-          }
+          type="button"
+          onClick={(e) => {
+            handleFormStep(e, "next", skipStep, skipPastDirection);
+          }}
           className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
           Next

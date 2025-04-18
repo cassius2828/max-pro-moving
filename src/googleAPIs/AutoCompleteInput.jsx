@@ -11,11 +11,20 @@ const AutocompleteInput = ({
   label,
   detailsValue,
   location,
+  invalidLocationInput,
 }) => {
   const inputRef = useRef(null);
-  const { handleUpdateForm, startingLocation, stop1, stop2 } =
-    useQuoteContext();
+  const {
+    handleUpdateForm,
+    startingLocation,
+    startingLocationError,
+    endLocation,
+    endLocationError,
+    stop1,
+    stop2,
+  } = useQuoteContext();
   const [selectedValue, setSelectedValue] = useState("0");
+
   /////////////////////////////////
   // Effect to initialize Google Autocomplete
   /////////////////////////////////
@@ -27,7 +36,7 @@ const AutocompleteInput = ({
 
     const autocomplete = new window.google.maps.places.Autocomplete(
       inputRef.current,
-      { 
+      {
         types: ["geocode"], // Specify the types of predictions you want to get
         componentRestrictions: { country: "us" }, // Restrict to a specific country, if needed
       }
@@ -53,12 +62,17 @@ const AutocompleteInput = ({
           type="text"
           id={id}
           name={id}
-          className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+          defaultValue={location.formatted_address}
+          className={` ${
+            invalidLocationInput
+              ? "outline-red-500 outline outline-1 -outline-offset-1"
+              : " outline-gray-300 outline outline-1 -outline-offset-1"
+          } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
           placeholder={label}
           required
         />
       </div>
-      {location && (
+      {Object.keys(location).length > 0 && (
         <>
           <label
             htmlFor={id}

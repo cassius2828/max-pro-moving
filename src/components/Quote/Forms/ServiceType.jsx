@@ -47,15 +47,16 @@ const ServiceType = () => {
 export default ServiceType;
 
 export const ItemTextArea = ({ serviceType = "singleItem" }) => {
-  const tempValue = "";
+ const {singleItemDetails, junkRemovalItems, handleUpdateForm} = useQuoteContext()
 
-  const handleUpdateForm = () => {};
+
+
   return (
     <>
       {serviceType === "singleItem" ? (
         <div className="mt-6">
           <label
-            htmlFor="singleItem"
+            htmlFor="singleItemDetails"
             className="block text-sm/6 font-medium text-gray-900"
           >
             Single Item Details
@@ -63,16 +64,19 @@ export const ItemTextArea = ({ serviceType = "singleItem" }) => {
 
           <textarea
             className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
-            onChange={(e) => handleUpdateForm(e.target)}
-            value={tempValue}
-            name="singleItem"
-            id="singleItem"
-          ></textarea>
+            onChange={(e) => {
+              console.log(e.target);
+              handleUpdateForm(e.target)
+            } }
+            value={singleItemDetails}
+            name="singleItemDetails"
+            id="singleItemDetails"
+          />
         </div>
       ) : (
         <div className="mt-6">
           <label
-            htmlFor="junkRemoval"
+            htmlFor="junkRemovalDetails"
             className="block text-sm/6 font-medium text-gray-900"
           >
             Junk Removal Items
@@ -81,10 +85,10 @@ export const ItemTextArea = ({ serviceType = "singleItem" }) => {
           <textarea
             className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
             onChange={(e) => handleUpdateForm(e.target)}
-            value={tempValue}
-            name="junkRemoval"
-            id="junkRemoval"
-          ></textarea>
+            value={junkRemovalItems}
+            name="junkRemovalDetails"
+            id="junkRemovalDetails"
+          />
         </div>
       )}
     </>
