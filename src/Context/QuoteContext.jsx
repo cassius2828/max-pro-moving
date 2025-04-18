@@ -102,7 +102,7 @@ const initialFormState = {
   hour: "",
   period: "AM",
   projectStartTime: "",
-
+timeOfDay: '',
   // ────────────────────────────────────────────────────────────
   // ADDITIONAL SERVICES (yes/no)
   disassembly: "no",
@@ -115,6 +115,35 @@ const initialFormState = {
   disassemblyDetails: "",
   specialtyItemsDetails: "",
   largeItemsDetails: "",
+
+    // FIELD‑LEVEL ERROR FLAGS
+    startingLocationError: false,
+    startingLocationDetailsError: false,
+    startingLocationStairFlightsError: false,
+    stop1Error: false,
+    stop1DetailsError: false,
+    stop1StairFlightsError: false,
+    stop2Error: false,
+    stop2DetailsError: false,
+    stop2StairFlightsError: false,
+    stop3Error: false,
+    stop3DetailsError: false,
+    stop3StairFlightsError: false,
+    endLocationError: false,
+    endLocationDetailsError: false,
+    endLocationStairFlightsError: false,
+    firstNameError: false,
+    lastNameError: false,
+    phoneError: false,
+    emailError: false,
+    messageError: false,
+    projectDateError: false,
+    timeOfDayError:false,
+    hourError: false,
+    disassemblyDetailsError: false,
+    specialtyItemsDetailsError: false,
+    largeItemsDetailsError: false,
+    junkRemovalDetailsError: false,
 };
 
 const initialFormErrorState = Object.keys(initialFormState).reduce(
@@ -192,6 +221,7 @@ export const QuoteProvider = ({ children }) => {
     hour,
     period,
     projectDate,
+    timeOfDay,
     truckSize,
     quoteAmount,
     quoteFormSuccess,
@@ -227,6 +257,8 @@ export const QuoteProvider = ({ children }) => {
 
     // ────────────────────────────────────────────────────────────
     // CONTACT INFO
+    firstName,
+    lastName,
     email,
     phone,
     message,
@@ -239,8 +271,8 @@ export const QuoteProvider = ({ children }) => {
 
     // ────────────────────────────────────────────────────────────
     // FORM‑LEVEL STATE
-    formErrorState,formSteps,
-
+    formErrorState,
+    formSteps,
     // ────────────────────────────────────────────────────────────
     // FIELD‑LEVEL ERROR FLAGS
     startingLocationError,
@@ -264,6 +296,7 @@ export const QuoteProvider = ({ children }) => {
     emailError,
     messageError,
     projectDateError,
+    timeOfDayError,
     hourError,
     disassemblyDetailsError,
     specialtyItemsDetailsError,
@@ -447,6 +480,7 @@ export const QuoteProvider = ({ children }) => {
         hour,
         period,
         projectDate,
+        timeOfDay,
         truckSize,
         quoteAmount,
         quoteFormSuccess,
@@ -482,6 +516,8 @@ export const QuoteProvider = ({ children }) => {
 
         // ────────────────────────────────────────────────────────────────
         // CONTACT INFO
+        firstName,
+        lastName,
         email,
         phone,
         message,
@@ -497,7 +533,6 @@ export const QuoteProvider = ({ children }) => {
         formErrorState,
         missingReqFields,
         formSteps,
-
         // ────────────────────────────────────────────────────────────────
         // FIELD‑LEVEL ERROR FLAGS
         startingLocationError,
@@ -521,6 +556,7 @@ export const QuoteProvider = ({ children }) => {
         emailError,
         messageError,
         projectDateError,
+        timeOfDayError,
         hourError,
         disassemblyDetailsError,
         specialtyItemsDetailsError,

@@ -1589,6 +1589,14 @@ video {
   outline-color: #ef4444;
 }
 
+.outline-red-300{
+  outline-color: #fca5a5;
+}
+
+.outline-gray-500{
+  outline-color: #6b7280;
+}
+
 .ring-1{
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);

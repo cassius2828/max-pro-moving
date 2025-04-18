@@ -32,6 +32,7 @@ const SubmitFormBtn = () => {
     projectStartTime,
     additionalItems,
     handleUpdateQuoteAmount, // dispatch that updates quoteAmount
+    handleUpdateQuoteFormSuccess
   } = useQuoteContext();
 
   // 📩 Send data to Mailtrap via Netlify function

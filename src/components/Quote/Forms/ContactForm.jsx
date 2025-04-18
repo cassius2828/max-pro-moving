@@ -14,6 +14,7 @@ export function ClientInfo() {
     lastName,
     lastNameError,
     timeOfDay,
+    timeOfDayError,
     formSteps,
     handleFormStep,
     handleSetInvalidInputs,
@@ -181,14 +182,18 @@ export function ClientInfo() {
             </div> */}
 
             <input
-              onChange={(e) => handleUpdateForm(e.target)}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                handleUpdateForm(e.target);
+                handleUpdateFormError(name + "Error", !value.length);
+              }}
               type="time"
               name="timeOfDay"
               id="timeOfDay"
               value={timeOfDay}
               required
               className={`${
-                timeOfDay ? "outline-gray-300" : "outline-red-500"
+                timeOfDayError ? "outline-red-500" : "outline-gray-300"
               } outline outline-1 -outline-offset-1
      block w-40 rounded-md bg-white px-3 py-1.5 
      text-base text-gray-900 placeholder:text-gray-400 
@@ -230,7 +235,7 @@ export function ClientInfo() {
                     !firstName.length,
                     !lastName.length,
                     !projectDate.length,
-                    !timeOfDay,
+                    !timeOfDay.length,
                   ])
                 )
                   handleFormStep(e, "next");
