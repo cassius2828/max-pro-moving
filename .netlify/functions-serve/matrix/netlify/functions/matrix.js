@@ -10768,7 +10768,7 @@ var require_follow_redirects = __commonJS({
   }
 });
 
-// netlify/functions/matrix.js
+// netlify/functions/matrix.mjs
 var matrix_exports = {};
 __export(matrix_exports, {
   handler: () => handler
@@ -14040,22 +14040,22 @@ var {
   mergeConfig: mergeConfig2
 } = axios_default;
 
-// netlify/functions/matrix.js
+// netlify/functions/matrix.mjs
 var MATRIX_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix";
 var GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-console.log(GOOGLE_PLACES_API_KEY, " <-- google palces apiu key");
 var handler = async (event, context) => {
-  const { startingLocation, stop1, stop2, stop3, endLocation } = JSON.parse(event.body);
+  const { startingLocation, stop1, stop2, stop3, endLocation } = JSON.parse(
+    event.body
+  );
   if (!startingLocation || !stop1 && !endLocation) {
     return {
       statusCode: 400,
       body: "Inadequate location params passed to function"
     };
   }
-  let FULL_URL;
   try {
     if (stop2 && stop3) {
-      const response1 = await axios_default.get(`${MATRIX_BASE_URL}/json`, {
+      const p1 = axios_default.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${startingLocation}`,
           destinations: `place_id:${stop1}`,
@@ -14063,7 +14063,7 @@ var handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY
         }
       });
-      const response2 = await axios_default.get(`${MATRIX_BASE_URL}/json`, {
+      const p2 = axios_default.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop1}`,
           destinations: `place_id:${stop2}`,
@@ -14071,7 +14071,7 @@ var handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY
         }
       });
-      const response3 = await axios_default.get(`${MATRIX_BASE_URL}/json`, {
+      const p3 = axios_default.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop2}`,
           destinations: `place_id:${stop3}`,
@@ -14079,30 +14079,36 @@ var handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY
         }
       });
-      if (response1.data.status === "OK" && response2.data.status === "OK") {
-        const distanceValueMeters1 = response1.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds1 = response1.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters2 = response2.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds2 = response2.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters3 = response3.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds3 = response3.data.rows[0].elements[0].duration.value;
-        const totalDistanceMeters = distanceValueMeters1 + distanceValueMeters2 + distanceValueMeters3;
-        const totalDurationSeconds = durationValueSeconds1 + durationValueSeconds2 + durationValueSeconds3;
+      const [r1, r2, r3] = await Promise.all([p1, p2, p3]);
+      if (r1.data.status === "OK" && r2.data.status === "OK" && r3.data.status === "OK") {
+        const d1 = r1.data.rows[0].elements[0].distance.value;
+        const t1 = r1.data.rows[0].elements[0].duration.value;
+        const d2 = r2.data.rows[0].elements[0].distance.value;
+        const t2 = r2.data.rows[0].elements[0].duration.value;
+        const d3 = r3.data.rows[0].elements[0].distance.value;
+        const t3 = r3.data.rows[0].elements[0].duration.value;
+        const totalDistanceMeters = d1 + d2 + d3;
+        const totalDurationSeconds = t1 + t2 + t3;
         return {
           statusCode: 200,
           body: JSON.stringify({
-            distanceValueMeters: totalDistanceMeters,
-            durationValueSeconds: totalDurationSeconds
+            // CHANGED: wrap totals in same distance/duration objects
+            distance: {
+              distanceValueMeters: totalDistanceMeters
+            },
+            duration: {
+              durationValueSeconds: totalDurationSeconds
+            }
           })
         };
       } else {
         return {
           statusCode: 500,
-          body: `Error: ${response1.data.error_message || response2.data.error_message}`
+          body: `Error: ${r1.data.error_message || r2.data.error_message || r3.data.error_message}`
         };
       }
     } else if (stop2) {
-      const response1 = await axios_default.get(`${MATRIX_BASE_URL}/json`, {
+      const p1 = axios_default.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${startingLocation}`,
           destinations: `place_id:${stop1}`,
@@ -14110,7 +14116,7 @@ var handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY
         }
       });
-      const response2 = await axios_default.get(`${MATRIX_BASE_URL}/json`, {
+      const p2 = axios_default.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop1}`,
           destinations: `place_id:${stop2}`,
@@ -14118,35 +14124,53 @@ var handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY
         }
       });
-      if (response1.data.status === "OK" && response2.data.status === "OK") {
-        const distanceValueMeters1 = response1.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds1 = response1.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters2 = response2.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds2 = response2.data.rows[0].elements[0].duration.value;
-        const totalDistanceMeters = distanceValueMeters1 + distanceValueMeters2;
-        const totalDurationSeconds = durationValueSeconds1 + durationValueSeconds2;
+      const [r1, r2] = await Promise.all([p1, p2]);
+      if (r1.data.status === "OK" && r2.data.status === "OK") {
+        const d1 = r1.data.rows[0].elements[0].distance.value;
+        const t1 = r1.data.rows[0].elements[0].duration.value;
+        const d2 = r2.data.rows[0].elements[0].distance.value;
+        const t2 = r2.data.rows[0].elements[0].duration.value;
+        const totalDistanceMeters = d1 + d2;
+        const totalDurationSeconds = t1 + t2;
         return {
           statusCode: 200,
           body: JSON.stringify({
-            distanceValueMeters: totalDistanceMeters,
-            durationValueSeconds: totalDurationSeconds
+            // CHANGED: wrap totals in same distance/duration objects
+            distance: {
+              distanceValueMeters: totalDistanceMeters
+            },
+            duration: {
+              durationValueSeconds: totalDurationSeconds
+            }
           })
         };
       } else {
         return {
           statusCode: 500,
-          body: `Error: ${response1.data.error_message || response2.data.error_message}`
+          body: `Error: ${r1.data.error_message || r2.data.error_message}`
         };
       }
     } else {
-      FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${endLocation}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
+      const FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${endLocation}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
       const response = await axios_default.get(FULL_URL);
       if (response.data.status === "OK") {
-        const distanceValueMeters = response.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds = response.data.rows[0].elements[0].duration.value;
+        const meters = response.data.rows[0].elements[0].distance.value;
+        const textD = response.data.rows[0].elements[0].distance.text;
+        const seconds = response.data.rows[0].elements[0].duration.value;
+        const textT = response.data.rows[0].elements[0].duration.text;
         return {
           statusCode: 200,
-          body: JSON.stringify({ distanceValueMeters, durationValueSeconds })
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            distance: {
+              meters,
+              text: textD
+            },
+            duration: {
+              seconds,
+              text: textT
+            }
+          })
         };
       } else {
         return {
