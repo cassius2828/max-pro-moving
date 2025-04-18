@@ -235,7 +235,7 @@ export function ClientInfo() {
 }
 
 export const ContactForm = () => {
-  const { handleUpdateForm } = useQuoteContext();
+  const { handleUpdateForm, email, phone, message } = useQuoteContext();
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* email */}
@@ -253,6 +253,7 @@ export const ContactForm = () => {
             name="email"
             id="email"
             autoComplete="email"
+            value={email}
             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
             required
           />
@@ -272,6 +273,7 @@ export const ContactForm = () => {
             type="tel"
             id="phone"
             name="phone"
+            value={phone}
             autoComplete="phone"
             className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
           />
@@ -291,6 +293,7 @@ export const ContactForm = () => {
             type="textarea"
             id="message"
             name="message"
+            value={message}
             className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm/6 resize-none"
             rows="4"
             placeholder="Enter your text here..."
