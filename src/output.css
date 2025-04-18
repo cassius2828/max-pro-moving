@@ -886,10 +886,6 @@ video {
   width: 100vw;
 }
 
-.w-32{
-  width: 8rem;
-}
-
 .min-w-0{
   min-width: 0px;
 }
@@ -1561,10 +1557,6 @@ video {
 
 .outline-red-500{
   outline-color: #ef4444;
-}
-
-.outline-gray-500{
-  outline-color: #6b7280;
 }
 
 .ring-1{

@@ -3,7 +3,7 @@ import axios from "axios";
 import { createContext, useEffect, useReducer, useState } from "react";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
-const NETLIFY_FN_URL = `http://localhost:8888/.netlify/functions/matrix`;
+
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
 console.log(CALC_MOVE_DIST_ENDPOINT);
@@ -67,10 +67,12 @@ const initialFormState = {
   numOf26BoxTrucks: "0",
   numOf20BoxTrucks: "0",
   numOf16BoxTrucks: "0",
-
-  summaryOfMove: "",
+  // non moving truck items
+  singleItemDetails: "",
+  junkRemovalDetails: "",
   // quote
   quoteAmount: 0,
+  summaryOfMove: "",
   // contact info
   firstName: "",
   lastName: "",
@@ -91,7 +93,6 @@ const initialFormState = {
   disassemblyDetails: "",
   specialtyItemsDetails: "",
   largeItemsDetails: "",
-  junkRemovalDetails: "",
 };
 
 const initialFormErrorState = Object.keys(initialFormState).reduce(
@@ -181,6 +182,7 @@ export const QuoteProvider = ({ children }) => {
     specialtyItemsDetails,
     largeItemsDetails,
     junkRemovalDetails,
+    singleItemDetails,
     email,
     phone,
     message,
@@ -392,6 +394,7 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetails,
         largeItemsDetails,
         junkRemovalDetails,
+        singleItemDetails,
         email,
         phone,
         message,

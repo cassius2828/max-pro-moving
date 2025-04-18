@@ -2,12 +2,12 @@ import axios from "axios";
 
 const MATRIX_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix";
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
-console.log(GOOGLE_PLACES_API_KEY, ' <-- google palces apiu key')
-export const handler = async (event, context) => {
-  // Parse the incoming request body (assumes JSON)
-  const { startingLocation, stop1, stop2, stop3, endLocation } = JSON.parse(event.body);
 
-  // Ensure the required parameters are provided
+export const handler = async (event, context) => {
+  const { startingLocation, stop1, stop2, stop3, endLocation } = JSON.parse(
+    event.body
+  );
+
   if (!startingLocation || (!stop1 && !endLocation)) {
     return {
       statusCode: 400,
@@ -15,14 +15,13 @@ export const handler = async (event, context) => {
     };
   }
 
-  // Initialize the full URL (if needed for logging/debugging)
-  let FULL_URL;
-
   try {
-    // MULTI-STOP-TRIP: 3 stops
+    // TODO: REview the logix, i believe these steps depend on each other so we cannot run them concurrently i think
+    // ───────────────────────────────────────────────────
+    // MULTI‑STOP‑TRIP: 3 stops
+    // ───────────────────────────────────────────────────
     if (stop2 && stop3) {
-      // Make sequential axios requests for the multi-stop trip
-      const response1 = await axios.get(`${MATRIX_BASE_URL}/json`, {
+      const p1 = axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${startingLocation}`,
           destinations: `place_id:${stop1}`,
@@ -30,8 +29,7 @@ export const handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY,
         },
       });
-
-      const response2 = await axios.get(`${MATRIX_BASE_URL}/json`, {
+      const p2 = axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop1}`,
           destinations: `place_id:${stop2}`,
@@ -39,8 +37,7 @@ export const handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY,
         },
       });
-
-      const response3 = await axios.get(`${MATRIX_BASE_URL}/json`, {
+      const p3 = axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop2}`,
           destinations: `place_id:${stop3}`,
@@ -49,35 +46,54 @@ export const handler = async (event, context) => {
         },
       });
 
-      if (response1.data.status === "OK" && response2.data.status === "OK") {
-        // Calculate distances and durations for each trip segment
-        const distanceValueMeters1 = response1.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds1 = response1.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters2 = response2.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds2 = response2.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters3 = response3.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds3 = response3.data.rows[0].elements[0].duration.value;
+      // 2) Await all three in one go—this runs them concurrently
+      const [r1, r2, r3] = await Promise.all([p1, p2, p3]);
 
-        const totalDistanceMeters = distanceValueMeters1 + distanceValueMeters2 + distanceValueMeters3;
-        const totalDurationSeconds = durationValueSeconds1 + durationValueSeconds2 + durationValueSeconds3;
+      if (
+        r1.data.status === "OK" &&
+        r2.data.status === "OK" &&
+        r3.data.status === "OK"
+      ) {
+        // extract numeric values
+        const d1 = r1.data.rows[0].elements[0].distance.value;
+        const t1 = r1.data.rows[0].elements[0].duration.value;
+        const d2 = r2.data.rows[0].elements[0].distance.value;
+        const t2 = r2.data.rows[0].elements[0].duration.value;
+        const d3 = r3.data.rows[0].elements[0].distance.value;
+        const t3 = r3.data.rows[0].elements[0].duration.value;
+
+        const totalDistanceMeters = d1 + d2 + d3;
+        const totalDurationSeconds = t1 + t2 + t3;
 
         return {
           statusCode: 200,
           body: JSON.stringify({
-            distanceValueMeters: totalDistanceMeters,
-            durationValueSeconds: totalDurationSeconds,
+            // CHANGED: wrap totals in same distance/duration objects
+            distance: {
+              distanceValueMeters: totalDistanceMeters,
+            },
+            duration: {
+              durationValueSeconds: totalDurationSeconds,
+            },
           }),
         };
       } else {
         return {
           statusCode: 500,
-          body: `Error: ${response1.data.error_message || response2.data.error_message}`,
+          body: `Error: ${
+            r1.data.error_message ||
+            r2.data.error_message ||
+            r3.data.error_message
+          }`,
         };
       }
     }
-    // TWO-STOP-TRIP
+    // TODO: REview the logix, i believe these steps depend on each other so we cannot run them concurrently i think
+    // ───────────────────────────────────────────────────
+    // TWO‑STOP‑TRIP: 2 stops
+    // ───────────────────────────────────────────────────
     else if (stop2) {
-      const response1 = await axios.get(`${MATRIX_BASE_URL}/json`, {
+      const p1 = axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${startingLocation}`,
           destinations: `place_id:${stop1}`,
@@ -85,8 +101,7 @@ export const handler = async (event, context) => {
           key: GOOGLE_PLACES_API_KEY,
         },
       });
-
-      const response2 = await axios.get(`${MATRIX_BASE_URL}/json`, {
+      const p2 = axios.get(`${MATRIX_BASE_URL}/json`, {
         params: {
           origins: `place_id:${stop1}`,
           destinations: `place_id:${stop2}`,
@@ -95,42 +110,64 @@ export const handler = async (event, context) => {
         },
       });
 
-      if (response1.data.status === "OK" && response2.data.status === "OK") {
-        const distanceValueMeters1 = response1.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds1 = response1.data.rows[0].elements[0].duration.value;
-        const distanceValueMeters2 = response2.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds2 = response2.data.rows[0].elements[0].duration.value;
+      const [r1, r2] = await Promise.all([p1, p2]);
+      if (r1.data.status === "OK" && r2.data.status === "OK") {
+        // extract numeric values
+        const d1 = r1.data.rows[0].elements[0].distance.value;
+        const t1 = r1.data.rows[0].elements[0].duration.value;
+        const d2 = r2.data.rows[0].elements[0].distance.value;
+        const t2 = r2.data.rows[0].elements[0].duration.value;
 
-        const totalDistanceMeters = distanceValueMeters1 + distanceValueMeters2;
-        const totalDurationSeconds = durationValueSeconds1 + durationValueSeconds2;
+        const totalDistanceMeters = d1 + d2;
+        const totalDurationSeconds = t1 + t2;
 
         return {
           statusCode: 200,
           body: JSON.stringify({
-            distanceValueMeters: totalDistanceMeters,
-            durationValueSeconds: totalDurationSeconds,
+            // CHANGED: wrap totals in same distance/duration objects
+            distance: {
+              distanceValueMeters: totalDistanceMeters,
+            },
+            duration: {
+              durationValueSeconds: totalDurationSeconds,
+            },
           }),
         };
       } else {
         return {
           statusCode: 500,
-          body: `Error: ${response1.data.error_message || response2.data.error_message}`,
+          body: `Error: ${r1.data.error_message || r2.data.error_message}`,
         };
       }
     }
-    // SINGLE-STOP-TRIP
-    else {
-      FULL_URL = `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}&destinations=place_id:${endLocation}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
 
+    // ───────────────────────────────────────────────────
+    // SINGLE‑STOP‑TRIP: 1 stop
+    // ───────────────────────────────────────────────────
+    else {
+      const FULL_URL =
+        `${MATRIX_BASE_URL}/json?origins=place_id:${startingLocation}` +
+        `&destinations=place_id:${endLocation}&units=imperial&key=${GOOGLE_PLACES_API_KEY}`;
       const response = await axios.get(FULL_URL);
 
       if (response.data.status === "OK") {
-        const distanceValueMeters = response.data.rows[0].elements[0].distance.value;
-        const durationValueSeconds = response.data.rows[0].elements[0].duration.value;
+        const meters = response.data.rows[0].elements[0].distance.value;
+        const textD = response.data.rows[0].elements[0].distance.text;
+        const seconds = response.data.rows[0].elements[0].duration.value;
+        const textT = response.data.rows[0].elements[0].duration.text;
 
         return {
           statusCode: 200,
-          body: JSON.stringify({ distanceValueMeters, durationValueSeconds }),
+          body: JSON.stringify({
+            distance: {
+              meters,
+              text: textD,
+            },
+            duration: {
+              seconds,
+              text: textT,
+            },
+          }),
         };
       } else {
         return {
