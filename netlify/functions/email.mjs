@@ -47,6 +47,7 @@ export default async function handler(req, context) {
     endLocation,
     stop1,
     stop2,
+    stop3,
     numOf16BoxTrucks,
     numOf20BoxTrucks,
     numOf26BoxTrucks,
@@ -70,6 +71,7 @@ export default async function handler(req, context) {
     endLocation,
     stop1,
     stop2,
+    stop3,
     numOf26BoxTrucks,
     numOf20BoxTrucks,
     numOf16BoxTrucks,
@@ -106,7 +108,10 @@ export default async function handler(req, context) {
 
     // Recipient lists
     const clientRecipients = [{ email }];
-    const staffRecipients = [{ email: "BaronLimaLLC@gmail.com" }];
+    const staffRecipients = [
+      { email: "BaronLimaLLC@gmail.com" },
+      { email: "kdottt28@gmail.com" },
+    ];
 
     // Mailtrap send config for the client
     const sendToClientConfig = {

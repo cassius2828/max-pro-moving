@@ -130,6 +130,8 @@ const reducer = (state, action) => {
       };
     case "updateDate":
       return { ...state, projectDate: action.payload };
+    case "updateQuoteAmount":
+      return { ...state, quoteAmount: action.payload };
     case "updateProjectStartTime":
       return { ...state, projectStartTime: state.hour + " " + state.period };
     case "updateLocations":
@@ -330,6 +332,12 @@ export const QuoteProvider = ({ children }) => {
   };
 
   ///////////////////////////
+  // Update Quote Amount
+  ///////////////////////////
+  const handleUpdateQuoteAmount = (payload) => {
+    dispatch({ type: "updateQuoteAmount", payload });
+  };
+  ///////////////////////////
   // Fetch Matrix Distance and Duration
   ///////////////////////////
   const fetchMatrixDetails = async (
@@ -426,6 +434,7 @@ export const QuoteProvider = ({ children }) => {
         emailError,
         messageError,
         projectDateError,
+        handleUpdateQuoteAmount,
         hourError,
         disassemblyDetailsError,
         specialtyItemsDetailsError,

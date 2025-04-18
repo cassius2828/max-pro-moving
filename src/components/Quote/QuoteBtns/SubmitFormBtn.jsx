@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
+
 const url = import.meta.env.NETLIFY_EMAIL_FN_URL;
+
 const SubmitFormBtn = () => {
+  // 🧠 Grab all relevant values and methods from your Quote Context
   const {
     handleFormStep,
     firstName,
@@ -26,22 +29,23 @@ const SubmitFormBtn = () => {
     stop1StairFlights,
     stop2StairFlights,
     stop3StairFlights,
-    quoteAmount,
     projectStartTime,
     additionalItems,
+    handleUpdateQuoteAmount, // dispatch that updates quoteAmount
   } = useQuoteContext();
 
-  const sendEmails = async (distance) => {
+  // 📩 Send data to Mailtrap via Netlify function
+  const sendEmails = async (distance, quoteAmount) => {
     const formData = {
       firstName,
       lastName,
       email,
 
-      // quote overrides
-      quoteAmount: "sample $999",
+      // ✍️ Quote-related fields
+      quoteAmount,
       additionalItems,
 
-      // move details
+      // 🛻 Move details
       serviceType,
       startingLocation,
       endLocation,
@@ -49,21 +53,21 @@ const SubmitFormBtn = () => {
       stop2,
       distance,
 
-      // truck counts
+      // 🚚 Trucks
       numOf16BoxTrucks,
       numOf20BoxTrucks,
       numOf26BoxTrucks,
 
-      // schedule
+      // 📆 Timing
       projectDate,
       timeOfDay,
       projectStartTime,
 
-      // crew & contact
+      // 👷 Workers & contact
       numOfWorkers,
       phone,
 
-      // staircase details
+      // 🏠 Staircase info
       startingLocationStairFlights,
       endLocationStairFlights,
       stop1StairFlights,
@@ -79,6 +83,7 @@ const SubmitFormBtn = () => {
     }
   };
 
+  // 📍 Call your distance matrix function
   const calculateDistanceAndTime = async () => {
     const formData = {
       startingLocation: startingLocation?.place_id,
@@ -87,31 +92,54 @@ const SubmitFormBtn = () => {
       stop2: stop2?.place_id,
       stop3: stop3?.place_id,
     };
+
     const response = await axios.post(
       `${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`,
       formData
     );
     return response.data;
   };
+
+  // ✅ Final submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 1. Get distance and duration
     const [distance, duration] = await calculateDistanceAndTime();
+
+    // 2. Compute total price inputs
     const totalNumOfTrucks =
       numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
     const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
-    calculateTotalCosts(
+
+    // 3a. sync calc quote amount so sendEmail has correct val
+    const computedQuoteAmount = calculateTotalCosts(
       projectDate,
       totalNumOfTrucks,
       totalNumOfMovers,
       distance.meters
     );
-    const data = await sendEmails(distance.text);
+    // 3b. Update quote amount (async dispatch)
+    await handleUpdateQuoteAmount(
+      calculateTotalCosts(
+        projectDate,
+        totalNumOfTrucks,
+        totalNumOfMovers,
+        distance.meters
+      )
+    );
+
+    // 4. Send emails
+    const data = await sendEmails(distance.text, computedQuoteAmount);
+
     if (data.success) {
       alert("Emails successfully sent");
     } else {
       alert("Emails failed to send");
     }
   };
+
+  // 👇 Form buttons
   return (
     <div className="w-full flex justify-between gap-12 mt-4">
       {/* Back button */}
@@ -131,4 +159,5 @@ const SubmitFormBtn = () => {
     </div>
   );
 };
+
 export default SubmitFormBtn;
