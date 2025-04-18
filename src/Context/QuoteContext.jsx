@@ -190,7 +190,7 @@ export const QuoteProvider = ({ children }) => {
     period,
     projectDate,
     truckSize,
-
+    quoteAmount,
     // ────────────────────────────────────────────────────────────
     // LOCATIONS & STOPS
     startingLocation,
@@ -438,7 +438,7 @@ export const QuoteProvider = ({ children }) => {
         period,
         projectDate,
         truckSize,
-
+        quoteAmount,
         // ────────────────────────────────────────────────────────────────
         // LOCATIONS
         startingLocation,
