@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
+import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
 const url = import.meta.env.NETLIFY_EMAIL_FN_URL;
 const SubmitFormBtn = () => {
   const {
@@ -86,12 +87,24 @@ const SubmitFormBtn = () => {
       stop2: stop2?.place_id,
       stop3: stop3?.place_id,
     };
-    const response = await axios.post(`${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`, formData);
+    const response = await axios.post(
+      `${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`,
+      formData
+    );
     return response.data;
   };
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const [distance, duration] = await calculateDistanceAndTime();
+    const totalNumOfTrucks =
+      numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
+    const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
+    calculateTotalCosts(
+      projectDate,
+      totalNumOfTrucks,
+      totalNumOfMovers,
+      distance.meters
+    );
     const data = await sendEmails(distance.text);
     if (data.success) {
       alert("Emails successfully sent");

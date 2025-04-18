@@ -155,7 +155,6 @@ export const handler = async (event, context) => {
         const textD = response.data.rows[0].elements[0].distance.text;
         const seconds = response.data.rows[0].elements[0].duration.value;
         const textT = response.data.rows[0].elements[0].duration.text;
-
         return {
           statusCode: 200,
           headers: {'Content-Type':'application/json'},
