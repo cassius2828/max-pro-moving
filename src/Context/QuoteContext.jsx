@@ -30,66 +30,87 @@ const excludeKeys = [
 const boxTruckRegex = /^numOf.*BoxTrucks$/;
 
 const initialFormState = {
-  // progress of form
-  formSteps: 1,
-  // service type
+  // ────────────────────────────────────────────────────────────
+  // FORM PROGRESS & OVERALL SETTINGS
+  formSteps: 6,
   serviceType: "moving",
-  // locations
   multipleStops: false,
   distance: 0,
   estimatedTravelTime: 0,
-  // * start
+
+  // ────────────────────────────────────────────────────────────
+  // PICKUP LOCATION
   startingLocation: {},
   startingLocationDetails: "",
   startingLocationStairFlights: "",
-  // * stop 1
+
+  // ────────────────────────────────────────────────────────────
+  // INTERMEDIATE STOPS
+  // Stop #1
   stop1: {},
   stop1Details: "",
   stop1StairFlights: "",
-  // * stop 2
+  // Stop #2
   stop2: {},
   stop2Details: "",
   stop2StairFlights: "",
-  // * stop 3
+  // Stop #3
   stop3: {},
   stop3Details: "",
   stop3StairFlights: "",
-  // * end location (no additional stops)
+
+  // ────────────────────────────────────────────────────────────
+  // DROP‑OFF LOCATION
   endLocation: {},
   endLocationDetails: "",
   endLocationStairFlights: "",
-  // sizing
+
+  // ────────────────────────────────────────────────────────────
+  // VEHICLE & CREW SIZING
   truckSize: "pickup",
   NumOfWorkers: 2,
-  timeForJob: "3",
-  // amouunt of trucks
-  // if they select recommend for both then choose one 20ft
+  timeForJob: "3", // estimated hours
+
+  // ────────────────────────────────────────────────────────────
+  // TRUCK COUNT
   numOf26BoxTrucks: "0",
   numOf20BoxTrucks: "0",
   numOf16BoxTrucks: "0",
-  // non moving truck items
+
+  // ────────────────────────────────────────────────────────────
+  // NON‑MOVING SERVICES
   singleItemDetails: "",
   junkRemovalDetails: "",
-  // quote
-  quoteAmount: 0,
+
+  // ────────────────────────────────────────────────────────────
+  // QUOTE & SUMMARY
+  quoteAmount: 768,
   summaryOfMove: "",
-  // contact info
+
+  // ────────────────────────────────────────────────────────────
+  // CONTACT INFORMATION
   firstName: "",
   lastName: "",
   phone: "",
   email: "",
   message: "",
-  // project times
+
+  // ────────────────────────────────────────────────────────────
+  // DATE & TIME
   projectDate: "",
   hour: "",
   period: "AM",
   projectStartTime: "",
-  // additional items (radio)
+
+  // ────────────────────────────────────────────────────────────
+  // ADDITIONAL SERVICES (yes/no)
   disassembly: "no",
   specialtyItems: "no",
   largeItems: "no",
   junkRemoval: "no",
-  // addition items details
+
+  // ────────────────────────────────────────────────────────────
+  // ADDITIONAL SERVICE DETAILS
   disassemblyDetails: "",
   specialtyItemsDetails: "",
   largeItemsDetails: "",
@@ -132,6 +153,8 @@ const reducer = (state, action) => {
       return { ...state, projectDate: action.payload };
     case "updateQuoteAmount":
       return { ...state, quoteAmount: action.payload };
+    case "resetQuoteAmount":
+      return { ...state, quoteAmount: 0 };
     case "updateProjectStartTime":
       return { ...state, projectStartTime: state.hour + " " + state.period };
     case "updateLocations":
@@ -160,39 +183,62 @@ export const QuoteProvider = ({ children }) => {
   const [missingReqFields, setMissingReqFields] = useState(true);
 
   const {
+    // ────────────────────────────────────────────────────────────
+    // MOVING DETAILS & SCHEDULE
     serviceType,
     hour,
     period,
     projectDate,
     truckSize,
+
+    // ────────────────────────────────────────────────────────────
+    // LOCATIONS & STOPS
     startingLocation,
     startingLocationDetails,
+    startingLocationStairFlights,
     stop1,
-    stop2,
-    stop3,
     stop1Details,
+    stop1StairFlights,
+    stop2,
     stop2Details,
+    stop2StairFlights,
+    stop3,
     stop3Details,
+    stop3StairFlights,
     endLocation,
     endLocationDetails,
     endLocationStairFlights,
+
+    // ────────────────────────────────────────────────────────────
+    // OPTIONAL SERVICES & ITEMS
     disassembly,
-    specialtyItems,
-    largeItems,
-    junkRemoval,
     disassemblyDetails,
+    specialtyItems,
     specialtyItemsDetails,
+    largeItems,
     largeItemsDetails,
+    junkRemoval,
     junkRemovalDetails,
     singleItemDetails,
+
+    // ────────────────────────────────────────────────────────────
+    // CONTACT INFO
     email,
     phone,
     message,
+
+    // ────────────────────────────────────────────────────────────
+    // EQUIPMENT COUNTS
     numOf26BoxTrucks,
     numOf20BoxTrucks,
     numOf16BoxTrucks,
+
+    // ────────────────────────────────────────────────────────────
+    // FORM‑LEVEL STATE
     formErrorState,
-    // error states
+
+    // ────────────────────────────────────────────────────────────
+    // FIELD‑LEVEL ERROR FLAGS
     startingLocationError,
     startingLocationDetailsError,
     startingLocationStairFlightsError,
@@ -337,6 +383,14 @@ export const QuoteProvider = ({ children }) => {
   const handleUpdateQuoteAmount = (payload) => {
     dispatch({ type: "updateQuoteAmount", payload });
   };
+
+  ///////////////////////////
+  // Reset Quote Amount
+  ///////////////////////////
+
+  const handleResetQuoteAmount = () => {
+    dispatch({ type: "resetQuoteAmount" });
+  };
   ///////////////////////////
   // Fetch Matrix Distance and Duration
   ///////////////////////////
@@ -377,42 +431,63 @@ export const QuoteProvider = ({ children }) => {
   return (
     <QuoteContext.Provider
       value={{
-        ...state,
+        // ────────────────────────────────────────────────────────────────
+        // MOVING DETAILS & SCHEDULE
         serviceType,
         hour,
         period,
         projectDate,
         truckSize,
+
+        // ────────────────────────────────────────────────────────────────
+        // LOCATIONS
         startingLocation,
         startingLocationDetails,
+        startingLocationStairFlights,
         stop1,
-        stop2,
-        stop3,
         stop1Details,
+        stop1StairFlights,
+        stop2,
         stop2Details,
+        stop2StairFlights,
+        stop3,
         stop3Details,
+        stop3StairFlights,
         endLocation,
         endLocationDetails,
         endLocationStairFlights,
+
+        // ────────────────────────────────────────────────────────────────
+        // OPTIONAL SERVICES & ITEMS
         disassembly,
-        specialtyItems,
-        largeItems,
-        junkRemoval,
         disassemblyDetails,
+        specialtyItems,
         specialtyItemsDetails,
+        largeItems,
         largeItemsDetails,
+        junkRemoval,
         junkRemovalDetails,
         singleItemDetails,
+
+        // ────────────────────────────────────────────────────────────────
+        // CONTACT INFO
         email,
         phone,
         message,
+
+        // ────────────────────────────────────────────────────────────────
+        // EQUIPMENT COUNTS
         numOf26BoxTrucks,
         numOf20BoxTrucks,
         numOf16BoxTrucks,
+
+        // ────────────────────────────────────────────────────────────────
+        // FORM‑LEVEL ERROR STATE
         formErrorState,
         missingReqFields,
-        setMissingReqFields,
-        // error states
+
+        // ────────────────────────────────────────────────────────────────
+        // FIELD‑LEVEL ERROR FLAGS
         startingLocationError,
         startingLocationDetailsError,
         startingLocationStairFlightsError,
@@ -434,22 +509,42 @@ export const QuoteProvider = ({ children }) => {
         emailError,
         messageError,
         projectDateError,
-        handleUpdateQuoteAmount,
         hourError,
         disassemblyDetailsError,
         specialtyItemsDetailsError,
         largeItemsDetailsError,
         junkRemovalDetailsError,
+
+        // ────────────────────────────────────────────────────────────────
+        // FORM NAVIGATION
         handleFormStep,
-        handleSetLocalError,
-        handleSetInvalidInputs,
-        handleUpdateFormError,
+
+        // ────────────────────────────────────────────────────────────────
+        // FORM RESET
         handleResetForm,
-        handleCalculateQuote,
+
+        // ────────────────────────────────────────────────────────────────
+        // QUOTE AMOUNT MANAGEMENT
+        handleUpdateQuoteAmount,
+        handleResetQuoteAmount,
+
+        // ────────────────────────────────────────────────────────────────
+        // FORM UPDATES
         handleUpdateForm,
         handleUpdateLocations,
         handleDateChange,
         handleSetProjectStartTime,
+
+        // ────────────────────────────────────────────────────────────────
+        // ERROR HANDLERS
+        handleSetLocalError,
+        handleSetInvalidInputs,
+        handleUpdateFormError,
+        setMissingReqFields,
+
+        // ────────────────────────────────────────────────────────────────
+        // CALCULATION & DATA FETCH
+        handleCalculateQuote,
         fetchMatrixDetails,
         isObjEmpty,
       }}

@@ -1,8 +1,8 @@
-import { Nav } from "./components/Nav";
-import Landing from "./components/Landing";
-import Quote from "./components/Quote";
 import Footer from "./components/Footer";
-import ProjectDetails, { ProjectDetailsv2 } from "./components/ProjectDetails";
+import Landing from "./components/Landing";
+import { Nav } from "./components/Nav";
+import { ProjectDetailsv2 } from "./components/ProjectDetails";
+import Quote from "./components/Quote";
 
 function App() {
   return (
