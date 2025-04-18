@@ -32,7 +32,7 @@ const boxTruckRegex = /^numOf.*BoxTrucks$/;
 const initialFormState = {
   // ────────────────────────────────────────────────────────────
   // FORM PROGRESS & OVERALL SETTINGS
-  formSteps: 6,
+  formSteps: 1,
   serviceType: "moving",
   multipleStops: false,
   distance: 0,
@@ -84,7 +84,7 @@ const initialFormState = {
 
   // ────────────────────────────────────────────────────────────
   // QUOTE & SUMMARY
-  quoteAmount: 768.254321,
+  quoteAmount: 0,
   quoteFormSuccess: false,
   summaryOfMove: "",
 
