@@ -65,7 +65,7 @@ export function ClientInfo() {
                 id="firstName"
                 name="firstName"
                 autoComplete="given-name"
-                placeholder="john"
+                placeholder="Enter your first name"
                 value={firstName}
                 className={` ${
                   firstNameError
@@ -95,6 +95,7 @@ export function ClientInfo() {
                 id="lastName"
                 name="lastName"
                 autoComplete="family-name"
+                placeholder="Enter your last name"
                 value={lastName}
                 className={` ${
                   lastNameError
