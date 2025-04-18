@@ -3,7 +3,7 @@ import { DateOfMoveForm } from "./Forms/DateOfMoveForm";
 import { ExtraDetails } from "./Forms/ExtraDetails";
 import { LocationDetails } from "./Forms/LocationDetails";
 import { SizeDetails } from "./Forms/SizeDetails";
-import JunkRemoval from "./Forms/JunkRemoval";
+
 import Calculation from "./Calculation";
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";

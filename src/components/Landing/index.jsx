@@ -24,6 +24,7 @@ const Landing = () => {
         "We offer quick quotes for an immediate phone assessment, or you can provide your move details to receive an estimated quote range.",
     },
   ];
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 pt-0 md:pt-32 h-screen">
       <Suspense fallback={<LoadingPlaceholder />}>

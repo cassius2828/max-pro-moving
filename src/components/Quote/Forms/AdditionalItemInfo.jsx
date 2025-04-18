@@ -22,8 +22,8 @@ const AdditionalItemInfo = () => {
           htmlFor="disassembly"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Do you need us to disassemble or reassemble anything? (ex: Bed
-          Frames, Couches, Shelves, Glass Furniture Pieces)
+          Do you need us to disassemble or reassemble anything? (ex: Bed Frames,
+          Couches, Shelves, Glass Furniture Pieces)
         </label>
         <div className="mt-3 flex items-center gap-x-6">
           <div className="flex items-center">
@@ -32,6 +32,7 @@ const AdditionalItemInfo = () => {
               name="disassembly"
               type="radio"
               value="yes"
+              checked={disassembly === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -48,6 +49,7 @@ const AdditionalItemInfo = () => {
               name="disassembly"
               type="radio"
               value="no"
+              checked={disassembly === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -86,6 +88,7 @@ const AdditionalItemInfo = () => {
               name="specialtyItems"
               type="radio"
               value="yes"
+              checked={specialtyItems === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -102,6 +105,7 @@ const AdditionalItemInfo = () => {
               name="specialtyItems"
               type="radio"
               value="no"
+              checked={specialtyItems === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -140,6 +144,7 @@ const AdditionalItemInfo = () => {
               name="largeItems"
               type="radio"
               value="yes"
+              checked={largeItems === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -156,6 +161,7 @@ const AdditionalItemInfo = () => {
               name="largeItems"
               type="radio"
               value="no"
+              checked={largeItems === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -194,6 +200,7 @@ const AdditionalItemInfo = () => {
               name="junkRemoval"
               type="radio"
               value="yes"
+              checked={junkRemoval === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
@@ -210,6 +217,7 @@ const AdditionalItemInfo = () => {
               name="junkRemoval"
               type="radio"
               value="no"
+              checked={junkRemoval === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
             />
