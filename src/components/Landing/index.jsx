@@ -32,8 +32,8 @@ const Landing = () => {
       </Suspense>
 
       <div className="mx-auto max-w-8xl px-6 lg:px-8 absolute top-1/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-        <div className="mx-auto lg:mx-0 mt-72 md:mt-0">
-          <h1 className="flex flex-col justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white sm:text-8xl text-center w-screen md:w-auto">
+        <div className="mx-auto lg:mx-0 mt-72 md:mt-64 xl:mt-40">
+          <h1 className="flex flex-col justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white md:text-6xl xl:text-8xl text-center w-screen md:w-auto">
             <span>Move with Confidence,</span>{" "}
             <span>Trust in Maximum Protection</span>
           </h1>
