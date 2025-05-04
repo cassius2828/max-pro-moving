@@ -1,15 +1,10 @@
 import { ClientInfo, ContactForm } from "./Forms/ContactForm";
-import { DateOfMoveForm } from "./Forms/DateOfMoveForm";
-import { ExtraDetails } from "./Forms/ExtraDetails";
 import { LocationDetails } from "./Forms/LocationDetails";
-import { SizeDetails } from "./Forms/SizeDetails";
-
-import Calculation from "./Calculation";
-import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import { useState } from "react";
+import { useQuoteContext } from "../../customHooks/useQuoteContext";
+import AdditionalItemInfo from "./Forms/AdditionalItemInfo";
 import ServiceType from "./Forms/ServiceType";
 import TruckSpecifics from "./Forms/TruckSpecifics";
-import AdditionalItemInfo from "./Forms/AdditionalItemInfo";
 
 /////////////////////////////////
 // Quote Calculator Component
@@ -48,7 +43,7 @@ const QuoteCalculator = () => {
       ) : (
         // <DateOfMoveForm />
         <ContactForm />
-      )}{" "}
+      )}
     </form>
   );
 };
