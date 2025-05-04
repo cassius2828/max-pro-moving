@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
 
-const url = import.meta.env.NETLIFY_EMAIL_FN_URL;
+const url = import.meta.env.VITE_NETLIFY_EMAIL_FN_URL;
 
 const SubmitFormBtn = () => {
   // 🧠 Grab all relevant values and methods from your Quote Context
@@ -11,11 +11,7 @@ const SubmitFormBtn = () => {
     firstName,
     lastName,
     serviceType,
-    startingLocation,
-    endLocation,
-    stop1,
-    stop2,
-    stop3,
+
     numOf16BoxTrucks,
     numOf20BoxTrucks,
     numOf26BoxTrucks,
@@ -24,15 +20,33 @@ const SubmitFormBtn = () => {
     timeOfDay,
     numOfWorkers,
     phone,
-    startingLocationStairFlights,
-    endLocationStairFlights,
-    stop1StairFlights,
-    stop2StairFlights,
-    stop3StairFlights,
+
     projectStartTime,
     additionalItems,
     handleUpdateQuoteAmount, // dispatch that updates quoteAmount
-    handleUpdateQuoteFormSuccess
+    handleUpdateQuoteFormSuccess,
+    handleUpdateWorkers,
+    startingLocation,
+    startingLocationDetails,
+    startingLocationStairFlights,
+    stop1,
+    stop1Details,
+    stop1StairFlights,
+    stop2,
+    stop2Details,
+    stop2StairFlights,
+    stop3,
+    stop3Details,
+    stop3StairFlights,
+    endLocation,
+    endLocationDetails,
+    endLocationStairFlights,
+    disassemblyDetails,
+    specialtyItemsDetails,
+    largeItemsDetails,
+    junkRemovalDetails,
+    singleItemDetails,
+    message,
   } = useQuoteContext();
 
   // 📩 Send data to Mailtrap via Netlify function
@@ -48,11 +62,19 @@ const SubmitFormBtn = () => {
 
       // 🛻 Move details
       serviceType,
-      startingLocation,
-      endLocation,
-      stop1,
-      stop2,
+      startingLocation: startingLocation.formatted_address,
+      endLocation: endLocation.formatted_address,
+      stop1: stop1?.formatted_address || "",
+      stop2: stop2?.formatted_address || "",
+      stop3: stop3?.formatted_address || "",
       distance,
+
+      // location stop details
+      startingLocationDetails,
+      stop1Details,
+      stop2Details,
+      stop3Details,
+      endLocationDetails,
 
       // 🚚 Trucks
       numOf16BoxTrucks,
@@ -74,8 +96,18 @@ const SubmitFormBtn = () => {
       stop1StairFlights,
       stop2StairFlights,
       stop3StairFlights,
-    };
 
+      // special items info
+      disassemblyDetails,
+      specialtyItemsDetails,
+      largeItemsDetails,
+      junkRemovalDetails,
+      singleItemDetails,
+
+      // message about move
+      message,
+    };
+    console.log(url, " <-- url to send to ");
     try {
       const response = await axios.put(url, formData);
       return response.data;
@@ -104,15 +136,15 @@ const SubmitFormBtn = () => {
   // ✅ Final submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // 1. Get distance
+    const { distance } = await calculateDistanceAndTime();
 
-    // 1. Get distance and duration
-    const [distance, duration] = await calculateDistanceAndTime();
-
-    // 2. Compute total price inputs
+    // sync calculate how many movers are needed
     const totalNumOfTrucks =
       numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
     const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
-
+    // update num of movers in state for email function
+    await handleUpdateWorkers();
     // 3a. sync calc quote amount so sendEmail has correct val
     const computedQuoteAmount = calculateTotalCosts(
       projectDate,
@@ -132,14 +164,14 @@ const SubmitFormBtn = () => {
 
     // 4. Send emails
     const data = await sendEmails(distance.text, computedQuoteAmount);
-
+    console.log(data, " <--- data from sendEmails");
+    console.log(computedQuoteAmount, " <--- cpmputed quote amount");
     if (data.success) {
       alert("Emails successfully sent");
-      handleUpdateQuoteFormSuccess(true)
+      handleUpdateQuoteFormSuccess(true);
     } else {
       alert("Emails failed to send");
-      handleUpdateQuoteFormSuccess(false)
-
+      handleUpdateQuoteFormSuccess(false);
     }
   };
 

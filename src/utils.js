@@ -103,3 +103,39 @@ export const getNumOfMovers = (totalNumOfTrucks) => {
   if (totalNumOfTrucks > 2) return 4;
   else return 2;
 };
+
+export function formatPhoneNumber(phone) {
+  // Return as-is if it already contains formatting characters
+  if (/[()\-\s]/.test(phone)) return phone;
+
+  // Strip non-digit characters
+  const cleaned = phone.replace(/\D/g, "");
+
+  if (cleaned.length === 10) {
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(
+      6
+    )}`;
+  } else if (cleaned.length === 11 && cleaned.startsWith("1")) {
+    return `+1 (${cleaned.slice(1, 4)}) ${cleaned.slice(4, 7)}-${cleaned.slice(
+      7
+    )}`;
+  }
+
+  // Return original input if not a valid length
+  return phone;
+}
+
+export function compileAdditionalDetails(obj){
+  let finalStr = ``
+let objEntries = Object.entries(obj)
+objEntries.forEach(entry => {
+  finalStr = finalStr.concat(`${entry[0]}: ${entry[1]}\n`)
+})
+return finalStr
+}
+
+console.log(compileAdditionalDetails({
+  largeItemsDetails:'Two bed frames',
+  junkRemovalDetails:'the bed frames',
+  specialtyItemsDetails:''
+}))

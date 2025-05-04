@@ -1,7 +1,8 @@
 // netlify/functions/send-quote.js
-
+import { format } from "date-fns";
 // Import Mailtrap client to send templated emails
 import { MailtrapClient } from "mailtrap";
+import { formatPhoneNumber } from "../../src/utils";
 
 // UUIDs for the Mailtrap templates:
 const customerTemplateID = "3ece9e65-b369-481a-8557-7d16607537ce";
@@ -36,6 +37,8 @@ export default async function handler(req, context) {
     lastName,
     numOfWorkers,
     phone,
+    email,
+    message,
     startingLocationStairFlights,
     endLocationStairFlights,
     stop1StairFlights,
@@ -45,17 +48,25 @@ export default async function handler(req, context) {
     serviceType,
     startingLocation,
     endLocation,
+    startingLocationDetails,
+    endLocationDetails,
     stop1,
     stop2,
     stop3,
+    stop1Details,
+    stop2Details,
+    stop3Details,
     numOf16BoxTrucks,
     numOf20BoxTrucks,
     numOf26BoxTrucks,
     projectDate,
-    projectStartTime,
-    additionalItems,
+    timeOfDay,
+    singleItemDetails,
+    largeItemsDetails,
+    junkRemovalDetails,
+    specialtyItemsDetails,
+    disassemblyDetails,
     distance,
-    email, // the client’s email address
   } = payload;
 
   // ────────────────────────────────────────────────────────────────────────────────
@@ -65,32 +76,44 @@ export default async function handler(req, context) {
   const customerTemplateDataObj = {
     first_name: firstName,
     last_name: lastName,
-    quote_amount: quoteAmount,
+    quote_amount: `$${quoteAmount}`,
     serviceType,
-    startingLocation,
-    endLocation,
-    stop1,
-    stop2,
-    stop3,
     numOf26BoxTrucks,
     numOf20BoxTrucks,
     numOf16BoxTrucks,
-    projectDate,
-    projectStartTime,
-    additionalItems,
+    projectDate: format(new Date(projectDate), "MMMM do, yyyy"),
+    projectStartTime: timeOfDay,
     distance,
+    startingLocation,
+    startingLocationStairFlights,
+    // optional fields
+    endLocationStairFlights: endLocationStairFlights || "N/A",
+    stop1StairFlights: stop1StairFlights || "N/A",
+    stop2StairFlights: stop2StairFlights || "N/A",
+    stop3StairFlights: stop3StairFlights || "N/A",
+    endLocation: endLocation || "N/A",
+    stop1: stop1 || "N/A",
+    stop2: stop2 || "N/A",
+    stop3: stop3 || "N/A",
+    startingLocationDetails: startingLocationDetails || "N/A",
+    endLocationDetails: endLocationDetails || "N/A",
+    stop1Details: stop1Details || "N/A",
+    stop2Details: stop2Details || "N/A",
+    stop3Details: stop3Details || "N/A",
+    singleItemDetails: singleItemDetails || "N/A",
+    largeItemsDetails: largeItemsDetails || "N/A",
+    junkRemovalDetails: junkRemovalDetails || "N/A",
+    specialtyItemsDetails: specialtyItemsDetails || "N/A",
+    disassemblyDetails: disassemblyDetails || "N/A",
+    message: message || "N/A",
   };
 
   // Data for the staff-facing email template (with extra details)
   const staffTemplateDataObj = {
     ...customerTemplateDataObj,
     numOfWorkers,
-    phone,
-    startingLocationStairFlights,
-    endLocationStairFlights,
-    stop1StairFlights,
-    stop2StairFlights,
-    stop3StairFlights,
+    phone: formatPhoneNumber(phone),
+    email,
   };
 
   // ────────────────────────────────────────────────────────────────────────────────
@@ -119,9 +142,6 @@ export default async function handler(req, context) {
       to: clientRecipients,
       template_uuid: customerTemplateID,
       template_variables: customerTemplateDataObj,
-      subject: "Your Detailed Quote",
-      text: ``,
-      category: "Quotes",
     };
 
     // Mailtrap send config for the staff
@@ -130,13 +150,11 @@ export default async function handler(req, context) {
       to: staffRecipients,
       template_uuid: staffTemplateID,
       template_variables: staffTemplateDataObj,
-      subject: `Moving Details from ${firstName} ${lastName}`,
-      text: ``,
-      category: "Customer Moving Details",
     };
 
     // Initialize Mailtrap client with the domain token
     const client = new MailtrapClient({
+      // eslint-disable-next-line no-undef
       token: process.env.MT_MPM_DOMAIN_TOKEN,
     });
 
