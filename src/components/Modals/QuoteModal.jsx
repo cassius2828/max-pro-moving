@@ -36,12 +36,12 @@ const QuoteModal = ({ onClose }) => {
               In the meantime, feel free to email us at{" "}
               <a
                 href="mailto:info@azmaxpro.com"
-                className="text-blue-600 underline"
+                className="text-gray-800underline"
               >
                 info@azmaxpro.com
               </a>{" "}
               or call{" "}
-              <a href="tel:+1234567890" className="text-blue-600 underline">
+              <a href="tel:+1234567890" className="text-gray-800underline">
                 +1 (234) 567-890
               </a>
               .
@@ -50,7 +50,7 @@ const QuoteModal = ({ onClose }) => {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="mt-2 px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-md transition"
+              className="mt-2 px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-md transition"
             >
               Close
             </button>

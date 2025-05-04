@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
+import { useEffect } from "react";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
+import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 
 const TruckSpecifics = () => {
-  const [selectedValue, setSelectedValue] = React.useState("");
   const {
     numOf26BoxTrucks,
     numOf20BoxTrucks,
@@ -34,7 +33,7 @@ const TruckSpecifics = () => {
                 value={option}
                 checked={numOf26BoxTrucks === option}
                 onChange={(e) => handleUpdateForm(e.target)}
-                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                className="h-4 w-4 text-gray-600 border-gray-300 focus:ring-gray-500"
               />
               <span>
                 {option === "recommend"
@@ -62,7 +61,7 @@ const TruckSpecifics = () => {
                 value={option}
                 checked={numOf20BoxTrucks === option}
                 onChange={(e) => handleUpdateForm(e.target)}
-                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                className="h-4 w-4 text-gray-600 border-gray-300 focus:ring-gray-500"
               />
               <span>
                 {option === "recommend"
@@ -90,7 +89,7 @@ const TruckSpecifics = () => {
                 value={option}
                 checked={numOf16BoxTrucks === option}
                 onChange={(e) => handleUpdateForm(e.target)}
-                className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                className="h-4 w-4 text-gray-600 border-gray-300 focus:ring-gray-500"
               />
               <span>
                 {option === "recommend"

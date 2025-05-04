@@ -13,7 +13,7 @@ const CalculateBtn = () => {
       <button
         onClick={(e) => handleSubmit(e)}
         type="submit"
-        className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+        className="text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
       >
         Calculate
       </button>

@@ -25,13 +25,13 @@ const Calculation = () => {
       <div className="w-full flex justify-center gap-x-6 mt-6">
         <button
           onClick={() => handleResetForm()}
-          className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 min-w-[120px] sm:w-auto"
+          className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 min-w-[120px] sm:w-auto"
         >
           Reset Quote
         </button>
         <button
           onClick={() => handleCalculateQuote()}
-          className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 min-w-[120px] sm:w-auto"
+          className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 min-w-[120px] sm:w-auto"
         >
           Contact Now
         </button>

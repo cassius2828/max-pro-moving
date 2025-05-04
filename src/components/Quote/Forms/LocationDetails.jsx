@@ -190,7 +190,7 @@ export const LocationDetails = () => {
               value={true}
               checked={multipleStops}
               onChange={(e) => handleRadioChange(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="multipleStopsYes"
@@ -207,7 +207,7 @@ export const LocationDetails = () => {
               value={false}
               checked={!multipleStops}
               onChange={(e) => handleRadioChange(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="multipleStopsNo"
@@ -236,7 +236,7 @@ export const LocationDetails = () => {
             max="3"
             value={stopCount}
             onChange={handleStopCountChange}
-            className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-1.5 text-gray-900 focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+            className="mt-2 block w-full rounded-md border border-gray-300 px-3 py-1.5 text-gray-900 focus:ring-gray-600 focus:border-gray-600 sm:text-sm"
           />
         </div>
       ) : (
@@ -275,7 +275,7 @@ export const LocationDetails = () => {
           {formSteps !== 1 && (
             <button
               onClick={(e) => handleFormStep(e, "back", skipStep, "back")}
-              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+              className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
             >
               Back
             </button>
@@ -284,7 +284,7 @@ export const LocationDetails = () => {
             <button
               onClick={() => handleSubmit()}
               type="submit"
-              className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+              className="text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
             >
               Submit
             </button>
@@ -309,7 +309,7 @@ export const LocationDetails = () => {
                   e.preventDefault();
                 }
               }}
-              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+              className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
             >
               Next
             </button>
