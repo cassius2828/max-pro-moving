@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import BackAndNextBtns from "../QuoteBtns/BackAndNextBtns";
 
@@ -9,9 +8,7 @@ const TruckSpecifics = () => {
     numOf16BoxTrucks,
     handleUpdateForm,
   } = useQuoteContext();
-  useEffect(() => {
-    console.log(numOf26BoxTrucks, " <-- 26boixtrucks");
-  }, [numOf26BoxTrucks]);
+
 
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">

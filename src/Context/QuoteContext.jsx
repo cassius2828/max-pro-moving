@@ -344,7 +344,7 @@ export const QuoteProvider = ({ children }) => {
     try {
       const response = await axios.post(CALC_MOVE_DIST_ENDPOINT, params);
       const data = response.data;
-      console.log(data);
+
       if (data) {
         dispatch({ type: "calculateTimeAndDistance", payload: data });
         dispatch({ type: "nextStep" });
@@ -369,7 +369,7 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleUpdateForm = (payload) => {
     dispatch({ type: "updateForm", payload });
-    console.log(state);
+
   };
 
   /////////////////////////////////
@@ -377,9 +377,7 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleUpdateFormError = (name, boolean) => {
     dispatch({ type: "updateFormError", payload: { name, boolean } });
-    console.log(name, " <-- name val");
-    console.log(boolean, " <-- boolean val");
-    console.log(state);
+
   };
 
   ///////////////////////////
@@ -387,7 +385,7 @@ export const QuoteProvider = ({ children }) => {
   ///////////////////////////
   const handleSetLocalError = (inputsArray) => {
     inputsArray.forEach((input) => {
-      console.log(input, " <-- input ");
+
       handleUpdateFormError(input.name, input.value);
     });
   };
@@ -414,8 +412,7 @@ export const QuoteProvider = ({ children }) => {
     const totalNumOfTrucks =
       numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
     const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
-    console.log(numOfWorkers, " <-- prev num of workers ");
-    console.log(totalNumOfMovers, " <-- total number of movers ");
+
     dispatch({ type: "updateNumOfWorkers", payload: totalNumOfMovers });
   };
 
@@ -456,9 +453,6 @@ export const QuoteProvider = ({ children }) => {
     return Object.keys(obj).length === 0;
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <QuoteContext.Provider

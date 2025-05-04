@@ -137,7 +137,6 @@ export const LocationDetails = () => {
   ///////////////////////////
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
   };
 
   ///////////////////////////
@@ -157,10 +156,6 @@ export const LocationDetails = () => {
     };
   };
 
-  useEffect(() => {
-    console.log(places);
-  }, [places]);
-
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       {/* Input for pick-up location */}
@@ -172,7 +167,7 @@ export const LocationDetails = () => {
         id="startingLocation"
         label="Pick Up Location"
       />
-{/* commented out mult stops option */}
+      {/* commented out mult stops option */}
       {/* Radio buttons for multiple stops */}
       {/* <div className="mt-6">
         <label
