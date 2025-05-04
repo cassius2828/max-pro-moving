@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { createContext, useEffect, useReducer, useState } from "react";
+import { getNumOfMovers } from "../utils";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
-console.log(CALC_MOVE_DIST_ENDPOINT);
+
 
 const excludeKeys = [
   "formSteps",
@@ -68,7 +69,7 @@ const initialFormState = {
   // ────────────────────────────────────────────────────────────
   // VEHICLE & CREW SIZING
   truckSize: "pickup",
-  NumOfWorkers: 2,
+  numOfWorkers: 2,
   timeForJob: "3", // estimated hours
 
   // ────────────────────────────────────────────────────────────
@@ -102,7 +103,7 @@ const initialFormState = {
   hour: "",
   period: "AM",
   projectStartTime: "",
-timeOfDay: '',
+  timeOfDay: "",
   // ────────────────────────────────────────────────────────────
   // ADDITIONAL SERVICES (yes/no)
   disassembly: "no",
@@ -116,34 +117,34 @@ timeOfDay: '',
   specialtyItemsDetails: "",
   largeItemsDetails: "",
 
-    // FIELD‑LEVEL ERROR FLAGS
-    startingLocationError: false,
-    startingLocationDetailsError: false,
-    startingLocationStairFlightsError: false,
-    stop1Error: false,
-    stop1DetailsError: false,
-    stop1StairFlightsError: false,
-    stop2Error: false,
-    stop2DetailsError: false,
-    stop2StairFlightsError: false,
-    stop3Error: false,
-    stop3DetailsError: false,
-    stop3StairFlightsError: false,
-    endLocationError: false,
-    endLocationDetailsError: false,
-    endLocationStairFlightsError: false,
-    firstNameError: false,
-    lastNameError: false,
-    phoneError: false,
-    emailError: false,
-    messageError: false,
-    projectDateError: false,
-    timeOfDayError:false,
-    hourError: false,
-    disassemblyDetailsError: false,
-    specialtyItemsDetailsError: false,
-    largeItemsDetailsError: false,
-    junkRemovalDetailsError: false,
+  // FIELD‑LEVEL ERROR FLAGS
+  startingLocationError: false,
+  startingLocationDetailsError: false,
+  startingLocationStairFlightsError: false,
+  stop1Error: false,
+  stop1DetailsError: false,
+  stop1StairFlightsError: false,
+  stop2Error: false,
+  stop2DetailsError: false,
+  stop2StairFlightsError: false,
+  stop3Error: false,
+  stop3DetailsError: false,
+  stop3StairFlightsError: false,
+  endLocationError: false,
+  endLocationDetailsError: false,
+  endLocationStairFlightsError: false,
+  firstNameError: false,
+  lastNameError: false,
+  phoneError: false,
+  emailError: false,
+  messageError: false,
+  projectDateError: false,
+  timeOfDayError: false,
+  hourError: false,
+  disassemblyDetailsError: false,
+  specialtyItemsDetailsError: false,
+  largeItemsDetailsError: false,
+  junkRemovalDetailsError: false,
 };
 
 const initialFormErrorState = Object.keys(initialFormState).reduce(
@@ -181,6 +182,8 @@ const reducer = (state, action) => {
       };
     case "updateDate":
       return { ...state, projectDate: action.payload };
+    case "updateNumOfWorkers":
+      return { ...state, numOfWorkers: action.payload };
     case "updateQuoteAmount":
       return { ...state, quoteAmount: action.payload };
     case "updateQuoteFormSuccess":
@@ -213,7 +216,7 @@ const reducer = (state, action) => {
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, appState);
   const [missingReqFields, setMissingReqFields] = useState(true);
-
+  const [quoteIsLoading, setQuoteIsLoading] = useState(false);
   const {
     // ────────────────────────────────────────────────────────────
     // MOVING DETAILS & SCHEDULE
@@ -225,6 +228,7 @@ export const QuoteProvider = ({ children }) => {
     truckSize,
     quoteAmount,
     quoteFormSuccess,
+    numOfWorkers,
     // ────────────────────────────────────────────────────────────
     // LOCATIONS & STOPS
     startingLocation,
@@ -402,6 +406,19 @@ export const QuoteProvider = ({ children }) => {
     dispatch({ type: "updateDate", payload });
   };
 
+  ///////////////////////////
+  // Handle update workers based of total trucks
+  ///////////////////////////
+
+  const handleUpdateWorkers = () => {
+    const totalNumOfTrucks =
+      numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
+    const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
+    console.log(numOfWorkers, " <-- prev num of workers ");
+    console.log(totalNumOfMovers, " <-- total number of movers ");
+    dispatch({ type: "updateNumOfWorkers", payload: totalNumOfMovers });
+  };
+
   /////////////////////////////////
   // Handle project start time
   /////////////////////////////////
@@ -433,34 +450,6 @@ export const QuoteProvider = ({ children }) => {
   ///////////////////////////
   const handleUpdateQuoteFormSuccess = (payload) => {
     dispatch({ type: "updateQuoteFormSuccess", payload });
-  };
-  ///////////////////////////
-  // Fetch Matrix Distance and Duration
-  ///////////////////////////
-  const fetchMatrixDetails = async (
-    startingLocation,
-    endLocation,
-    stop1,
-    stop2,
-    stop3
-  ) => {
-    const body = {
-      startingLocation,
-      endLocation,
-      stop1,
-      stop2,
-      stop3,
-    };
-    try {
-      const response = await axios.post(NETLIFY_FN_URL, body);
-      return response.data;
-    } catch (err) {
-      console.error(err);
-      console.log(
-        "Unable to fetch matrix details from netlify functions. Error:",
-        err
-      );
-    }
   };
 
   const isObjEmpty = (obj) => {
@@ -562,7 +551,9 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetailsError,
         largeItemsDetailsError,
         junkRemovalDetailsError,
-
+        quoteIsLoading,
+        
+        setQuoteIsLoading,
         // ────────────────────────────────────────────────────────────────
         // FORM NAVIGATION
         handleFormStep,
@@ -582,6 +573,7 @@ export const QuoteProvider = ({ children }) => {
         handleUpdateLocations,
         handleDateChange,
         handleSetProjectStartTime,
+        handleUpdateWorkers,
 
         // ────────────────────────────────────────────────────────────────
         // ERROR HANDLERS
@@ -593,7 +585,6 @@ export const QuoteProvider = ({ children }) => {
         // ────────────────────────────────────────────────────────────────
         // CALCULATION & DATA FETCH
         handleCalculateQuote,
-        fetchMatrixDetails,
         isObjEmpty,
       }}
     >

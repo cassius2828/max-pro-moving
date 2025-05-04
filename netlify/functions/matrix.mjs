@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const MATRIX_BASE_URL = "https://maps.googleapis.com/maps/api/distancematrix";
+// eslint-disable-next-line no-undef
 const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
+// eslint-disable-next-line no-unused-vars
 export const handler = async (event, context) => {
   const { startingLocation, stop1, stop2, stop3, endLocation } = JSON.parse(
     event.body

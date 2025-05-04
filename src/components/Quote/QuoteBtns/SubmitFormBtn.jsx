@@ -1,8 +1,11 @@
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
-import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
-
-const url = import.meta.env.NETLIFY_EMAIL_FN_URL;
+import {
+  calculateTotalCosts,
+  convertBoxTruckToNumber,
+  getNumOfMovers,
+} from "../../../utils";
 
 const SubmitFormBtn = () => {
   // 🧠 Grab all relevant values and methods from your Quote Context
@@ -11,11 +14,7 @@ const SubmitFormBtn = () => {
     firstName,
     lastName,
     serviceType,
-    startingLocation,
-    endLocation,
-    stop1,
-    stop2,
-    stop3,
+
     numOf16BoxTrucks,
     numOf20BoxTrucks,
     numOf26BoxTrucks,
@@ -24,15 +23,35 @@ const SubmitFormBtn = () => {
     timeOfDay,
     numOfWorkers,
     phone,
-    startingLocationStairFlights,
-    endLocationStairFlights,
-    stop1StairFlights,
-    stop2StairFlights,
-    stop3StairFlights,
+
     projectStartTime,
     additionalItems,
     handleUpdateQuoteAmount, // dispatch that updates quoteAmount
-    handleUpdateQuoteFormSuccess
+    handleUpdateQuoteFormSuccess,
+    handleUpdateWorkers,
+    startingLocation,
+    startingLocationDetails,
+    startingLocationStairFlights,
+    stop1,
+    stop1Details,
+    stop1StairFlights,
+    stop2,
+    stop2Details,
+    stop2StairFlights,
+    stop3,
+    stop3Details,
+    stop3StairFlights,
+    endLocation,
+    endLocationDetails,
+    endLocationStairFlights,
+    disassemblyDetails,
+    specialtyItemsDetails,
+    largeItemsDetails,
+    junkRemovalDetails,
+    singleItemDetails,
+    message,
+    setQuoteIsLoading,
+    quoteIsLoading,
   } = useQuoteContext();
 
   // 📩 Send data to Mailtrap via Netlify function
@@ -48,11 +67,19 @@ const SubmitFormBtn = () => {
 
       // 🛻 Move details
       serviceType,
-      startingLocation,
-      endLocation,
-      stop1,
-      stop2,
+      startingLocation: startingLocation.formatted_address,
+      endLocation: endLocation.formatted_address,
+      stop1: stop1?.formatted_address || "",
+      stop2: stop2?.formatted_address || "",
+      stop3: stop3?.formatted_address || "",
       distance,
+
+      // location stop details
+      startingLocationDetails,
+      stop1Details,
+      stop2Details,
+      stop3Details,
+      endLocationDetails,
 
       // 🚚 Trucks
       numOf16BoxTrucks,
@@ -74,10 +101,20 @@ const SubmitFormBtn = () => {
       stop1StairFlights,
       stop2StairFlights,
       stop3StairFlights,
+
+      // special items info
+      disassemblyDetails,
+      specialtyItemsDetails,
+      largeItemsDetails,
+      junkRemovalDetails,
+      singleItemDetails,
+
+      // message about move
+      message,
     };
 
     try {
-      const response = await axios.put(url, formData);
+      const response = await axios.put("/api/email", formData);
       return response.data;
     } catch (err) {
       throw new Error("Unable to send report of quote");
@@ -94,52 +131,59 @@ const SubmitFormBtn = () => {
       stop3: stop3?.place_id,
     };
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`,
-      formData
-    );
+    const response = await axios.post(`/api/matrix`, formData);
     return response.data;
   };
 
   // ✅ Final submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setQuoteIsLoading(true);
 
-    // 1. Get distance and duration
-    const [distance, duration] = await calculateDistanceAndTime();
+    try {
+      // 1. Get distance
+      const { distance } = await calculateDistanceAndTime();
 
-    // 2. Compute total price inputs
-    const totalNumOfTrucks =
-      numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
-    const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
-
-    // 3a. sync calc quote amount so sendEmail has correct val
-    const computedQuoteAmount = calculateTotalCosts(
-      projectDate,
-      totalNumOfTrucks,
-      totalNumOfMovers,
-      distance.meters
-    );
-    // 3b. Update quote amount (async dispatch)
-    await handleUpdateQuoteAmount(
-      calculateTotalCosts(
+      // sync calculate how many movers are needed
+      const totalNumOfTrucks =
+        convertBoxTruckToNumber(numOf16BoxTrucks) +
+        convertBoxTruckToNumber(numOf20BoxTrucks) +
+        convertBoxTruckToNumber(numOf26BoxTrucks);
+      const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
+      // update num of movers in state for email function
+      await handleUpdateWorkers();
+      // 3a. sync calc quote amount so sendEmail has correct val
+      const computedQuoteAmount = calculateTotalCosts(
         projectDate,
         totalNumOfTrucks,
         totalNumOfMovers,
         distance.meters
-      )
-    );
+      );
+      // 3b. Update quote amount (async dispatch)
+      await handleUpdateQuoteAmount(
+        calculateTotalCosts(
+          projectDate,
+          totalNumOfTrucks,
+          totalNumOfMovers,
+          distance.meters
+        )
+      );
 
-    // 4. Send emails
-    const data = await sendEmails(distance.text, computedQuoteAmount);
-
-    if (data.success) {
-      alert("Emails successfully sent");
-      handleUpdateQuoteFormSuccess(true)
-    } else {
-      alert("Emails failed to send");
-      handleUpdateQuoteFormSuccess(false)
-
+      // 4. Send emails
+      const data = await sendEmails(distance.text, computedQuoteAmount);
+      console.log(data, " <--- data from sendEmails");
+      console.log(computedQuoteAmount, " <--- cpmputed quote amount");
+      if (data.success) {
+        toast.success("Emails successfully sent");
+        handleUpdateQuoteFormSuccess(true);
+      } else {
+        toast.error("Emails failed to send");
+        handleUpdateQuoteFormSuccess(false);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setQuoteIsLoading(false);
     }
   };
 
@@ -156,10 +200,11 @@ const SubmitFormBtn = () => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+        className="capitalize w-32 text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
       >
-        Submit
+        {quoteIsLoading ? "submitting..." : "submit"}
       </button>
+      <Toaster />
     </div>
   );
 };
