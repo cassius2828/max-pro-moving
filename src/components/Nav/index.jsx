@@ -13,12 +13,12 @@ export const Nav = () => {
   ///////////////////////////
 
   return (
-    <nav className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex">
+    <nav className="w-full bg-neutral-900 text-gray-100 fixed top-0 left-0 justify-between align-middle z-[99] p-4 flex">
       <div className="flex justify-center items-center">
         <img
           className="hidden md:block w-40 fade-in "
-          src={`${import.meta.env.VITE_CDN_PATH}/mpm-logo-blue-800.svg`}
-          alt=""
+          src={`${import.meta.env.VITE_CDN_PATH}/MPM-LOGO-05032025.png`}
+          alt="Max Pro Moving logo"
         />
         <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">
           Max Pro Moving{" "}
@@ -115,7 +115,7 @@ export const NavListItem = ({ link, text }) => {
     <li>
       <a
         href={link}
-        className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200"
+        className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200"
       >
         {text}
       </a>
@@ -128,23 +128,23 @@ export const NavListItem = ({ link, text }) => {
 ////////////////////////////////////
 export const MobileNav = () => {
   return (
-    <ul className="absolute bg-blue-800 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+    <ul className="absolute bg-neutral-900 text-gray-100 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">Home</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">About</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">Services</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">Portfolio</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">Contact</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-blue-800 transition-colors duration-200 ">
+      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#">Blog</a>
       </li>
     </ul>

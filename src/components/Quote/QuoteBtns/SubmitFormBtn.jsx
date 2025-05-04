@@ -193,14 +193,14 @@ const SubmitFormBtn = () => {
       {/* Back button */}
       <button
         onClick={(e) => handleFormStep(e, "back")}
-        className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+        className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
       >
         Back
       </button>
       <button
         onClick={handleSubmit}
         type="submit"
-        className="capitalize w-32 text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+        className="capitalize w-32 text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
       >
         {quoteIsLoading ? "submitting..." : "submit"}
       </button>

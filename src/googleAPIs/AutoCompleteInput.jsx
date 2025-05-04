@@ -67,7 +67,7 @@ const AutocompleteInput = ({
             invalidLocationInput
               ? "outline-red-500 outline outline-1 -outline-offset-1"
               : " outline-gray-300 outline outline-1 -outline-offset-1"
-          } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
+          } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6`}
           placeholder={label}
           required
         />
@@ -81,7 +81,7 @@ const AutocompleteInput = ({
             Additional Location Info (optional)
           </label>
           <textarea
-            className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+            className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-gray-600 sm:text-sm/6"
             onChange={(e) => handleUpdateForm(e.target)}
             value={detailsValue}
             name={id + "Details"}
@@ -109,7 +109,7 @@ const AutocompleteInput = ({
                     handleUpdateForm(e.target);
                     setSelectedValue(option);
                   }}
-                  className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="h-4 w-4 text-gray-600 border-gray-300 focus:ring-gray-500"
                 />
                 <span>
                   {option === "not sure"

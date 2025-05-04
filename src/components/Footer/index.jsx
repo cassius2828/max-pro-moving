@@ -87,7 +87,7 @@ const navigation = {
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-800">
+    <footer className="bg-neutral-900">
       <div
         style={{ maxWidth: "140rem" }}
         className="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 fade-in "
@@ -95,7 +95,7 @@ const Footer = () => {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <img
             alt="Company name"
-            src={`${import.meta.env.VITE_CDN_PATH}/mpm-logo-blue-800.svg`}
+            src={`${import.meta.env.VITE_CDN_PATH}/RECTANGL-MPM-LOGO-05032025.png`}
             className="h-48 md:h-72"
           />
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
@@ -193,7 +193,7 @@ const Footer = () => {
             <div className="mt-4 sm:ml-4 sm:mt-0 sm:shrink-0">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-blue-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200"
+                className="flex w-full items-center justify-center rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-200"
               >
                 Subscribe
               </button>
