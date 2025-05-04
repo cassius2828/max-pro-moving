@@ -171,8 +171,7 @@ const SubmitFormBtn = () => {
 
       // 4. Send emails
       const data = await sendEmails(distance.text, computedQuoteAmount);
-      console.log(data, " <--- data from sendEmails");
-      console.log(computedQuoteAmount, " <--- cpmputed quote amount");
+
       if (data.success) {
         toast.success("Emails successfully sent");
         handleUpdateQuoteFormSuccess(true);

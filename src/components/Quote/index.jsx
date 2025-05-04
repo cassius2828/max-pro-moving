@@ -2,14 +2,11 @@ import QuoteCalculator from "./QuoteCalculator";
 
 import { useQuoteContext } from "../../customHooks/useQuoteContext";
 import QuoteModal from "../Modals/QuoteModal";
-import { useEffect } from "react";
+
 
 const Quote = () => {
   const { formSteps, handleResetQuoteAmount, quoteAmount } = useQuoteContext();
-  useEffect(() => {
-    console.log(quoteAmount);
-    console.log(handleResetQuoteAmount);
-  }, [quoteAmount]);
+
   // sets form title based on progress
   return (
     <section className="relative mt-40 mb-24">

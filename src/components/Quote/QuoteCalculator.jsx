@@ -19,7 +19,7 @@ const QuoteCalculator = () => {
   /////////////////////////////////
   const handlePlaceSelected = (place) => {
     setSelectedPlace(place);
-    console.log("Selected place:", place);
+
   };
 
   return (
