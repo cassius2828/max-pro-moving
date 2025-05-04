@@ -31,20 +31,19 @@ const Landing = () => {
         <StaffGallery />
       </Suspense>
 
-      <div className="mx-auto max-w-8xl px-6 lg:px-8 absolute top-1/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-        <div className="mx-auto lg:mx-0 mt-72 md:mt-64 xl:mt-40">
-          <h1 className="flex flex-col justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white md:text-6xl xl:text-8xl text-center w-screen md:w-auto">
+      <div className="mx-auto px-6 lg:px-8 absolute top-1/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+        <div className=" w-screen lg:mx-0 mt-96 p-3 md:mt-64 xl:mt-64">
+          <h1 className="flex flex-wrap mt-64 sm:mt-40 justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl xl:text-8xl text-center w-screen md:w-auto">
             <span>Move with Confidence,</span>{" "}
             <span>Trust in Maximum Protection</span>
           </h1>
         </div>
-        <div className="fade-in mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+        <div className="fade-in mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 sm:mt-20 lg:grid-cols-3 justify-items-center">
           {cards.map((card) => (
             <div
               key={card.name}
-              className="flex gap-x-4 rounded-xl bg-black/30 p-6 ring-1 ring-inset ring-white/70 w-10/12 md:w-full mx-auto"
+              className="flex gap-x-4 rounded-xl bg-black/30 p-6 ring-1 ring-inset ring-white/70 w-10/12 md:w-11/12 lg:w-10/12"
             >
-              {/* <card.icon aria-hidden="true" className="h-7 w-5 flex-none text-indigo-400" /> */}
               <div className="text-3xl md:text-4xl">
                 <h3 className="font-semibold text-white">{card.name}</h3>
                 <p className="mt-2 text-gray-300 text-xl lg:text-2xl">
