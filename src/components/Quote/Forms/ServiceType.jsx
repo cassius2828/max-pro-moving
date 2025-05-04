@@ -65,7 +65,6 @@ export const ItemTextArea = ({ serviceType = "singleItem" }) => {
           <textarea
             className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
             onChange={(e) => {
-              console.log(e.target);
               handleUpdateForm(e.target)
             } }
             value={singleItemDetails}

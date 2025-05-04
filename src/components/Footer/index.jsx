@@ -202,7 +202,8 @@ const Footer = () => {
             </div>
           </form>
         </div> */}
-        <div className="mt-8 border-t border-gray-100/10 pt-8 md:flex md:items-center md:justify-between">
+        {/* sopcial media icons */}
+        {/* <div className="mt-8 border-t border-gray-100/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex gap-x-6 md:order-2">
             {navigation.social.map((item) => (
               <a
@@ -218,7 +219,7 @@ const Footer = () => {
           <p className="mt-8 text-lg text-gray-200 md:order-1 md:mt-0">
             &copy; 2025 Max Pro Moving, Inc. All rights reserved.
           </p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
