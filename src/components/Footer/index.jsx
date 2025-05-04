@@ -92,13 +92,18 @@ const Footer = () => {
         style={{ maxWidth: "140rem" }}
         className="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 fade-in "
       >
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div className="flex justify-center md:justify-start items-center">
+
           <img
             alt="Company name"
-            src={`${import.meta.env.VITE_CDN_PATH}/RECTANGL-MPM-LOGO-05032025.png`}
-            className="h-48 md:h-72"
+            src={`${
+              import.meta.env.VITE_CDN_PATH
+            }/RECTANGL-MPM-LOGO-05032025.png`}
+            className="h-72 md:h-96"
           />
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+        </div>
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-xl font-semibold text-gray-100">
@@ -214,7 +219,7 @@ const Footer = () => {
             ))}
           </div>
           <p className="mt-8 text-lg text-gray-200 md:order-1 md:mt-0">
-            &copy; 2024 Your Company, Inc. All rights reserved.
+            &copy; 2025 Max Pro Moving, Inc. All rights reserved.
           </p>
         </div>
       </div>

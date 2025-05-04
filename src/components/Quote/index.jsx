@@ -6,13 +6,13 @@ import { useEffect } from "react";
 
 const Quote = () => {
   const { formSteps, handleResetQuoteAmount, quoteAmount } = useQuoteContext();
-useEffect(() => {
-console.log(quoteAmount)
-console.log(handleResetQuoteAmount)
-},[quoteAmount])
+  useEffect(() => {
+    console.log(quoteAmount);
+    console.log(handleResetQuoteAmount);
+  }, [quoteAmount]);
   // sets form title based on progress
   return (
-    <section className="relative my-40">
+    <section className="relative mt-40 mb-24">
       <h2 className="fade-in text-6xl text-center mb-10 quote-legend text-gray-800">
         {formSteps < 3
           ? "Calculate Your Budget"
@@ -23,7 +23,7 @@ console.log(handleResetQuoteAmount)
           : "Contact Us Today"}
       </h2>
       <QuoteCalculator />
-      {quoteAmount && <QuoteModal onClose={handleResetQuoteAmount} />}
+      {quoteAmount > 0 && <QuoteModal onClose={handleResetQuoteAmount} />}
     </section>
   );
 };
