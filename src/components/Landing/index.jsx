@@ -54,13 +54,18 @@ const Landing = () => {
           ))}
         </div>
         <div className="fade-in flex justify-center gap-12 mt-12 w-4/5 mx-auto">
-          <button className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-blue-900">
+          <a href="#quote-form" className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-blue-900">
             Caclulate your budget / Get a &nbsp;
             <span className="font-semibold">FREE</span>&nbsp; quote now!
-          </button>
-          <button className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-blue-900">
+          </a>
+          <a
+            href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec/edit"
+            target="_blank"
+            rel="noreferrer"
+            className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-blue-900"
+          >
             Submit a quote request
-          </button>
+          </a>
         </div>
       </div>
     </div>

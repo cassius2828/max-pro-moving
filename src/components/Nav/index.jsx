@@ -13,7 +13,7 @@ export const Nav = () => {
   ///////////////////////////
 
   return (
-    <nav className="w-full bg-blue-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex">
+    <nav className="w-full bg-neautral-800 text-[#f2f2f2]  fixed top-0 left-0 justify-between align-middle z-20 p-4 md:p-0 flex">
       <div className="flex justify-center items-center">
         <img
           className="hidden md:block w-40 fade-in "
