@@ -7,18 +7,14 @@ const navigation = {
   contact: [
     { name: "(619) 905-1009", href: "#" },
     { name: "MaxProtection@ENLWorkforce.com", href: "#" },
-    { name: "123 Main St", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
+    { name: "About", href: "/about" },
   ],
   legal: [
-    { name: "Terms of service", href: "#" },
-    { name: "Privacy policy", href: "#" },
-    { name: "License", href: "#" },
+    { name: "Terms of service", href: "/terms" },
+    { name: "Privacy policy", href: "/policy" },
+    { name: "License", href: "/license" },
   ],
   social: [
     {
@@ -172,7 +168,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-100/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+        {/* email sub form */}
+        {/* <div className="mt-16 border-t border-gray-100/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
           <div>
             <h3 className="text-xl font-semibold text-gray-100">
               Subscribe to our newsletter
@@ -204,7 +201,7 @@ const Footer = () => {
               </button>
             </div>
           </form>
-        </div>
+        </div> */}
         <div className="mt-8 border-t border-gray-100/10 pt-8 md:flex md:items-center md:justify-between">
           <div className="flex gap-x-6 md:order-2">
             {navigation.social.map((item) => (

@@ -1406,6 +1406,10 @@ video {
   padding-top: 2rem;
 }
 
+.pl-6{
+  padding-left: 1.5rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -1573,6 +1577,15 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-blue-600{
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.underline{
+  text-decoration-line: underline;
 }
 
 .placeholder-opacity-100::-moz-placeholder{
