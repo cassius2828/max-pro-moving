@@ -6,7 +6,6 @@ import {
   convertBoxTruckToNumber,
   getNumOfMovers,
 } from "../../../utils";
-const url = import.meta.env.VITE_NETLIFY_EMAIL_FN_URL;
 
 const SubmitFormBtn = () => {
   // 🧠 Grab all relevant values and methods from your Quote Context
@@ -113,9 +112,9 @@ const SubmitFormBtn = () => {
       // message about move
       message,
     };
-    console.log(url, " <-- url to send to ");
+
     try {
-      const response = await axios.put(url, formData);
+      const response = await axios.put("/api/email", formData);
       return response.data;
     } catch (err) {
       throw new Error("Unable to send report of quote");
@@ -132,10 +131,7 @@ const SubmitFormBtn = () => {
       stop3: stop3?.place_id,
     };
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_LOCALHOST_NETLIFY_SERVER}/api/matrix`,
-      formData
-    );
+    const response = await axios.post(`/api/matrix`, formData);
     return response.data;
   };
 

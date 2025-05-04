@@ -7,7 +7,7 @@ import { getNumOfMovers } from "../utils";
 
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
-console.log(CALC_MOVE_DIST_ENDPOINT);
+
 
 const excludeKeys = [
   "formSteps",

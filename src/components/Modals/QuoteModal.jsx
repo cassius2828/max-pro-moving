@@ -42,7 +42,7 @@ const QuoteModal = ({ onClose }) => {
               </a>{" "}
               or call{" "}
               <a href="tel:+1234567890" className="text-blue-600 underline">
-                +1 (234) 567‑890
+                +1 (234) 567-890
               </a>
               .
             </p>
