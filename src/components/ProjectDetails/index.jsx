@@ -148,7 +148,7 @@ const pricingOptions = [
 
 export function ProjectDetailsv2() {
   return (
-    <div className="isolate overflow-hidden bg-white">
+    <div id="services" className="isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <h2 className="fade-in text-5xl font-semibold text-gray-800">
@@ -216,7 +216,8 @@ export function ProjectDetailsv2() {
                   </a>
                 </div>
               ))}
-              <div className="fade-in flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
+              {/* discounted section */}
+              {/* <div className="fade-in flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
                 <div className="lg:min-w-0 lg:flex-1">
                   <h3 className="text-base/7 font-semibold text-gray-600">
                     Discounted
@@ -232,7 +233,7 @@ export function ProjectDetailsv2() {
                 >
                   Buy discounted license <span aria-hidden="true">&rarr;</span>
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

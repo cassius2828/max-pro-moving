@@ -4,18 +4,16 @@ import { Nav } from "./components/Nav";
 import { ProjectDetailsv2 } from "./components/ProjectDetails";
 import Quote from "./components/Quote";
 
-function App() {
+function Main() {
   return (
-    <>
+    <main>
       <Nav />
       <Landing />
-
       <Quote />
-      {/* <ProjectDetails /> */}
       <ProjectDetailsv2 />
       <Footer />
-    </>
+    </main>
   );
 }
 
-export default App;
+export default Main;

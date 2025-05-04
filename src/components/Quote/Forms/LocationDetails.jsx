@@ -172,9 +172,9 @@ export const LocationDetails = () => {
         id="startingLocation"
         label="Pick Up Location"
       />
-
+{/* commented out mult stops option */}
       {/* Radio buttons for multiple stops */}
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <label
           htmlFor="multipleStops"
           className="block text-sm/6 font-medium text-gray-900"
@@ -217,7 +217,7 @@ export const LocationDetails = () => {
             </label>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Number of stops input */}
       {multipleStops ? (

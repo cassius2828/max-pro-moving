@@ -25,52 +25,12 @@ export const Nav = () => {
         </h2>
       </div>
 
-      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in ">
-        <NavListItem link={`/`} text="Home" />
-        <NavListItemDropDown
-          text={`Max Pro Moving`}
-          dropdownArr={[
-            {
-              text: "Max Pro Home",
-              link: "/max-protection-moving/max-pro-home",
-            },
-            {
-              text: "Free Quote Now!",
-              link: "/max-protection-moving/free-quote-now",
-            },
-          ]}
-        />
-        <NavListItemDropDown
-          text={`Workers`}
-          dropdownArr={[
-            {
-              text: `What's ENL Workforce?`,
-              link: "/workers/whats-enl-workforce",
-            },
-            {
-              text: "New Worker Sign Up",
-              link: `/workers/new-worker-sign-up`,
-            },
-          ]}
-        />
-        <NavListItemDropDown
-          text={`Business Owners`}
-          dropdownArr={[
-            {
-              text: `Register Business Account`,
-              link: "/business-owners/register-business-account",
-            },
-            {
-              text: "Quote & Book",
-              link: `/business-owners/quote-book`,
-            },
-            {
-              text: "Edit Profile",
-              link: `/business-owners/edit-profile`,
-            },
-          ]}
-        />
-        <NavListItem text={`About Us`} link={`/about-us`} />
+      <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in">
+        <NavListItem link="#services" text="Services" />
+        <NavListItem link="/about" text="About Us" />
+        <NavListItem link="/terms" text="Terms" />
+        <NavListItem link="/policy" text="Privacy" />
+        <NavListItem link="/license" text="License" />
       </ul>
       {/* Mobile navigation */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -126,26 +86,28 @@ export const NavListItem = ({ link, text }) => {
 ////////////////////////////////////
 // Mobile Navigation Component
 ////////////////////////////////////
+import { Link } from "react-router-dom";
+
 export const MobileNav = () => {
   return (
     <ul className="absolute bg-neutral-900 text-gray-100 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">About</a>
+        <Link to="/about">About</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">Services</a>
+        <a href="#services">Services</a>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">Portfolio</a>
+        <Link to="/terms">Terms</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">Contact</a>
+        <Link to="/policy">Privacy</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#">Blog</a>
+        <Link to="/license">License</Link>
       </li>
     </ul>
   );
