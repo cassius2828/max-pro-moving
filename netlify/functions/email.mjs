@@ -2,7 +2,7 @@
 import { format } from "date-fns";
 // Import Mailtrap client to send templated emails
 import { MailtrapClient } from "mailtrap";
-import { convertBoxTruckToNumber, formatPhoneNumber } from "../../src/utils";
+import { convertBoxTruckToNumber, formatPhoneNumber, getNumOfMovers } from "../../src/utils";
 
 // UUIDs for the Mailtrap templates:
 const customerTemplateID = "3ece9e65-b369-481a-8557-7d16607537ce";
@@ -107,14 +107,16 @@ export default async function handler(req, context) {
     disassemblyDetails: disassemblyDetails || "N/A",
     message: message || "N/A",
   };
+  
+  const sumOfBoxTrucks =
+    convertBoxTruckToNumber(numOf16BoxTrucks) +
+    convertBoxTruckToNumber(numOf20BoxTrucks) +
+    convertBoxTruckToNumber(numOf26BoxTrucks);
 
   // Data for the staff-facing email template (with extra details)
   const staffTemplateDataObj = {
     ...customerTemplateDataObj,
-    numOfWorkers:
-      convertBoxTruckToNumber(numOf16BoxTrucks) +
-      convertBoxTruckToNumber(numOf20BoxTrucks) +
-      convertBoxTruckToNumber(numOf26BoxTrucks),
+    numOfWorkers: getNumOfMovers(sumOfBoxTrucks),
     phone: formatPhoneNumber(phone),
     email,
   };
