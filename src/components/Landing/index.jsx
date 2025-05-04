@@ -53,7 +53,7 @@ const Landing = () => {
             </div>
           ))}
         </div>
-        <div className="fade-in flex flex-col md:flex-row justify-center gap-8 md:gap-12 mt-20 md:mt-12 w-4/5 mx-auto">
+        <div className="fade-in flex flex-col md:flex-row justify-center gap-8 md:gap-12 my-20 md:mt-12 w-4/5 mx-auto">
           <a
             href="#quote-form"
             className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
