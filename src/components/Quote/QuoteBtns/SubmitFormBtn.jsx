@@ -1,7 +1,7 @@
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
-
 const url = import.meta.env.VITE_NETLIFY_EMAIL_FN_URL;
 
 const SubmitFormBtn = () => {
@@ -47,6 +47,8 @@ const SubmitFormBtn = () => {
     junkRemovalDetails,
     singleItemDetails,
     message,
+    setQuoteIsLoading,
+    quoteIsLoading,
   } = useQuoteContext();
 
   // 📩 Send data to Mailtrap via Netlify function
@@ -136,42 +138,50 @@ const SubmitFormBtn = () => {
   // ✅ Final submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 1. Get distance
-    const { distance } = await calculateDistanceAndTime();
+    setQuoteIsLoading(true);
 
-    // sync calculate how many movers are needed
-    const totalNumOfTrucks =
-      numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
-    const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
-    // update num of movers in state for email function
-    await handleUpdateWorkers();
-    // 3a. sync calc quote amount so sendEmail has correct val
-    const computedQuoteAmount = calculateTotalCosts(
-      projectDate,
-      totalNumOfTrucks,
-      totalNumOfMovers,
-      distance.meters
-    );
-    // 3b. Update quote amount (async dispatch)
-    await handleUpdateQuoteAmount(
-      calculateTotalCosts(
+    try {
+      // 1. Get distance
+      const { distance } = await calculateDistanceAndTime();
+
+      // sync calculate how many movers are needed
+      const totalNumOfTrucks =
+        numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
+      const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
+      // update num of movers in state for email function
+      await handleUpdateWorkers();
+      // 3a. sync calc quote amount so sendEmail has correct val
+      const computedQuoteAmount = calculateTotalCosts(
         projectDate,
         totalNumOfTrucks,
         totalNumOfMovers,
         distance.meters
-      )
-    );
+      );
+      // 3b. Update quote amount (async dispatch)
+      await handleUpdateQuoteAmount(
+        calculateTotalCosts(
+          projectDate,
+          totalNumOfTrucks,
+          totalNumOfMovers,
+          distance.meters
+        )
+      );
 
-    // 4. Send emails
-    const data = await sendEmails(distance.text, computedQuoteAmount);
-    console.log(data, " <--- data from sendEmails");
-    console.log(computedQuoteAmount, " <--- cpmputed quote amount");
-    if (data.success) {
-      alert("Emails successfully sent");
-      handleUpdateQuoteFormSuccess(true);
-    } else {
-      alert("Emails failed to send");
-      handleUpdateQuoteFormSuccess(false);
+      // 4. Send emails
+      const data = await sendEmails(distance.text, computedQuoteAmount);
+      console.log(data, " <--- data from sendEmails");
+      console.log(computedQuoteAmount, " <--- cpmputed quote amount");
+      if (data.success) {
+        toast.success("Emails successfully sent");
+        handleUpdateQuoteFormSuccess(true);
+      } else {
+        toast.error("Emails failed to send");
+        handleUpdateQuoteFormSuccess(false);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setQuoteIsLoading(false);
     }
   };
 
@@ -188,10 +198,11 @@ const SubmitFormBtn = () => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+        className="capitalize w-32 text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
       >
-        Submit
+        {quoteIsLoading ? "submitting..." : "submit"}
       </button>
+      <Toaster />
     </div>
   );
 };

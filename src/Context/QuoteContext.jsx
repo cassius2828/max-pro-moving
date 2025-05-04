@@ -216,7 +216,7 @@ const reducer = (state, action) => {
 export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, appState);
   const [missingReqFields, setMissingReqFields] = useState(true);
-
+  const [quoteIsLoading, setQuoteIsLoading] = useState(false);
   const {
     // ────────────────────────────────────────────────────────────
     // MOVING DETAILS & SCHEDULE
@@ -551,7 +551,9 @@ export const QuoteProvider = ({ children }) => {
         specialtyItemsDetailsError,
         largeItemsDetailsError,
         junkRemovalDetailsError,
-
+        quoteIsLoading,
+        
+        setQuoteIsLoading,
         // ────────────────────────────────────────────────────────────────
         // FORM NAVIGATION
         handleFormStep,
