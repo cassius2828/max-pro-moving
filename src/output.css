@@ -784,6 +784,18 @@ video {
   margin-top: 24rem;
 }
 
+.mt-12{
+  margin-top: 3rem;
+}
+
+.mt-24{
+  margin-top: 6rem;
+}
+
+.mt-64{
+  margin-top: 16rem;
+}
+
 .block{
   display: block;
 }
@@ -945,6 +957,10 @@ video {
   max-width: 36rem;
 }
 
+.max-w-6xl{
+  max-width: 72rem;
+}
+
 .flex-none{
   flex: none;
 }
@@ -1034,6 +1050,14 @@ video {
   flex-direction: column;
 }
 
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
+.place-items-center{
+  place-items: center;
+}
+
 .items-start{
   align-items: flex-start;
 }
@@ -1060,6 +1084,10 @@ video {
 
 .justify-evenly{
   justify-content: space-evenly;
+}
+
+.justify-items-center{
+  justify-items: center;
 }
 
 .gap-12{
@@ -1247,6 +1275,16 @@ video {
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-red-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
+
+.bg-blue-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
 .fill-gray-200{
@@ -1847,6 +1885,10 @@ button {
     margin-top: 5rem;
   }
 
+  .sm\:mt-40{
+    margin-top: 10rem;
+  }
+
   .sm\:flex{
     display: flex;
   }
@@ -1989,6 +2031,14 @@ button {
     width: 100%;
   }
 
+  .md\:w-1\/2{
+    width: 50%;
+  }
+
+  .md\:w-11\/12{
+    width: 91.666667%;
+  }
+
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2015,6 +2065,10 @@ button {
 
   .md\:gap-8{
     gap: 2rem;
+  }
+
+  .md\:gap-0{
+    gap: 0px;
   }
 
   .md\:pt-32{
@@ -2073,6 +2127,14 @@ button {
 
   .lg\:w-48{
     width: 12rem;
+  }
+
+  .lg\:w-3\/4{
+    width: 75%;
+  }
+
+  .lg\:w-10\/12{
+    width: 83.333333%;
   }
 
   .lg\:min-w-0{
@@ -2143,6 +2205,11 @@ button {
     font-size: 6rem;
     line-height: 1;
   }
+
+  .lg\:text-7xl{
+    font-size: 4.5rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 1280px){
@@ -2170,6 +2237,10 @@ button {
     margin-top: 10rem;
   }
 
+  .xl\:mt-64{
+    margin-top: 16rem;
+  }
+
   .xl\:grid{
     display: grid;
   }
@@ -2184,6 +2255,11 @@ button {
 
   .xl\:text-8xl{
     font-size: 6rem;
+    line-height: 1;
+  }
+
+  .xl\:text-7xl{
+    font-size: 4.5rem;
     line-height: 1;
   }
 }
