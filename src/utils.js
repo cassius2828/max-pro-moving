@@ -104,6 +104,23 @@ export const getNumOfMovers = (totalNumOfTrucks) => {
   else return 2;
 };
 
+export const convertBoxTruckToNumber = (boxTruckValStr) => {
+  switch (boxTruckValStr) {
+    case "0":
+      return 0;
+    case "1":
+      return 1;
+    case "2":
+      return 2;
+    case "3+":
+      return 3;
+    case "recommend":
+      return 0;
+    default:
+      return 0;
+  }
+};
+
 export function formatPhoneNumber(phone) {
   // Return as-is if it already contains formatting characters
   if (/[()\-\s]/.test(phone)) return phone;
@@ -125,17 +142,19 @@ export function formatPhoneNumber(phone) {
   return phone;
 }
 
-export function compileAdditionalDetails(obj){
-  let finalStr = ``
-let objEntries = Object.entries(obj)
-objEntries.forEach(entry => {
-  finalStr = finalStr.concat(`${entry[0]}: ${entry[1]}\n`)
-})
-return finalStr
+export function compileAdditionalDetails(obj) {
+  let finalStr = ``;
+  let objEntries = Object.entries(obj);
+  objEntries.forEach((entry) => {
+    finalStr = finalStr.concat(`${entry[0]}: ${entry[1]}\n`);
+  });
+  return finalStr;
 }
 
-console.log(compileAdditionalDetails({
-  largeItemsDetails:'Two bed frames',
-  junkRemovalDetails:'the bed frames',
-  specialtyItemsDetails:''
-}))
+console.log(
+  compileAdditionalDetails({
+    largeItemsDetails: "Two bed frames",
+    junkRemovalDetails: "the bed frames",
+    specialtyItemsDetails: "",
+  })
+);

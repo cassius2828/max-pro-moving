@@ -1,7 +1,11 @@
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
-import { calculateTotalCosts, getNumOfMovers } from "../../../utils";
+import {
+  calculateTotalCosts,
+  convertBoxTruckToNumber,
+  getNumOfMovers,
+} from "../../../utils";
 const url = import.meta.env.VITE_NETLIFY_EMAIL_FN_URL;
 
 const SubmitFormBtn = () => {
@@ -146,7 +150,9 @@ const SubmitFormBtn = () => {
 
       // sync calculate how many movers are needed
       const totalNumOfTrucks =
-        numOf16BoxTrucks + numOf20BoxTrucks + numOf26BoxTrucks;
+        convertBoxTruckToNumber(numOf16BoxTrucks) +
+        convertBoxTruckToNumber(numOf20BoxTrucks) +
+        convertBoxTruckToNumber(numOf26BoxTrucks);
       const totalNumOfMovers = getNumOfMovers(totalNumOfTrucks);
       // update num of movers in state for email function
       await handleUpdateWorkers();

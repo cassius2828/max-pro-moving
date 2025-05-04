@@ -2,7 +2,7 @@
 import { format } from "date-fns";
 // Import Mailtrap client to send templated emails
 import { MailtrapClient } from "mailtrap";
-import { formatPhoneNumber } from "../../src/utils";
+import { convertBoxTruckToNumber, formatPhoneNumber } from "../../src/utils";
 
 // UUIDs for the Mailtrap templates:
 const customerTemplateID = "3ece9e65-b369-481a-8557-7d16607537ce";
@@ -35,7 +35,7 @@ export default async function handler(req, context) {
   const {
     firstName,
     lastName,
-    numOfWorkers,
+
     phone,
     email,
     message,
@@ -111,7 +111,10 @@ export default async function handler(req, context) {
   // Data for the staff-facing email template (with extra details)
   const staffTemplateDataObj = {
     ...customerTemplateDataObj,
-    numOfWorkers,
+    numOfWorkers:
+      convertBoxTruckToNumber(numOf16BoxTrucks) +
+      convertBoxTruckToNumber(numOf20BoxTrucks) +
+      convertBoxTruckToNumber(numOf26BoxTrucks),
     phone: formatPhoneNumber(phone),
     email,
   };
@@ -132,7 +135,7 @@ export default async function handler(req, context) {
     // Recipient lists
     const clientRecipients = [{ email }];
     const staffRecipients = [
-      { email: "BaronLimaLLC@gmail.com" },
+      // { email: "BaronLimaLLC@gmail.com" },
       { email: "kdottt28@gmail.com" },
     ];
 
