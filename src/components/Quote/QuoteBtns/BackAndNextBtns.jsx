@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
-const BackAndNextBtns = ({ skipStep, skipPastDirection, inputErrorsArray }) => {
+const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
   const {
     formSteps,
     handleFormStep,
     handleSetProjectStartTime,
-    handleSetInvalidInputs,
   } = useQuoteContext();
   const handleSubmit = () => {
     handleSetProjectStartTime();
@@ -54,29 +52,4 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection, inputErrorsArray }) => {
 };
 export default BackAndNextBtns;
 
-/**
- *       
- * <button
-        onClick={(e) => handleFormStep(e, "back")}
-        className={`${
-          formSteps === 1
-            ? "opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
-            : "bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600"
-        } text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96`}
-        disabled={formSteps === 1}
-      >
-        Back
-      </button>
 
-   <button
-    onClick={(e) => handleFormStep(e, "next")}
-    className={`${
-      formSteps > 5 || formSteps === 3
-        ? "opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400"
-        : "bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600"
-    } text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96`}
-    disabled={formSteps > 5 || formSteps === 3}
-  >
-    Next
-  </button>
- */
