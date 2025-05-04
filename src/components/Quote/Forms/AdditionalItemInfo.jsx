@@ -34,7 +34,7 @@ const AdditionalItemInfo = () => {
               value="yes"
               checked={disassembly === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="disassemblyYes"
@@ -51,7 +51,7 @@ const AdditionalItemInfo = () => {
               value="no"
               checked={disassembly === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="disassemblyNo"
@@ -68,7 +68,7 @@ const AdditionalItemInfo = () => {
             name="disassemblyDetails"
             onChange={(e) => handleUpdateForm(e.target)}
             placeholder="Enter additional details..."
-            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
+            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-600 focus:ring-gray-600"
           />
         )}
       </div>
@@ -90,7 +90,7 @@ const AdditionalItemInfo = () => {
               value="yes"
               checked={specialtyItems === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="specialtyItemsYes"
@@ -107,7 +107,7 @@ const AdditionalItemInfo = () => {
               value="no"
               checked={specialtyItems === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="specialtyItemsNo"
@@ -124,7 +124,7 @@ const AdditionalItemInfo = () => {
             name="specialtyItemsDetails"
             onChange={(e) => handleUpdateForm(e.target)}
             placeholder="Enter additional details..."
-            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
+            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-600 focus:ring-gray-600"
           />
         )}
       </div>
@@ -146,7 +146,7 @@ const AdditionalItemInfo = () => {
               value="yes"
               checked={largeItems === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="largeItemsYes"
@@ -163,7 +163,7 @@ const AdditionalItemInfo = () => {
               value="no"
               checked={largeItems === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="largeItemsNo"
@@ -180,7 +180,7 @@ const AdditionalItemInfo = () => {
             name="largeItemsDetails"
             onChange={(e) => handleUpdateForm(e.target)}
             placeholder="Enter additional details..."
-            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
+            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-600 focus:ring-gray-600"
           />
         )}
       </div>
@@ -202,7 +202,7 @@ const AdditionalItemInfo = () => {
               value="yes"
               checked={junkRemoval === "yes"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="junkRemovalYes"
@@ -219,7 +219,7 @@ const AdditionalItemInfo = () => {
               value="no"
               checked={junkRemoval === "no"}
               onChange={(e) => handleUpdateForm(e.target)}
-              className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+              className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
             />
             <label
               htmlFor="junkRemovalNo"
@@ -236,7 +236,7 @@ const AdditionalItemInfo = () => {
             name="junkRemovalDetails"
             onChange={(e) => handleUpdateForm(e.target)}
             placeholder="Enter additional details..."
-            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600"
+            className="mt-4 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-600 focus:ring-gray-600"
           />
         )}
       </div>

@@ -19,7 +19,7 @@ const ProjectDetails = () => {
   return (
     <section className="bg-[#f2f2f2] text-gray-900 py-10 mt-40">
       <div className="container mx-auto">
-        <h1 className="text-center text-8xl font-bold mb-40 text-blue-500">
+        <h1 className="text-center text-8xl font-bold mb-40 text-gray-500">
           Quote By Category
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -47,14 +47,14 @@ export const ProjectCard = ({ title, arr }) => {
   return (
     <>
       <div>
-        <h3 className="text-5xl font-semibold mb-5 text-blue-600">{title}</h3>
+        <h3 className="text-5xl font-semibold mb-5 text-gray-600">{title}</h3>
         <ul className="list-disc list-inside mb-10">
           {arr.map((item, idx) => {
             return (
               <li className="my-3 placeholder-opacity-100" key={item + idx}>
                 <a
                   href="#quote-form"
-                  className="hover:text-blue-500 text-gray-900 text-3xl"
+                  className="hover:text-gray-500 text-gray-900 text-3xl"
                 >
                   {item}
                 </a>
@@ -77,7 +77,7 @@ export const QuoteByProject = ({ children }) => {
         id="by-project"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
       >
-        <h2 className="text-6xl font-bold mb-16 text-blue-700">BY PROJECT:</h2>
+        <h2 className="text-6xl font-bold mb-16 text-red-700">BY PROJECT:</h2>
         {children}
       </div>
     </div>
@@ -94,7 +94,7 @@ export const QuoteByItem = ({ children }) => {
         id="by-item"
         className="bg-gray-200 p-10 rounded-lg shadow-lg lg:mx-auto w-full lg:w-25vw"
       >
-        <h2 className="text-6xl font-bold mb-16 text-blue-700">BY ITEM</h2>
+        <h2 className="text-6xl font-bold mb-16 text-red-700">BY ITEM</h2>
         {children}
       </div>
     </div>
@@ -151,7 +151,7 @@ export function ProjectDetailsv2() {
     <div className="isolate overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="fade-in text-5xl font-semibold text-blue-800">
+          <h2 className="fade-in text-5xl font-semibold text-gray-800">
             Service Details
           </h2>
         </div>
@@ -176,7 +176,7 @@ export function ProjectDetailsv2() {
                   <div>
                     <h3
                       id={pricingOption.id}
-                      className="text-3xl font-semibold text-blue-600"
+                      className="text-3xl font-semibold text-gray-800"
                     >
                       {pricingOption.name}
                     </h3>
@@ -192,13 +192,13 @@ export function ProjectDetailsv2() {
                     >
                       {pricingOption.subCategories.map((subCategory) => (
                         <div key={subCategory.title}>
-                          <p className="mt-6 text-base/7 text-gray-600 uppercase font-semibold">
+                          <p className="mt-6 text-base/7 text-gray-800 uppercase font-semibold">
                             {subCategory.title}
                           </p>
                           {subCategory.features.map((feature) => (
                             <li key={feature} className="flex gap-x-3">
                               <FontAwesomeIcon icon={faCheck} />
-                              <button className="text-start capitalize hover:text-blue-600 transition-colors duration-200">
+                              <button className="text-start capitalize hover:text-gray-600 transition-colors duration-200">
                                 {feature}
                               </button>
                             </li>
@@ -210,7 +210,7 @@ export function ProjectDetailsv2() {
                   <a
                     href={pricingOption.href}
                     aria-describedby={pricingOption.id}
-                    className="mt-8 block rounded-md bg-blue-600 px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                    className="mt-8 block rounded-md bg-gray-900 px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                   >
                     Get started today
                   </a>
@@ -218,7 +218,7 @@ export function ProjectDetailsv2() {
               ))}
               <div className="fade-in flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
                 <div className="lg:min-w-0 lg:flex-1">
-                  <h3 className="text-base/7 font-semibold text-blue-600">
+                  <h3 className="text-base/7 font-semibold text-gray-600">
                     Discounted
                   </h3>
                   <p className="mt-1 text-base/7 text-gray-600">
@@ -228,7 +228,7 @@ export function ProjectDetailsv2() {
                 </div>
                 <a
                   href="#"
-                  className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-blue-600 ring-1 ring-inset ring-blue-200 hover:ring-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                  className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-gray-600 ring-1 ring-inset ring-gray-200 hover:ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
                 >
                   Buy discounted license <span aria-hidden="true">&rarr;</span>
                 </a>

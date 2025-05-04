@@ -33,7 +33,7 @@ export const ExtraDetails = () => {
             type="radio"
             value="yes"
             onChange={(e) => handleUpdateForm(e.target)}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+            className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
           />
           <label htmlFor="stairsYes" className="ml-2 text-sm text-gray-900">
             Yes
@@ -46,7 +46,7 @@ export const ExtraDetails = () => {
             type="radio"
             value="no"
             onChange={(e) => handleUpdateForm(e.target)}
-            className="h-4 w-4 text-blue-600 focus:ring-blue-600 border-gray-300"
+            className="h-4 w-4 text-gray-600 focus:ring-gray-600 border-gray-300"
           />
           <label htmlFor="stairsNo" className="ml-2 text-sm text-gray-900">
             No
@@ -65,7 +65,7 @@ export const ExtraDetails = () => {
         name="listLargeItems"
         rows="3"
         onChange={(e) => handleUpdateForm(e.target)}
-        className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+        className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-gray-600 sm:text-sm/6"
         placeholder="Ex: pool table, tall dressers"
         required
       ></textarea>
@@ -81,7 +81,7 @@ export const ExtraDetails = () => {
         name="summaryOfMove"
         rows="3"
         onChange={(e) => handleUpdateForm(e.target)}
-        className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+        className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:outline-gray-600 sm:text-sm/6"
         placeholder="Details about the move"
         required
       ></textarea>

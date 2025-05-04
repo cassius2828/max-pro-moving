@@ -71,7 +71,7 @@ export function ClientInfo() {
                   firstNameError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
                     : " outline-gray-300 outline outline-1 -outline-offset-1"
-                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -101,7 +101,7 @@ export function ClientInfo() {
                   lastNameError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
                     : " outline-gray-300 outline outline-1 -outline-offset-1"
-                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -129,7 +129,7 @@ export function ClientInfo() {
                   projectDateError
                     ? "outline-red-500 outline outline-1 -outline-offset-1"
                     : " outline-gray-300 outline outline-1 -outline-offset-1"
-                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6`}
+                } block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900   placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6`}
                 required
               />
             </div>
@@ -155,7 +155,7 @@ export function ClientInfo() {
                   handleSetProjectStartTime();
                   handleUpdateForm(e.target);
                 }}
-                className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+                className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-gray-600 sm:text-sm/6"
                 required
               >
                 <option value="">Select hour</option>
@@ -173,7 +173,7 @@ export function ClientInfo() {
                   handleSetProjectStartTime();
                   handleUpdateForm(e.target);
                 }}
-                className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
+                className="block w-full rounded-md px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-gray-600 sm:text-sm/6"
                 required
               >
                 <option value="AM">AM</option>
@@ -197,7 +197,7 @@ export function ClientInfo() {
               } outline outline-1 -outline-offset-1
      block w-40 rounded-md bg-white px-3 py-1.5 
      text-base text-gray-900 placeholder:text-gray-400 
-     focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 
+     focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 
      sm:text-sm`}
             />
           </div>
@@ -213,7 +213,7 @@ export function ClientInfo() {
           {formSteps !== 1 && (
             <button
               onClick={(e) => handleFormStep(e, "back")}
-              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+              className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
             >
               Back
             </button>
@@ -222,7 +222,7 @@ export function ClientInfo() {
             <button
               onClick={() => handleSubmit()}
               type="submit"
-              className="text-white bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:outline-none focus:ring-blue-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+              className="text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
             >
               Submit
             </button>
@@ -244,7 +244,7 @@ export function ClientInfo() {
                   handleSetLocalError(inputsArray);
                 }
               }}
-              className="bg-blue-600 hover:bg-blue-500 focus:ring-2 focus:ring-blue-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
+              className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
             >
               Next
             </button>
@@ -275,7 +275,7 @@ export const ContactForm = () => {
             id="email"
             autoComplete="email"
             value={email}
-            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
             required
           />
         </div>
@@ -296,7 +296,7 @@ export const ContactForm = () => {
             name="phone"
             value={phone}
             autoComplete="phone"
-            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+            className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-gray-600 sm:text-sm/6"
           />
         </div>
       </div>
@@ -315,7 +315,7 @@ export const ContactForm = () => {
             id="message"
             name="message"
             value={message}
-            className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-600 sm:text-sm/6 resize-none"
+            className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 sm:text-sm/6 resize-none"
             rows="4"
             placeholder="Enter your text here..."
           />

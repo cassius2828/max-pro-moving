@@ -52,7 +52,7 @@ const StaffGallery = () => {
           })}
         </div>
       </Marquee>
-      <div className="absolute top-0 left-0 w-full h-full bg-blue-800 opacity-90 z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-neutral-900 opacity-90 z-10"></div>
     </div>
   );
 };
