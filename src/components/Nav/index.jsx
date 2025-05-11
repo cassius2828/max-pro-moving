@@ -18,19 +18,25 @@ export const Nav = () => {
         <img
           className="hidden md:block w-40 fade-in "
           src={`${import.meta.env.VITE_CDN_PATH}/MPM-LOGO-05032025.png`}
-          alt="Max Pro Moving logo"
+          alt="Max Pro Moving AZ logo"
         />
         <h2 className="my-auto text-4xl lg:text-6xl ml-10 fade-in ">
-          Max Pro Moving{" "}
+          Max Pro Moving AZ{" "}
         </h2>
       </div>
 
       <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in">
-        <NavListItem link="#services" text="Services" />
+        <NavListItem link="/" text="Home" />
+        <NavListItem link="#detailed-quote" text="Detailed Quote" />
+        <NavListItem
+          link="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"
+          text="Fast Quote"
+        />
+        <NavListItem
+          link="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnTUNvMGFfT1BnEAE!2m1!1s0x0:0xa0ac3b99a75948e1!3m1!1s2@1:CIHM0ogKEICAgMCo0a_OPg%7CCgwI4sSFwAYQoJT2wAM%7C?hl=en-US&source=sh/x/kp/local/m1/0&kgs=4cbe47e38fd74129"
+          text="Reviews"
+        />
         <NavListItem link="/about" text="About Us" />
-        <NavListItem link="/terms" text="Terms" />
-        <NavListItem link="/policy" text="Privacy" />
-        <NavListItem link="/license" text="License" />
       </ul>
       {/* Mobile navigation */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -95,19 +101,28 @@ export const MobileNav = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <Link to="/about">About</Link>
+        <a href="#detailed-quote">Detailed Quote</a>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#services">Services</a>
+        <a
+          href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Fast Quote
+        </a>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <Link to="/terms">Terms</Link>
+        <a
+          href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnTUNvMGFfT1BnEAE!2m1!1s0x0:0xa0ac3b99a75948e1!3m1!1s2@1:CIHM0ogKEICAgMCo0a_OPg%7CCgwI4sSFwAYQoJT2wAM%7C?hl=en-US&source=sh/x/kp/local/m1/0&kgs=4cbe47e38fd74129"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Reviews
+        </a>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <Link to="/policy">Privacy</Link>
-      </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <Link to="/license">License</Link>
+        <Link to="/about">About Us</Link>
       </li>
     </ul>
   );
