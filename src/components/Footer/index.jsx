@@ -11,7 +11,7 @@ const navigation = {
   company: [
     { name: "About", href: "/about" },
     { name: "Fast Quote", href: "https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec" },
-    { name: "Detailed Quote", href: "/#detailed-quote" },
+    { name: "Detailed Quote", href: "/#quote-form" },
 
   ],
   legal: [

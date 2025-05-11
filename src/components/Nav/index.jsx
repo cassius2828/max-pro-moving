@@ -27,7 +27,7 @@ export const Nav = () => {
 
       <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in">
         <NavListItem link="/" text="Home" />
-        <NavListItem link="#detailed-quote" text="Detailed Quote" />
+        <NavListItem link="#quote-form" text="Detailed Quote" />
         <NavListItem
           link="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"
           text="Fast Quote"
@@ -101,7 +101,7 @@ export const MobileNav = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#detailed-quote">Detailed Quote</a>
+        <a href="#quote-form">Detailed Quote</a>
       </li>
       <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a
