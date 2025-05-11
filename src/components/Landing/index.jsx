@@ -11,17 +11,17 @@ const Landing = () => {
     {
       name: "Our Mission",
       description:
-        "Provide a professional, stress-free relocation service focused on the client experience; care, safety & quality.",
+        "To provide a professional & stress free move that is focused on your experience.",
     },
     {
       name: "Our Vision",
       description:
-        "To push forward innovation in transportation as the most reliable, professional, and caring client experience.",
+        "To push forward innovation in moving as the most reliable, professional, and caring client experience.",
     },
     {
-      name: "Get Quotes Today!",
+      name: "Plan your project now",
       description:
-        "We offer quick quotes for an immediate phone assessment, or you can provide your move details to receive an estimated quote range.",
+        "Get in touch with an expert. Send a detailed quote to receive an in depth quote or send in a fast quote to secure a date with less details.",
     },
   ];
 
@@ -49,11 +49,18 @@ const Landing = () => {
                 <p className="mt-2 text-gray-300 text-xl lg:text-2xl">
                   {card.description}
                 </p>
+                {card.name === "Our Mission" && (
+                  <ol className="mt-4 ml-4 space-y-1 text-xl lg:text-2xl text-gray-200 list-decimal list-inside">
+                    <li>1. Care</li>
+                    <li>2. Safety</li>
+                    <li>3. Quality</li>
+                  </ol>
+                )}
               </div>
             </div>
           ))}
         </div>
-        <div className="fade-in flex flex-col md:flex-row justify-center gap-8 md:gap-12 my-20 md:mt-12 w-4/5 mx-auto">
+        <div className="fade-in flex flex-col md:flex-row justify-center gap-8 md:gap-12 my-40 md:mt-12 w-4/5 mx-auto">
           <a
             href="#quote-form"
             className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
