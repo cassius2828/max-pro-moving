@@ -1026,6 +1026,10 @@ video {
   width: 40rem;
 }
 
+.w-auto{
+  width: auto;
+}
+
 .min-w-0{
   min-width: 0px;
 }
@@ -1088,6 +1092,10 @@ video {
 
 .max-w-\[4rem\]{
   max-width: 4rem;
+}
+
+.flex-shrink-0{
+  flex-shrink: 0;
 }
 
 .-translate-x-1\/2{
@@ -1178,6 +1186,10 @@ video {
 
 .items-baseline{
   align-items: baseline;
+}
+
+.items-stretch{
+  align-items: stretch;
 }
 
 .justify-end{
