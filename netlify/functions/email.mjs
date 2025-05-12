@@ -137,8 +137,8 @@ export default async function handler(req, context) {
     // Recipient lists
     const clientRecipients = [{ email }];
     const staffRecipients = [
-      // { email: "BaronLimaLLC@gmail.com" },
-      { email: "cassius2828@gmail.com" },
+      { email: "BaronLimaLLC@gmail.com" },
+      { email: "kdottt28@gmail.com" },
     ];
 
     // Mailtrap send config for the client
