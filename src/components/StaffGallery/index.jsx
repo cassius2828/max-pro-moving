@@ -89,15 +89,15 @@ const images = [
 
 const StaffGallery = () => {
   return (
-    <div className="w-full min-h-screen  relative mt-16 md:mt-0">
+    <div className="w-full min-h-screen relative mt-16 md:mt-0">
       <Marquee speed={30}>
-        <div className="flex justify-evenly h-full">
+        <div className="flex h-screen items-stretch">
           {images.map((image) => {
             return (
               <img
                 key={image.src1}
-                className="min-h-100svh object-cover"
-                src={image.src2} // Default image source
+                className="h-screen w-auto object-cover flex-shrink-0"
+                src={image.src2}
                 srcSet={`${image.src1} 600w, ${image.src2} 1400w, ${image.src3} 2000w`}
                 sizes="(max-width: 600px) 100vw, (max-width: 1400px) 50vw, 33vw"
                 alt={image.alt}
