@@ -1,12 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import NavigateBackBtn from "../components/Reuseables/NavigateBackBtn";
 
 export default function PrivacyPolicy() {
-  const navigate = useNavigate();
-
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
-      <p className="mb-4">Effective Date: May 3, 2025</p>
+    <div className="max-w-4xl mx-auto mt-20 px-6 py-12 bg-white shadow-lg rounded-lg text-base md:text-lg">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        Privacy Policy
+      </h1>
+      <p className="mb-6 text-gray-700 leading-relaxed">
+        Effective Date: May 3, 2025
+      </p>
       <ul className="list-disc pl-6 space-y-2">
         <li>
           <strong>Information We Collect</strong>: Your name, address, email,
@@ -33,13 +35,7 @@ export default function PrivacyPolicy() {
           changes on this page.
         </li>
       </ul>
-      <button
-        onClick={() => navigate(-1)}
-        className="p-2 mt-5 rounded-md bg-neutral-900 text-gray-50 text-center"
-        to={"/"}
-      >
-        Back
-      </button>
+      <NavigateBackBtn />
     </div>
   );
 }
