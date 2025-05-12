@@ -1,13 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import NavigateBackBtn from "../components/Reuseables/NavigateBackBtn";
 
 export default function TermsOfService() {
-  const navigate = useNavigate();
+
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
-      <p className="mb-4">Effective Date: May 3, 2025</p>
-      <p className="mb-4">
+    <div className="max-w-4xl mx-auto mt-20 px-6 py-12 bg-white shadow-lg rounded-lg text-base md:text-lg">
+      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
+        Terms of Service
+      </h1>
+      <p className="mb-6 text-gray-700 leading-relaxed">
+        Effective Date: May 3, 2025
+      </p>
+      <p className="mb-6 text-gray-700 leading-relaxed">
         Welcome to Max Pro Moving, the team that makes moving easy through
         project planning, labor services and more! By accessing or using our
         website and services, you agree to be bound by the terms below.
@@ -42,12 +46,7 @@ export default function TermsOfService() {
           the company is still in use.
         </li>
       </ul>
-      <button
-        onClick={() => navigate(-1)}
-        className="p-2 mt-5 rounded-md bg-neutral-900 text-gray-50 text-center"
-      >
-        Back
-      </button>
+      <NavigateBackBtn />
     </div>
   );
 }
