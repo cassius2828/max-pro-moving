@@ -26,14 +26,15 @@ const Landing = () => {
   ];
 
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 pt-0 md:pt-32 h-screen">
+    <div className="relative  overflow- bg-neutral-900 ">
       <Suspense fallback={<LoadingPlaceholder />}>
         <StaffGallery />
       </Suspense>
+      <div className="h-[12rem]  sm:h-0">
 
-      <div className="mx-auto px-6 lg:px-8 absolute top-1/3 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+      <div className="mx-auto px-6 lg:px-8 absolute top-[30rem] lg:top-[35rem] left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
         <div className=" w-screen lg:mx-0 mt-96 p-3 md:mt-64 xl:mt-64">
-          <h1 className="flex flex-wrap mt-[33rem] sm:mt-96 justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl xl:text-8xl text-center w-screen md:w-auto">
+          <h1 className="flex flex-wrap  justify-center gap-3 fade-in text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl xl:text-8xl text-center w-screen md:w-auto">
             a team who cares and makes moving simple and stress free
           </h1>
         </div>
@@ -59,10 +60,10 @@ const Landing = () => {
             </div>
           ))}
         </div>
-        <div className="fade-in flex flex-col md:flex-row justify-center gap-8 md:gap-12 my-40 md:mt-12 w-4/5 mx-auto">
+        <div className="fade-in flex flex-col lg:flex-row justify-center items-center gap-4 mt-12 pb-24 px-3 w-full mx-auto">
           <a
             href="#quote-form"
-            className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
+            className=" text-center w-full max-w-[44rem] uppercase fade-in transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
           >
             Caclulate your budget / Get a &nbsp;
             <span className="font-semibold">FREE</span>&nbsp; quote now!
@@ -71,12 +72,14 @@ const Landing = () => {
             href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec/edit"
             target="_blank"
             rel="noreferrer"
-            className="uppercase fade-in lg:mt-24 transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
+            className="text-center w-full max-w-[44rem] uppercase fade-in  transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
           >
             Submit a quote request
           </a>
         </div>
       </div>
+      </div>
+
     </div>
   );
 };

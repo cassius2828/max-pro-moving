@@ -16,7 +16,7 @@ export const Nav = () => {
     <nav className="w-full bg-neutral-900 text-gray-100 fixed top-0 left-0 justify-between align-middle z-[99] p-4 flex">
       <div className="flex justify-center items-center">
         <img
-          className="hidden md:block w-40 fade-in "
+          className="hidden lg:block w-32 fade-in "
           src={`${import.meta.env.VITE_CDN_PATH}/MPM-LOGO-05032025.png`}
           alt="Max Pro Moving AZ logo"
         />
@@ -40,7 +40,7 @@ export const Nav = () => {
       </ul>
       {/* Mobile navigation */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
-      {isOpen && <MobileNav />}
+      {isOpen && <MobileNav setIsOpen={setIsOpen} />}
     </nav>
   );
 };
@@ -92,18 +92,18 @@ export const NavListItem = ({ link, text }) => {
 ////////////////////////////////////
 // Mobile Navigation Component
 ////////////////////////////////////
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";ƒ
 
-export const MobileNav = () => {
+export const MobileNav = ({setIsOpen}) => {
   return (
     <ul className="absolute bg-neutral-900 text-gray-100 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li onClick={() => setIsOpen(false)} className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <Link to="/">Home</Link>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li onClick={() => setIsOpen(false)} className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a href="#quote-form">Detailed Quote</a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a
           href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"
           target="_blank"
@@ -112,7 +112,7 @@ export const MobileNav = () => {
           Fast Quote
         </a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a
           href="https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnTUNvMGFfT1BnEAE!2m1!1s0x0:0xa0ac3b99a75948e1!3m1!1s2@1:CIHM0ogKEICAgMCo0a_OPg%7CCgwI4sSFwAYQoJT2wAM%7C?hl=en-US&source=sh/x/kp/local/m1/0&kgs=4cbe47e38fd74129"
           target="_blank"
@@ -121,7 +121,7 @@ export const MobileNav = () => {
           Reviews
         </a>
       </li>
-      <li className="text-white text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <Link to="/about">About Us</Link>
       </li>
     </ul>
