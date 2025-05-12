@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Hamburger } from "../Hamburger";
 
@@ -92,7 +93,6 @@ export const NavListItem = ({ link, text }) => {
 ////////////////////////////////////
 // Mobile Navigation Component
 ////////////////////////////////////
-import { Link } from "react-router-dom";ƒ
 
 export const MobileNav = ({setIsOpen}) => {
   return (
