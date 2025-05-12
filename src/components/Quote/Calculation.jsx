@@ -11,14 +11,15 @@ const Calculation = () => {
   return (
     <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6 sm:p-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mt-6 mb-6">
+        {/* <h1 className="text-3xl font-bold text-gray-900 mt-6 mb-6">
           Quote:{" "}
           <span className="text-green-600">
             $745 distance {distance} secs {estimatedTravelTime}
           </span>
-        </h1>
+        </h1> */}
         <p className="text-base text-gray-700 text-center">
-          Contact us today to get a more detailed quote or book a move!
+          Your file has been uploaded for your Project Coordinator to review!
+          Text our office with any questions/comments at (619) 905-1009
         </p>
       </div>
 

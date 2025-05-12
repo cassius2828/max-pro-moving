@@ -79,7 +79,7 @@ const AdditionalItemInfo = () => {
           htmlFor="specialtyItems"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Specialty Items? (ex: Pianos, Paintings, TVs)
+          Specialty Items? (ex: Pianos, Statues, Artwork, Mirrors, Etc)
         </label>
         <div className="mt-3 flex items-center gap-x-6">
           <div className="flex items-center">
@@ -135,7 +135,7 @@ const AdditionalItemInfo = () => {
           htmlFor="largeItems"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Large / Heavy Items?
+          Large / Heavy Items? (Safes, Appliances, Couches, Furniture, Etc)
         </label>
         <div className="mt-3 flex items-center gap-x-6">
           <div className="flex items-center">
@@ -191,7 +191,7 @@ const AdditionalItemInfo = () => {
           htmlFor="junkRemoval"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Add on Junk Removal?
+          Would you like junk removal on your project?
         </label>
         <div className="mt-3 flex items-center gap-x-6">
           <div className="flex items-center">

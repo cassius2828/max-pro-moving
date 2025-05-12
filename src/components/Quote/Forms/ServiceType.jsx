@@ -20,7 +20,7 @@ const ServiceType = () => {
           htmlFor="serviceType"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Service Type
+          What type of service will this project require?
         </label>
         <select
           className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
@@ -30,7 +30,7 @@ const ServiceType = () => {
           id="serviceType"
         >
           <option value="moving">Moving</option>
-          <option value="singleItem">Single Item Delivery</option>
+          <option value="singleItem">Item Delivery (Only)</option>
           <option value="junkRemoval">Junk Removal (Only)</option>
         </select>
       </div>
@@ -47,9 +47,8 @@ const ServiceType = () => {
 export default ServiceType;
 
 export const ItemTextArea = ({ serviceType = "singleItem" }) => {
- const {singleItemDetails, junkRemovalItems, handleUpdateForm} = useQuoteContext()
-
-
+  const { singleItemDetails, junkRemovalItems, handleUpdateForm } =
+    useQuoteContext();
 
   return (
     <>
@@ -59,14 +58,14 @@ export const ItemTextArea = ({ serviceType = "singleItem" }) => {
             htmlFor="singleItemDetails"
             className="block text-sm/6 font-medium text-gray-900"
           >
-            Single Item Details
+            Item Details
           </label>
 
           <textarea
             className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
             onChange={(e) => {
-              handleUpdateForm(e.target)
-            } }
+              handleUpdateForm(e.target);
+            }}
             value={singleItemDetails}
             name="singleItemDetails"
             id="singleItemDetails"
@@ -104,7 +103,7 @@ export const VehicleConfirmation = () => {
           htmlFor="truckSize"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Do you need trucks and transportation?
+          Will your project require trucks and/or transportation?
         </label>
         <select
           className="block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline focus:outline-2 focus:outline-blue-600 sm:text-sm/6"
@@ -114,13 +113,10 @@ export const VehicleConfirmation = () => {
           id="truckSize"
         >
           <option value="yes-trucks">
-            Yes, I need trucks and transportation serviced to me
-          </option>
-          <option value="provide-own">
-            I will provide all trucks and transportation myself
+            Yes, I need trucks and transportation for my project
           </option>
           <option value="no-trucks">
-            I do not need trucks or transportation
+            No
           </option>
         </select>
       </div>
