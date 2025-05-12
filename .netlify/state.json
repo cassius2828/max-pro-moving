@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Vacaville",
+			"country": {
+				"code": "US",
+				"name": "United States"
+			},
+			"subdivision": {
+				"code": "CA",
+				"name": "California"
+			},
+			"timezone": "America/Los_Angeles",
+			"latitude": 38.3467,
+			"longitude": -121.9519,
+			"postalCode": "95687"
+		},
+		"timestamp": 1747010448570
+	}
+}
