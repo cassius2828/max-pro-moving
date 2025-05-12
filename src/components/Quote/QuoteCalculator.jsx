@@ -19,11 +19,10 @@ const QuoteCalculator = () => {
   /////////////////////////////////
   const handlePlaceSelected = (place) => {
     setSelectedPlace(place);
-
   };
 
   return (
-    <form id="quote-form" className="fade-in w-full max-w-3xl mx-auto my-12 shadow-lg rounded-md">
+    <form className="fade-in w-full max-w-3xl mx-auto my-12 shadow-lg rounded-md">
       {" "}
       {formSteps === 1 ? (
         // <LocationDetails onPlaceSelected={handlePlaceSelected} />

@@ -31,18 +31,72 @@ const images = [
     src3: `${CDN_PATH}/lg/moving-action-5-lg.webp`,
     alt: "Moving Action 5",
   },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-6.psd`,
+    src2: `${CDN_PATH}/lg/moving-action-6.psd`,
+    src3: `${CDN_PATH}/lg/moving-action-6.psd`,
+    alt: "Moving Action 6",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-7.jpeg`,
+    src2: `${CDN_PATH}/lg/moving-action-7.jpeg`,
+    src3: `${CDN_PATH}/lg/moving-action-7.jpeg`,
+    alt: "Moving Action 7",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-8.heic`,
+    src2: `${CDN_PATH}/lg/moving-action-8.heic`,
+    src3: `${CDN_PATH}/lg/moving-action-8.heic`,
+    alt: "Moving Action 8",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-9.png`,
+    src2: `${CDN_PATH}/lg/moving-action-9.png`,
+    src3: `${CDN_PATH}/lg/moving-action-9.png`,
+    alt: "Moving Action 9",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-10.HEIC`,
+    src2: `${CDN_PATH}/lg/moving-action-10.HEIC`,
+    src3: `${CDN_PATH}/lg/moving-action-10.HEIC`,
+    alt: "Moving Action 10",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-11.JPG`,
+    src2: `${CDN_PATH}/lg/moving-action-11.JPG`,
+    src3: `${CDN_PATH}/lg/moving-action-11.JPG`,
+    alt: "Moving Action 11",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-12.JPG`,
+    src2: `${CDN_PATH}/lg/moving-action-12.JPG`,
+    src3: `${CDN_PATH}/lg/moving-action-12.JPG`,
+    alt: "Moving Action 12",
+  },
+  {
+    src1: `${CDN_PATH}/lg/moving-action-13.JPG`,
+    src2: `${CDN_PATH}/lg/moving-action-13.JPG`,
+    src3: `${CDN_PATH}/lg/moving-action-13.JPG`,
+    alt: "Moving Action 13",
+  },
+  {
+    src1: `${CDN_PATH}/md/moving-action-14.png`,
+    src2: `${CDN_PATH}/md/moving-action-14.png`,
+    src3: `${CDN_PATH}/md/moving-action-14.png`,
+    alt: "Moving Action 14",
+  },
 ];
 
 const StaffGallery = () => {
   return (
-    <div className="w-full h-screen relative mt-16 md:mt-0">
-      <Marquee speed={20}>
-        <div className="flex justify-evenly">
+    <div className="w-full min-h-screen  relative mt-16 md:mt-0">
+      <Marquee speed={30}>
+        <div className="flex justify-evenly h-full">
           {images.map((image) => {
             return (
               <img
                 key={image.src1}
-                className="h-100svh"
+                className="min-h-100svh object-cover"
                 src={image.src2} // Default image source
                 srcSet={`${image.src1} 600w, ${image.src2} 1400w, ${image.src3} 2000w`}
                 sizes="(max-width: 600px) 100vw, (max-width: 1400px) 50vw, 33vw"
