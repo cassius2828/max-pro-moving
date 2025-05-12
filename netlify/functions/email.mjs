@@ -138,7 +138,7 @@ export default async function handler(req, context) {
     const clientRecipients = [{ email }];
     const staffRecipients = [
       { email: "BaronLimaLLC@gmail.com" },
-      { email: "kdottt28@gmail.com" },
+      { email: "maxpromove@gmail.com" },
     ];
 
     // Mailtrap send config for the client
@@ -164,9 +164,10 @@ export default async function handler(req, context) {
     });
 
     // Send both emails in parallel
-    const sendToClient = client.send(sendToClientConfig);
+    // const sendToClient = client.send(sendToClientConfig);
+    // add sendToClient to promise to re-enable client emails
     const sendToStaff = client.send(sendToStaffConfig);
-    const results = await Promise.all([sendToClient, sendToStaff]);
+    const results = await Promise.all([ sendToStaff]);
 
     console.log("📧 Mailtrap results:", results);
 

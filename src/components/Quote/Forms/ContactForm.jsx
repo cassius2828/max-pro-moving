@@ -52,7 +52,7 @@ export function ClientInfo() {
               htmlFor="first-name"
               className="block text-sm/6 font-medium text-gray-900"
             >
-              First name*
+              What is your first name?
             </label>
             <div className="mt-2">
               <input
@@ -82,7 +82,7 @@ export function ClientInfo() {
               htmlFor="last-name"
               className="block text-sm/6 font-medium text-gray-900"
             >
-              Last name*
+              What is your last name?
             </label>
             <div className="mt-2">
               <input
@@ -112,7 +112,7 @@ export function ClientInfo() {
               htmlFor="projectDate"
               className="block text-sm/6 font-medium text-gray-900"
             >
-              Date of Service*
+              What date would you like for this service?
             </label>
             <div className="mt-2">
               <input
@@ -140,7 +140,7 @@ export function ClientInfo() {
               htmlFor="timeOfDay"
               className="block text-sm/6 font-medium text-gray-900"
             >
-              Time of Day <br />
+              What time would you prefer to start? <br />
               <span className="italic">
                 dates and times will be confirmed by staff. The time chosen does
                 not guarantee that services are available at selected time
@@ -265,7 +265,7 @@ export const ContactForm = () => {
           htmlFor="email"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Email address*
+          What email would you like your detailed quote sent to?
         </label>
         <div className="mt-2">
           <input
@@ -286,7 +286,7 @@ export const ContactForm = () => {
           htmlFor="phone"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Phone
+          What is your cell phone number?
         </label>
         <div className="mt-2">
           <input
@@ -306,7 +306,7 @@ export const ContactForm = () => {
           htmlFor="message"
           className="block text-sm/6 font-medium text-gray-900"
         >
-          Message
+          Please leave any additional notes/comments on your project below
         </label>
         <div className="mt-2">
           <input
