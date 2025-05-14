@@ -2,13 +2,14 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Hamburger } from "../Hamburger";
+import { useQuoteContext } from "../../customHooks/useQuoteContext";
 
 //////////////////
 // Navigation Component
 //////////////////
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { handleScrollFormToView } = useQuoteContext();
   ///////////////////////////
   // GSAP Animations for elements within the container
   ///////////////////////////
@@ -28,7 +29,11 @@ export const Nav = () => {
 
       <ul className="p-4 mr-10 text-lg lg:text-2xl hidden items-center lg:flex fade-in">
         <NavListItem link="/" text="Home" />
-        <NavListItem link="#quote-form" text="Detailed Quote" />
+        <NavListItem
+          scrollFn={handleScrollFormToView}
+          link="#quote-form"
+          text="Detailed Quote"
+        />
         <NavListItem
           link="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"
           text="Fast Quote"
@@ -41,7 +46,9 @@ export const Nav = () => {
       </ul>
       {/* Mobile navigation */}
       <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
-      {isOpen && <MobileNav setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <MobileNav scrollFn={handleScrollFormToView} setIsOpen={setIsOpen} />
+      )}
     </nav>
   );
 };
@@ -77,15 +84,24 @@ export const NavListItemDropDown = ({ text, dropdownArr }) => {
 ////////////////////////////////////
 // Single List Item Component
 ////////////////////////////////////
-export const NavListItem = ({ link, text }) => {
+export const NavListItem = ({ link, text, scrollFn }) => {
   return (
     <li>
-      <a
-        href={link}
-        className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200"
-      >
-        {text}
-      </a>
+      {scrollFn ? (
+        <button
+          onClick={scrollFn}
+          className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200"
+        >
+          {text}
+        </button>
+      ) : (
+        <a
+          href={link}
+          className="block px-4 py-2 hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200"
+        >
+          {text}
+        </a>
+      )}
     </li>
   );
 };
@@ -94,15 +110,31 @@ export const NavListItem = ({ link, text }) => {
 // Mobile Navigation Component
 ////////////////////////////////////
 
-export const MobileNav = ({setIsOpen}) => {
+export const MobileNav = ({ setIsOpen, scrollFn }) => {
   return (
     <ul className="absolute bg-neutral-900 text-gray-100 w-full h-100svh top-0 left-0 transition-all ease-out duration-500 flex flex-col align-middle justify-evenly">
-      <li onClick={() => setIsOpen(false)} className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
+      <li
+        onClick={() => setIsOpen(false)}
+        className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 "
+      >
         <Link to="/">Home</Link>
       </li>
-      <li onClick={() => setIsOpen(false)} className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
-        <a href="#quote-form">Detailed Quote</a>
-      </li>
+      {scrollFn ? (
+        <button
+          onClick={() => (setIsOpen(false), scrollFn())}
+          className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 "
+        >
+          <span>Detailed Quote</span>
+        </button>
+      ) : (
+        <li
+          onClick={() => setIsOpen(false)}
+          className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 "
+        >
+          <a href="#quote-form">Detailed Quote</a>
+        </li>
+      )}
+
       <li className="text-white p-1 text-3xl mx-auto hover:bg-gray-300 rounded-md hover:text-gray-800 transition-colors duration-200 ">
         <a
           href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec"

@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useReducer, useRef, useState } from "react";
 import { getNumOfMovers } from "../utils";
 
 // import { calculateDistanceTwoLocations } from "../googleAPIs/functions/calculateMovingDistance";
 
 export const QuoteContext = createContext();
 const CALC_MOVE_DIST_ENDPOINT = import.meta.env.VITE_CALC_MOVE_DIST_ENDPOINT;
-
 
 const excludeKeys = [
   "formSteps",
@@ -217,6 +216,7 @@ export const QuoteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, appState);
   const [missingReqFields, setMissingReqFields] = useState(true);
   const [quoteIsLoading, setQuoteIsLoading] = useState(false);
+  const formRef = useRef();
   const {
     // ────────────────────────────────────────────────────────────
     // MOVING DETAILS & SCHEDULE
@@ -228,7 +228,7 @@ export const QuoteProvider = ({ children }) => {
     truckSize,
     quoteAmount,
     quoteFormSuccess,
-    numOfWorkers,
+    // numOfWorkers,
     // ────────────────────────────────────────────────────────────
     // LOCATIONS & STOPS
     startingLocation,
@@ -369,7 +369,6 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleUpdateForm = (payload) => {
     dispatch({ type: "updateForm", payload });
-
   };
 
   /////////////////////////////////
@@ -377,7 +376,6 @@ export const QuoteProvider = ({ children }) => {
   /////////////////////////////////
   const handleUpdateFormError = (name, boolean) => {
     dispatch({ type: "updateFormError", payload: { name, boolean } });
-
   };
 
   ///////////////////////////
@@ -385,7 +383,6 @@ export const QuoteProvider = ({ children }) => {
   ///////////////////////////
   const handleSetLocalError = (inputsArray) => {
     inputsArray.forEach((input) => {
-
       handleUpdateFormError(input.name, input.value);
     });
   };
@@ -453,10 +450,21 @@ export const QuoteProvider = ({ children }) => {
     return Object.keys(obj).length === 0;
   };
 
+  ///////////////////////////
+  // Scroll Form To View
+  ///////////////////////////
+
+  const handleScrollFormToView = () => {
+    formRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <QuoteContext.Provider
       value={{
+        formRef,
         // ────────────────────────────────────────────────────────────────
         // MOVING DETAILS & SCHEDULE
         serviceType,
@@ -546,7 +554,7 @@ export const QuoteProvider = ({ children }) => {
         largeItemsDetailsError,
         junkRemovalDetailsError,
         quoteIsLoading,
-        
+
         setQuoteIsLoading,
         // ────────────────────────────────────────────────────────────────
         // FORM NAVIGATION
@@ -580,6 +588,7 @@ export const QuoteProvider = ({ children }) => {
         // CALCULATION & DATA FETCH
         handleCalculateQuote,
         isObjEmpty,
+        handleScrollFormToView,
       }}
     >
       {children}
