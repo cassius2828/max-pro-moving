@@ -21,7 +21,7 @@ const Landing = () => {
     {
       name: "Plan your project now",
       description:
-        "Get in touch with an expert. Send a detailed quote to receive an in depth quote or send in a fast quote to secure a date with less details.",
+        "Get in touch with an expert. Send a Detailed Quote to receive an in-depth estimate for your project, send in a Fast Quote to lock in your date with a base quote!",
     },
   ];
 
@@ -64,8 +64,7 @@ const Landing = () => {
               href="#quote-form"
               className=" text-center w-full max-w-[44rem] uppercase fade-in transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
             >
-              Caclulate your budget / Get a &nbsp;
-              <span className="font-semibold">FREE</span>&nbsp; quote now!
+              Click to Submit a Detailed Quote
             </a>
             <a
               href="https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec/edit"
