@@ -31,10 +31,10 @@ export default function License() {
         <li>
           <strong>Contact</strong>: For inquiries, email us at{" "}
           <a
-            href="mailto:info@azmaxpro.com"
+            href="mailto:maxpromove@gmail.com"
             className="text-blue-500 hover:text-blue-600 font-medium"
           >
-            info@azmaxpro.com
+            maxpromove@gmail.com
           </a>
           .
         </li>

@@ -2,7 +2,11 @@
 import { format } from "date-fns";
 // Import Mailtrap client to send templated emails
 import { MailtrapClient } from "mailtrap";
-import { convertBoxTruckToNumber, formatPhoneNumber, getNumOfMovers } from "../../src/utils";
+import {
+  convertBoxTruckToNumber,
+  formatPhoneNumber,
+  getNumOfMovers,
+} from "../../src/utils";
 
 // UUIDs for the Mailtrap templates:
 const customerTemplateID = "3ece9e65-b369-481a-8557-7d16607537ce";
@@ -107,7 +111,7 @@ export default async function handler(req, context) {
     disassemblyDetails: disassemblyDetails || "N/A",
     message: message || "N/A",
   };
-  
+
   const sumOfBoxTrucks =
     convertBoxTruckToNumber(numOf16BoxTrucks) +
     convertBoxTruckToNumber(numOf20BoxTrucks) +
@@ -137,7 +141,7 @@ export default async function handler(req, context) {
     // Recipient lists
     const clientRecipients = [{ email }];
     const staffRecipients = [
-      { email: "BaronLimaLLC@gmail.com" },
+      { email: "kdottt28@gmail.com" },
       { email: "maxpromove@gmail.com" },
     ];
 
@@ -156,7 +160,6 @@ export default async function handler(req, context) {
       template_uuid: staffTemplateID,
       template_variables: staffTemplateDataObj,
     };
-
     // Initialize Mailtrap client with the domain token
     const client = new MailtrapClient({
       // eslint-disable-next-line no-undef
@@ -167,7 +170,7 @@ export default async function handler(req, context) {
     // const sendToClient = client.send(sendToClientConfig);
     // add sendToClient to promise to re-enable client emails
     const sendToStaff = client.send(sendToStaffConfig);
-    const results = await Promise.all([ sendToStaff]);
+    const results = await Promise.all([sendToStaff]);
 
     console.log("📧 Mailtrap results:", results);
 

@@ -1,7 +1,6 @@
 import NavigateBackBtn from "../components/Reuseables/NavigateBackBtn";
 
 export default function About() {
-
   return (
     <div className="max-w-4xl mx-auto mt-20 px-6 py-12 bg-white shadow-lg rounded-lg text-base md:text-lg">
       <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900">
@@ -33,18 +32,11 @@ export default function About() {
         you with your next move. For questions, quotes, or custom requests, feel
         free to contact us at{" "}
         <a
-          href="mailto:info@azmaxpro.com"
+          href="mailto:maxpromove@gmail.com"
           className="text-blue-500 hover:text-blue-600 font-medium"
         >
-          info@azmaxpro.com
+          maxpromove@gmail.com
         </a>{" "}
-        or directly at{" "}
-        <a
-          href="mailto:MaxProMove@gmail.com"
-          className="text-blue-500 hover:text-blue-600 font-medium"
-        >
-          MaxProMove@gmail.com
-        </a>
         .
       </p>
       <NavigateBackBtn />

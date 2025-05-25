@@ -35,10 +35,10 @@ const QuoteModal = ({ onClose }) => {
             <p className="mb-6 text-gray-700">
               In the meantime, feel free to email us at{" "}
               <a
-                href="mailto:info@azmaxpro.com"
+                href="mailto:maxpromove@gmail.com"
                 className="text-gray-800underline"
               >
-                info@azmaxpro.com
+                maxpromove@gmail.com
               </a>{" "}
               or call{" "}
               <a href="tel:+1234567890" className="text-gray-800underline">
