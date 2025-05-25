@@ -2,25 +2,16 @@
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
-  const { formSteps, handleFormStep, handleSetProjectStartTime } =
-    useQuoteContext();
+  const {
+    formSteps,
+    handleFormStep,
+    handleSetProjectStartTime,
+    scrollToQuoteForm,
+  } = useQuoteContext();
   const handleSubmit = () => {
     handleSetProjectStartTime();
   };
-  const scrollToQuoteForm = () => {
-    console.log('running')
-    const element = document.getElementById("quote-form");
-    console.log(element,'\n\n\n')
-    if (element) {
-      const topPosition = element.getBoundingClientRect().top + window.scrollY;
-      console.log(element, 'element')
-      console.log(topPosition, ' topPosition')
-      window.scrollTo({
-        top: topPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+
   return (
     <div
       className={`w-full flex ${

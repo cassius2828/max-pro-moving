@@ -47,6 +47,7 @@ export const LocationDetails = () => {
     handleSetInvalidInputs,
     handleSetLocalError,
     isObjEmpty,
+    scrollToQuoteForm,
   } = useQuoteContext();
 
   let locationObj = {
@@ -269,7 +270,10 @@ export const LocationDetails = () => {
           {/* Back button */}
           {formSteps !== 1 && (
             <button
-              onClick={(e) => handleFormStep(e, "back", skipStep, "back")}
+              onClick={(e) => {
+                handleFormStep(e, "back", skipStep, "back");
+                scrollToQuoteForm();
+              }}
               className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
             >
               Back
@@ -287,6 +291,7 @@ export const LocationDetails = () => {
             <button
               type="button"
               onClick={(e) => {
+                scrollToQuoteForm();
                 // check for errors synchronously for immediate updates on error state
                 const errors = handleValidateErrors();
                 // set state for UI feedback in Autocomplete component

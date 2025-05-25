@@ -461,6 +461,23 @@ export const QuoteProvider = ({ children }) => {
     });
   };
 
+  ///////////////////////////
+  // Scroll To Quote Start
+  ///////////////////////////
+  const scrollToQuoteForm = () => {
+    console.log("running");
+    const element = document.getElementById("quote-form");
+    console.log(element, "\n\n\n");
+    if (element) {
+      const topPosition = element.getBoundingClientRect().top + window.scrollY;
+      console.log(element, "element");
+      console.log(topPosition, " topPosition");
+      window.scrollTo({
+        top: topPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <QuoteContext.Provider
       value={{
@@ -589,6 +606,9 @@ export const QuoteProvider = ({ children }) => {
         handleCalculateQuote,
         isObjEmpty,
         handleScrollFormToView,
+
+        // misc
+        scrollToQuoteForm,
       }}
     >
       {children}
