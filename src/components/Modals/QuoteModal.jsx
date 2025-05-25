@@ -3,7 +3,8 @@ import { useQuoteContext } from "../../customHooks/useQuoteContext";
 
 // eslint-disable-next-line react/prop-types
 const QuoteModal = ({ onClose }) => {
-  const { quoteAmount, quoteFormSuccess, quoteIsLoading } = useQuoteContext();
+  const { quoteAmount, quoteFormSuccess, quoteIsLoading, handleResetForm } =
+    useQuoteContext();
 
   return (
     // backdrop
@@ -50,7 +51,10 @@ const QuoteModal = ({ onClose }) => {
 
             {/* Close button */}
             <button
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                handleResetForm();
+              }}
               className="mt-2 px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-md transition"
             >
               Close
