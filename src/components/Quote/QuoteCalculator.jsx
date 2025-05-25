@@ -22,7 +22,7 @@ const QuoteCalculator = () => {
   };
 
   return (
-    <form className="fade-in w-full max-w-3xl mx-auto my-12 shadow-lg rounded-md">
+    <form className="fade-in w-full max-w-3xl mx-auto my-12  rounded-md min-h-[30rem]">
       {" "}
       {formSteps === 1 ? (
         // <LocationDetails onPlaceSelected={handlePlaceSelected} />

@@ -2,15 +2,25 @@
 import { useQuoteContext } from "../../../customHooks/useQuoteContext";
 
 const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
-  const {
-    formSteps,
-    handleFormStep,
-    handleSetProjectStartTime,
-  } = useQuoteContext();
+  const { formSteps, handleFormStep, handleSetProjectStartTime } =
+    useQuoteContext();
   const handleSubmit = () => {
     handleSetProjectStartTime();
   };
-
+  const scrollToQuoteForm = () => {
+    console.log('running')
+    const element = document.getElementById("quote-form");
+    console.log(element,'\n\n\n')
+    if (element) {
+      const topPosition = element.getBoundingClientRect().top + window.scrollY;
+      console.log(element, 'element')
+      console.log(topPosition, ' topPosition')
+      window.scrollTo({
+        top: topPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div
       className={`w-full flex ${
@@ -20,9 +30,10 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
       {/* Back button */}
       {formSteps !== 1 && (
         <button
-          onClick={(e) =>
-            handleFormStep(e, "back", skipStep, skipPastDirection)
-          }
+          onClick={(e) => {
+            handleFormStep(e, "back", skipStep, skipPastDirection);
+            scrollToQuoteForm();
+          }}
           className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
           Back
@@ -41,6 +52,7 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
           type="button"
           onClick={(e) => {
             handleFormStep(e, "next", skipStep, skipPastDirection);
+            scrollToQuoteForm();
           }}
           className="bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:ring-gray-600 text-white font-semibold rounded-md text-sm px-4 py-2 max-w-96"
         >
@@ -51,5 +63,3 @@ const BackAndNextBtns = ({ skipStep, skipPastDirection }) => {
   );
 };
 export default BackAndNextBtns;
-
-

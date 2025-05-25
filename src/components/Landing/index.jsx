@@ -61,7 +61,7 @@ const Landing = () => {
               </div>
             ))}
           </div>
-          <div ref={formRef} className="fade-in flex flex-col lg:flex-row justify-center items-center gap-4 mt-12 pb-24 px-3 w-full mx-auto">
+          <div id="quote-form" ref={formRef} className="fade-in flex flex-col lg:flex-row justify-center items-center gap-4 mt-12 pb-24 px-3 w-full mx-auto">
             <a
               href="#quote-form"
               className=" text-center w-full max-w-[44rem] uppercase fade-in transition duration-300 ease hover:-translate-y-3 border-gray-200 border-2 rounded p-3 text-xl lg:text-2xl text-gray-200  bg-tranparent hover:bg-gray-900"
