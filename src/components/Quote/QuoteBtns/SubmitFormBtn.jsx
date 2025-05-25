@@ -114,7 +114,7 @@ const SubmitFormBtn = () => {
     };
 
     try {
-      const response = await axios.put("/api/email", formData);
+      const response = await axios.put("/.netlify/functions/email", formData);
       return response.data;
     } catch (err) {
       throw new Error("Unable to send report of quote");
@@ -131,7 +131,7 @@ const SubmitFormBtn = () => {
       stop3: stop3?.place_id,
     };
 
-    const response = await axios.post(`/api/matrix`, formData);
+    const response = await axios.post(`/.netlify/functions/matrix`, formData);
     return response.data;
   };
 
@@ -199,7 +199,7 @@ const SubmitFormBtn = () => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="capitalize w-32 text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
+        className="c.netlify/functionstalize w-32 text-white bg-gray-600 hover:bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-600 font-semibold rounded-md text-sm px-4 py-2 max-w-96 sm:w-auto"
       >
         {quoteIsLoading ? "submitting..." : "submit"}
       </button>
