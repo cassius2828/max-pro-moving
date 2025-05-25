@@ -10,9 +10,6 @@ const QuoteModal = ({ onClose }) => {
     <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
       {/* modal box */}
       <div className="bg-gray-100 rounded-lg p-6 max-w-md w-full text-center">
-        {/* heading */}
-        <h2 className="text-3xl font-bold mb-4">Your Quote</h2>
-
         {quoteIsLoading ? (
           <div className="flex justify-center items-center h-72">
             <LoaderIcon className="w-20 h-20" />
@@ -20,8 +17,12 @@ const QuoteModal = ({ onClose }) => {
         ) : (
           <>
             {/* Quote amount */}
-            <div className="text-5xl font-extrabold text-green-500 mb-6">
-              ${Number(quoteAmount.toFixed(2))}
+            <div
+              className={`text-5xl font-extrabold ${
+                quoteFormSuccess ? "text-green-500 " : " text-red-500 "
+              } mb-6`}
+            >
+              {quoteFormSuccess ? "Success!" : "Error"}
             </div>
 
             {/* Body text */}
