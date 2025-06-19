@@ -5,14 +5,16 @@ const navigation = {
     { name: "West Valley", href: "#" },
   ],
   contact: [
-    { name: "(619) 905-1009", href: "#" },
-    { name: "MaxProtection@ENLWorkforce.com", href: "#" },
+    { name: "(619) 905-1009", href: "tel:6199051009" },
+    { name: "MaxProMove@gmail.com", href: "mailto:maxpromove@gmail.com" },
   ],
   company: [
     { name: "About", href: "/about" },
-    { name: "Fast Quote", href: "https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec" },
+    {
+      name: "Fast Quote",
+      href: "https://docs.google.com/forms/d/1nReTIlmoeVGxuUSxRNchpkriseCjxWRUfw8Lb76C4Ec",
+    },
     { name: "Detailed Quote", href: "/#quote-form" },
-
   ],
   legal: [
     { name: "Terms of service", href: "/terms" },
@@ -92,7 +94,6 @@ const Footer = () => {
         className="mx-auto px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32 fade-in "
       >
         <div className="flex justify-center md:justify-start items-center">
-
           <img
             alt="Company name"
             src={`${

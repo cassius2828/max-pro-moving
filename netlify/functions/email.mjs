@@ -141,7 +141,7 @@ export default async function handler(req, context) {
     // Recipient lists
     const clientRecipients = [{ email }];
     const staffRecipients = [
-      { email: "kdottt28@gmail.com" },
+      // { email: "kdottt28@gmail.com" },
       { email: "maxpromove@gmail.com" },
     ];
 
